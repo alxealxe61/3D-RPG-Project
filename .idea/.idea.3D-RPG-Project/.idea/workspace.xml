@@ -5,22 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba6e28a6-d917-4211-a15c-3c64e6a2602e" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/NotoSansKR-VariableFont_wght.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/OFL.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/static/NotoSansKR-Black.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/static/NotoSansKR-Bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/static/NotoSansKR-ExtraBold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/static/NotoSansKR-ExtraLight.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/static/NotoSansKR-Light.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/static/NotoSansKR-Medium.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/static/NotoSansKR-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/static/NotoSansKR-SemiBold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Noto_Sans_KR/static/NotoSansKR-Thin.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Models/FX_Sphere.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Models/FX_Sphere.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Models/FX_Sphere_03.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Models/FX_Sphere_03.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Models/SM_Particle_Smoke_01.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Models/SM_Particle_Smoke_01.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Models/SunShafts.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Models/SunShafts.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CameraController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CameraController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatIdleState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatIdleState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatMoveState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatMoveState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PeaceState.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PeaceState/PeaceIdleState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PeaceState/PeaceIdleState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PeaceState/PeaceMoveState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PeaceState/PeaceMoveState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerStateMachine.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerStateMachine.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.3D-RPG-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.3D-RPG-Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/NewMonoBehaviourScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/NewMonoBehaviourScript.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Non-combat ani/Non-combat movement/RPG-Character@Relax-Run-Forward.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Non-combat ani/Non-combat movement/RPG-Character@Relax-Run-Forward.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonFantasyCharacters/Models/FixedScaleCharacters/Characters.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonFantasyCharacters/Models/FixedScaleCharacters/Characters.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/04. Animation/Player Animator Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04. Animation/Player Animator Controller.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +37,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/PlayerStateMachine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/98c92c324c534d4db338e4efad34964535800/f5/1d6be885/Animator.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -109,6 +122,8 @@
       <updated>1775797074368</updated>
       <workItem from="1775797076395" duration="1225000" />
       <workItem from="1775798635982" duration="225000" />
+      <workItem from="1776039244292" duration="6160000" />
+      <workItem from="1776047048106" duration="23453000" />
     </task>
     <servers />
   </component>
