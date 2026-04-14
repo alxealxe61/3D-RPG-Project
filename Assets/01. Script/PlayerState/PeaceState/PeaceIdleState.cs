@@ -22,6 +22,7 @@ namespace _01._Script
             // 마우스 왼쪽 클릭 시 즉시 공격 상태로 전환
             if (Input.GetMouseButtonDown(0))
             {
+                player.isWeaponInHand = true;
                 player.ani.SetTrigger("EnterCombatState");
                 stateMachine.ChangeState(player.combatIdleState);
             }

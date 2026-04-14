@@ -18,6 +18,17 @@ namespace _01._Script
             CurrentState.Enter();
         } 
         
+        public void BoolInitialize(PlayerState startingState)
+        {
+            CurrentState = startingState;
+            CurrentState.BoolEnter();
+        }
+        public void BoolChangeState(PlayerState newState)
+        {
+            CurrentState.BoolExit();
+            CurrentState = newState;
+            CurrentState.BoolEnter();
+        }
         
     }
 }

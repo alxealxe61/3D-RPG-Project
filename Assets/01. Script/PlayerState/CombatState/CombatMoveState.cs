@@ -33,18 +33,28 @@ namespace _01._Script
             
             if (Input.GetMouseButtonDown(0))
             {
-                player.ani.SetTrigger("CombatAttack");
-                stateMachine.ChangeState(player.combatAttackState);
+                stateMachine.ChangeState(player.attack1State);
+            }
+            
+            if (Input.GetMouseButtonDown(1))
+            {
+                stateMachine.BoolChangeState(player.combatGuardState);
+            }
+            
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                stateMachine.ChangeState(player.combatDodgeState);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                stateMachine.ChangeState(player.combatSkillState);
             }
         }
         
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            
-            float targetMultiplier = Input.GetKey(KeyCode.LeftShift) ? SPRINT_MULTIPLIER : 1.0f;
-            
-            currentSpeedMultiplier = Mathf.Lerp(currentSpeedMultiplier, targetMultiplier, ACCELERATION_SPEED * Time.deltaTime);
             
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
@@ -55,8 +65,6 @@ namespace _01._Script
             
             player.ani.SetFloat("X", InputVector.x * currentSpeedMultiplier);
             player.ani.SetFloat("Y", InputVector.y * currentSpeedMultiplier);
-
-            
         }
 
         public override void Exit()
