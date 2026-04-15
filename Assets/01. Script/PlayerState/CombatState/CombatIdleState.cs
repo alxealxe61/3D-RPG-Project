@@ -11,6 +11,7 @@ namespace _01._Script
         public override void Enter()
         {
             base.Enter();
+            Debug.Log("Idle");
         }
         public override void LogicUpdate()
         {
@@ -37,7 +38,7 @@ namespace _01._Script
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                stateMachine.ChangeState(player.combatSkillState);
+                player.AttemptSkillUse();
             }
         }
 

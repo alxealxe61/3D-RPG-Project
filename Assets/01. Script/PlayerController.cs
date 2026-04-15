@@ -1,5 +1,7 @@
 using UnityEngine;
 using _01._Script;
+using _01._Script.Hit_Hurt_Box_Scripts;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,18 +9,20 @@ public class PlayerController : MonoBehaviour
     
     public PlayerStats playerStats;
     
-    public int moveSpeed =>  playerStats.moveSpeed;
+    public float moveSpeed =>  playerStats.moveSpeed;
+    
     public Vector2 InputVector { get; private set; }
-
-    public Collider[] col;
+    
     public Animator ani;
     
     public GameObject handSword;
     public GameObject etcSword;
     
-    public bool isWeaponInHand = false;
     
-    public PlayerStateMachine StateMachine { get; private set; }
+    public bool isWeaponInHand = false;
+
+    public HitBox hitBox;
+    private PlayerStateMachine StateMachine { get; set; }
     public PeaceIdleState peaceIdleState { get; private set; }
     public PeaceMoveState peaceMoveState { get; private set; }
     public CombatIdleState combatIdleState { get; private set; }
@@ -57,6 +61,7 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
         InputVector = new Vector2(x, y).normalized;
         StateMachine.CurrentState.LogicUpdate();
+        
     }
 
     void FixedUpdate()
@@ -79,5 +84,24 @@ public class PlayerController : MonoBehaviour
             etcSword.SetActive(true);
             handSword.SetActive(false);
         }
+    }
+
+    public void Hit()
+    { 
+        // 공격 판정 시작 (명중 시 포인트 지급은 BattleSystem에서 처리)
+        hitBox.StartAttack();
+    }
+
+    public bool AttemptSkillUse()
+    {
+        if (playerStats.CanUseSkill())
+        {
+            playerStats.UseSkill();
+            
+            StateMachine.ChangeState(combatSkillState);
+            return true;
+        }
+        Debug.Log("[Skill] 포인트가 부족합니다! (현재 포인트 필요: 8)");
+        return false;
     }
 }

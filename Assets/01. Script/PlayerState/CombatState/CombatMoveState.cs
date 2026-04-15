@@ -48,7 +48,7 @@ namespace _01._Script
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                stateMachine.ChangeState(player.combatSkillState);
+                player.AttemptSkillUse();
             }
         }
         
@@ -61,10 +61,10 @@ namespace _01._Script
             InputVector = new Vector2(x, y).normalized;
             
             Vector3 moveVector = (player.transform.forward * player.InputVector.y + player.transform.right * player.InputVector.x).normalized;
-            player.transform.position += moveVector * (player.moveSpeed * currentSpeedMultiplier * Time.deltaTime);
+            player.transform.position += moveVector * (player.moveSpeed* Time.deltaTime);
             
-            player.ani.SetFloat("X", InputVector.x * currentSpeedMultiplier);
-            player.ani.SetFloat("Y", InputVector.y * currentSpeedMultiplier);
+            player.ani.SetFloat("X", InputVector.x);
+            player.ani.SetFloat("Y", InputVector.y);
         }
 
         public override void Exit()

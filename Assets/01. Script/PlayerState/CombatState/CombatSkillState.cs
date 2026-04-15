@@ -1,8 +1,9 @@
+using UnityEngine;
+
 namespace _01._Script
 {
     public class CombatSkillState : PlayerState
     {
-        private const float DODGE_DURATION_THRESHOLD = 0.9f;
         
         public CombatSkillState
             (PlayerController player, PlayerStateMachine stateMachine, string animName) 
@@ -17,10 +18,9 @@ namespace _01._Script
         {
             base.LogicUpdate();
             
-            if (GetNormalizedTime() >= DODGE_DURATION_THRESHOLD)
+            if (GetNormalizedTime() >= 0.9f)
             {
-                // 입력이 있다면 이동 상태로, 없다면 대기 상태로 전환합니다.
-                if (player.InputVector.sqrMagnitude > 0.01f)
+                if (player.InputVector.sqrMagnitude > 0.1f)
                 {
                     stateMachine.ChangeState(player.combatMoveState);
                 }
@@ -39,6 +39,9 @@ namespace _01._Script
         public override void Exit()
         {
             base.Exit();
+            Debug.Log("Exit CombatSkillState");
+            // 입력이 있다면 이동 상태로, 없다면 대기 상태로 전환합니다.
+            
         }
     }
 }

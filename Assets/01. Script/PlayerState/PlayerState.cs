@@ -6,7 +6,7 @@ public abstract class PlayerState
     protected PlayerController player;
     protected PlayerStateMachine stateMachine;
     
-    protected int animHash;
+    private int animHash;
 
     protected PlayerState(PlayerController player, PlayerStateMachine stateMachine, string animName)
     {
@@ -60,8 +60,4 @@ public abstract class PlayerState
     
     public virtual void LogicUpdate() { }
     public virtual void PhysicsUpdate() { }
-    public virtual void HandleInput() { }
-    public virtual void OnCollisionEnter(Collision collision) { }
-    public virtual void OnTriggerEnter(Collider other) { }
-    
 }

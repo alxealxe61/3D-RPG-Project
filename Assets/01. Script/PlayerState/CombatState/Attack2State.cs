@@ -12,18 +12,17 @@ namespace _01._Script
         {
             base.Enter();
             Debug.Log("Attack2");
-            comboPossible = false;
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            
-            if (Input.GetMouseButtonDown(0))
+
+            if (Input.GetMouseButtonDown(0) && GetNormalizedTime() >= 0.6f && comboPossible == false)
             {
                 comboPossible = true;
             }
-
+            
             // 애니메이션이 80% 이상 진행되었을 때 다음 상태 결정
             if (GetNormalizedTime() >= 0.8f)
             {

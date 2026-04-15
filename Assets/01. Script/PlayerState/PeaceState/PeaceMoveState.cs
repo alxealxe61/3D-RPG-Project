@@ -33,8 +33,9 @@ namespace _01._Script
             
             if (Input.GetMouseButtonDown(0))
             {
+                player.isWeaponInHand = true;
                 player.ani.SetTrigger("EnterCombatState");
-                stateMachine.ChangeState(player.combatMoveState);
+                stateMachine.ChangeState(player.combatIdleState);
             }
         }
         
@@ -55,8 +56,6 @@ namespace _01._Script
             
             player.ani.SetFloat("X", InputVector.x * currentSpeedMultiplier);
             player.ani.SetFloat("Y", InputVector.y * currentSpeedMultiplier);
-
-            
         }
 
         public override void Exit()

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "NewPlayerProfile", menuName = "GameData/PlayerProfile")]
 public class PlayerProfile : ScriptableObject
@@ -7,7 +6,7 @@ public class PlayerProfile : ScriptableObject
     [Header("--- Battle Stats ---")]
     public int MaxHp;
     public int MaxAttack;
-    public int maxSkillGauge = 10;
+    public int maxSkillPoint = 10;
     public int moveSpeed = 5;
     
     [Header("--- Wallet & Inventory ---")]

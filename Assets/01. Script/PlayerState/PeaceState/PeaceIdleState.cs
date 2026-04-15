@@ -4,6 +4,8 @@ namespace _01._Script
 {
     public class PeaceIdleState : PlayerState
     {
+        private const float DODGE_DURATION_THRESHOLD = 0.9f;
+        
         public PeaceIdleState
             (PlayerController player, PlayerStateMachine stateMachine, string animName) 
             : base(player, stateMachine, animName)

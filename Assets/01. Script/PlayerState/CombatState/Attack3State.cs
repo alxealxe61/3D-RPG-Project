@@ -12,7 +12,6 @@ namespace _01._Script
         {
             base.Enter();
             // 마지막 타수이므로 콤보 가능 여부를 미리 꺼둠
-            comboPossible = false;
             Debug.Log("Attack3");
         }
 
