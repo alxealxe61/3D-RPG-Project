@@ -31,11 +31,15 @@ namespace _01._Script
                 stateMachine.ChangeState(player.peaceIdleState);
             }
             
+            // 버그 때문에 이상하면 이거 끌수도 있음 
             if (Input.GetMouseButtonDown(0))
             {
-                player.isWeaponInHand = true;
-                player.ani.SetTrigger("EnterCombatState");
-                stateMachine.ChangeState(player.combatIdleState);
+                stateMachine.ChangeState(player.enterCombatState);
+            }
+
+            if (player.lockOnSystem.IsLockedOn == true)
+            {
+                stateMachine.ChangeState(player.enterCombatState);
             }
         }
         

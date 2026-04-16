@@ -18,12 +18,12 @@ namespace _01._Script
         {
             base.LogicUpdate();
 
-            if (Input.GetMouseButtonDown(0) && GetNormalizedTime() >= 0.6f && comboPossible == false)
+            if (Input.GetKeyDown(KeyCode.Space) && GetNormalizedTime() >= 0.6f && comboPossible == false)
             {
                 comboPossible = true;
             }
             
-            if (GetNormalizedTime() >= 0.8f)
+            if (GetNormalizedTime() >= 0.9f)
             {
                 if(comboPossible)
                     stateMachine.ChangeState(player.attack2State);

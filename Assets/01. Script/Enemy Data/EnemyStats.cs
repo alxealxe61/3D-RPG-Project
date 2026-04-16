@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _01._Script.Enemy_Data
 {
-    public class EnemyStats : MonoBehaviour, IDamageble
+    public class EnemyStats : MonoBehaviour
     {
         [SerializeField] 
         private EnemyProfile enemyProfile;
@@ -18,16 +18,14 @@ namespace _01._Script.Enemy_Data
         
         public void TakeDamage(int damage)
         {
-            // 전달받은 데미지 수치만큼 체력을 깎도록 수정
             CurrentHp = Mathf.Max(CurrentHp - damage, 0);
-            
             OnHpChanged?.Invoke(CurrentHp, (float)enemyProfile.MaxHp);
 
-            if (CurrentHp <= 0)
-            {
-                Die();
-            }
+            Debug.Log($"[Enemy] {damage} 데미지 발생! 현재 체력: {CurrentHp}");
+            if (CurrentHp <= 0) Die();
         }
+
+     
 
         private void Die()
         {

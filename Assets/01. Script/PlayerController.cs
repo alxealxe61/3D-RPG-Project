@@ -1,13 +1,12 @@
 using UnityEngine;
 using _01._Script;
-using _01._Script.Hit_Hurt_Box_Scripts;
-using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
     private float horizontalSensitivity = 1.0f;
     
     public PlayerStats playerStats;
+    public LockOnSystem lockOnSystem;
     
     public float moveSpeed =>  playerStats.moveSpeed;
     
@@ -22,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public bool isWeaponInHand = false;
 
     public HitBox hitBox;
+
     private PlayerStateMachine StateMachine { get; set; }
     public PeaceIdleState peaceIdleState { get; private set; }
     public PeaceMoveState peaceMoveState { get; private set; }
@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     public CombatGuardState combatGuardState { get; private set; }
     public  CombatDodgeState combatDodgeState { get; private set; }
     public CombatSkillState combatSkillState { get; private set; }
+    public EnterCombatState enterCombatState { get; private set; }
+    public ExitCombatState  exitCombatState { get; private set; }
 
     void Awake()
     {
@@ -48,11 +50,14 @@ public class PlayerController : MonoBehaviour
         combatGuardState = new CombatGuardState(this, StateMachine, "CombatGuard");
         combatDodgeState = new CombatDodgeState(this, StateMachine, "CombatDodge");
         combatSkillState = new CombatSkillState(this, StateMachine, "CombatSkill");
+        enterCombatState = new EnterCombatState(this, StateMachine, "EnterCombat");
+        exitCombatState = new ExitCombatState(this, StateMachine, "ExitCombat");
     }
     
     void Start()
     {
         StateMachine.Initialize(peaceIdleState);
+        
     }
     
     void Update()
@@ -61,7 +66,6 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
         InputVector = new Vector2(x, y).normalized;
         StateMachine.CurrentState.LogicUpdate();
-        
     }
 
     void FixedUpdate()
@@ -87,9 +91,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Hit()
-    { 
-        // 공격 판정 시작 (명중 시 포인트 지급은 BattleSystem에서 처리)
-        hitBox.StartAttack();
+    {
+        hitBox.AttackStart();
     }
 
     public bool AttemptSkillUse()

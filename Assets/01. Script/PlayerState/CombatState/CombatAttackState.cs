@@ -32,7 +32,7 @@ namespace _01._Script
         {
             base.Exit();
             // 공격 상태 종료 시 판정 강제 종료
-            player.hitBox.StopAttack();
+            player.hitBox.AttackStop();
         }
     }
 }

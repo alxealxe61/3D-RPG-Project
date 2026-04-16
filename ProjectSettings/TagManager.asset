@@ -14,10 +14,10 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
-  - 
-  - 
-  - 
+  - Player Hit Box
+  - Enemy Hit Box
+  - Player Hurt Box
+  - Enemy Hurt Box
   - 
   - 
   - 

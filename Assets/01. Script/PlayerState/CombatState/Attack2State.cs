@@ -18,13 +18,13 @@ namespace _01._Script
         {
             base.LogicUpdate();
 
-            if (Input.GetMouseButtonDown(0) && GetNormalizedTime() >= 0.6f && comboPossible == false)
+            if (Input.GetKeyDown(KeyCode.Space) && GetNormalizedTime() >= 0.6f && comboPossible == false)
             {
                 comboPossible = true;
             }
             
             // 애니메이션이 80% 이상 진행되었을 때 다음 상태 결정
-            if (GetNormalizedTime() >= 0.8f)
+            if (GetNormalizedTime() >= 0.9f)
             {
                 if (comboPossible)
                     stateMachine.ChangeState(player.attack3State); // 3타로 전이

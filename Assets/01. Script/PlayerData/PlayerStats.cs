@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _01._Script
 {
-    public class PlayerStats : MonoBehaviour, IDamageble
+    public class PlayerStats : MonoBehaviour
     {
         [SerializeField] 
         private PlayerProfile playerProfile;
@@ -19,9 +19,9 @@ namespace _01._Script
         public int CurrentUpgradeStones => playerProfile.upgradeStones;
 
         // --- [스킬 포인트] ---
-        public float CurrentSkillPoint { get; private set; } // float으로 변경
-        public float MaxSkillPoint => playerProfile.maxSkillPoint;  // 최대 포인트
-        private const float SkillUsageCost = 8f;             // 사용 소모량
+        public float CurrentSkillPoint { get; private set; } 
+        public float MaxSkillPoint => playerProfile.maxSkillPoint;  
+        private const float SkillUsageCost = 8f;             
 
         // --- [이벤트] ---
         public event Action<float, float> OnHpChanged;
@@ -29,7 +29,7 @@ namespace _01._Script
         public event Action OnCurrencyChanged;                
 
         private void Awake() => CurrentHp = MaxHp;
-
+        
         private void Start()
         {
             OnHpChanged?.Invoke(CurrentHp, MaxHp);
@@ -37,19 +37,19 @@ namespace _01._Script
             OnCurrencyChanged?.Invoke();
         }
 
+        // ICombatAgent 구현: 피격 시 호출
         public void TakeDamage(int damage)
         {
             CurrentHp = Mathf.Max(CurrentHp - damage, 0);
             OnHpChanged?.Invoke(CurrentHp, (float)MaxHp);
 
+            Debug.Log($"[Player] {damage} 데미지 발생! 현재 체력: {CurrentHp}");
             if (CurrentHp <= 0) Die();
         }
 
-        // --- [스킬 포인트 관리] ---
+        // ICombatAgent 구현: 공격 성공 시 호출
+        
 
-        /// <summary>
-        /// 지정된 양만큼 스킬 포인트를 추가합니다. (최대 20)
-        /// </summary>
         public void AddSkillPoint(float amount)
         {
             if (CurrentSkillPoint < MaxSkillPoint)
