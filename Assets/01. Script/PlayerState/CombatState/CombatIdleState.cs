@@ -11,7 +11,7 @@ namespace _01._Script
         public override void Enter()
         {
             base.Enter();
-            //Debug.Log("Idle");
+            Debug.Log("Idle");
         }
         public override void LogicUpdate()
         {
@@ -41,10 +41,10 @@ namespace _01._Script
                 player.AttemptSkillUse();
             }
             
-           // if (player.lockOnSystem.IsLockedOn == false)
-           // {
-           //     stateMachine.ChangeState(player.exitCombatState);
-           // }
+            if (player.lockOnSystem.IsLockedOn == false)
+            { 
+                stateMachine.ChangeState(player.exitCombatState);
+            }
         }
 
         public override void PhysicsUpdate()

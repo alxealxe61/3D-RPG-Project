@@ -18,7 +18,7 @@ namespace _01._Script
         {
             base.LogicUpdate();
 
-            if (Input.GetKeyDown(KeyCode.Space) && GetNormalizedTime() >= 0.6f && comboPossible == false)
+            if (Input.GetKeyDown(KeyCode.Space) && GetNormalizedTime() >= 0.4f && comboPossible == false)
             {
                 comboPossible = true;
             }
@@ -31,12 +31,6 @@ namespace _01._Script
                 else
                     stateMachine.ChangeState(player.combatIdleState); // 입력 없으면 대기
             }
-        }
-        
-        public override void Exit()
-        {
-            base.Exit();
-            //player.ani.ResetTrigger(triggerName);
         }
     }
 }

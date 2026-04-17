@@ -4,6 +4,7 @@ namespace _01._Script
 {
     public class Attack1State : CombatAttackState
     {
+        private bool comboPossible;
         public Attack1State
             (PlayerController player, PlayerStateMachine stateMachine, string animName) 
             : base(player, stateMachine, animName) { }
@@ -18,7 +19,7 @@ namespace _01._Script
         {
             base.LogicUpdate();
 
-            if (Input.GetKeyDown(KeyCode.Space) && GetNormalizedTime() >= 0.6f && comboPossible == false)
+            if (Input.GetKeyDown(KeyCode.Space) && GetNormalizedTime() >= 0.4f && comboPossible == false)
             {
                 comboPossible = true;
             }
@@ -32,10 +33,5 @@ namespace _01._Script
             }
         }
         
-        public override void Exit()
-        {
-            base.Exit();
-            //player.ani.ResetTrigger(triggerName);
-        }
     }
 }

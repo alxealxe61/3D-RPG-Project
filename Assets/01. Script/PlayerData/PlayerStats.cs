@@ -1,9 +1,10 @@
 using System;
+using _01._Script.CombatSystem;
 using UnityEngine;
 
 namespace _01._Script
 {
-    public class PlayerStats : MonoBehaviour
+    public class PlayerStats : MonoBehaviour, ICombatAgent
     {
         [SerializeField] 
         private PlayerProfile playerProfile;
@@ -32,22 +33,36 @@ namespace _01._Script
         
         private void Start()
         {
+            var allDetector = GetComponentsInChildren<IHitDetector>(true);
+            foreach (var detector in allDetector) detector.Initialize(this);
+            
+            var allHurtBox = GetComponentsInChildren<HurtBox>(true);
+            foreach (var hurtBox in allHurtBox) hurtBox.Initialize(this);
             OnHpChanged?.Invoke(CurrentHp, MaxHp);
             OnSkillPointChanged?.Invoke(CurrentSkillPoint, MaxSkillPoint);
             OnCurrencyChanged?.Invoke();
         }
 
         // ICombatAgent 구현: 피격 시 호출
+        
         public void TakeDamage(int damage)
         {
             CurrentHp = Mathf.Max(CurrentHp - damage, 0);
             OnHpChanged?.Invoke(CurrentHp, (float)MaxHp);
-
-            Debug.Log($"[Player] {damage} 데미지 발생! 현재 체력: {CurrentHp}");
-            if (CurrentHp <= 0) Die();
         }
 
         // ICombatAgent 구현: 공격 성공 시 호출
+        
+        public void OnHitDetected(HitInfo hitInfo)
+        {
+            CombatEvent @event = new CombatEvent();
+            @event.Sender = this;
+            @event.Receiver = hitInfo.receiver;
+            @event.Damage = CurrentAttack;
+            @event.HitInfo = hitInfo;
+            
+            CombatSystem.CombatSystem.Instance.AddCombatEvent(@event);
+        }
         
 
         public void AddSkillPoint(float amount)

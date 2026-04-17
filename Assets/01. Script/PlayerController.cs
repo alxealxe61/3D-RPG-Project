@@ -1,5 +1,6 @@
 using UnityEngine;
 using _01._Script;
+using _01._Script.CombatSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     public void Hit()
     {
-        hitBox.AttackStart();
+        hitBox.EnableDetection();
     }
 
     public bool AttemptSkillUse()

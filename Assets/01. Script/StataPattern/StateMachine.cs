@@ -1,36 +1,35 @@
-using _01._Script.StataPattern;
 using UnityEngine;
 
-namespace _01._Script
+namespace _01._Script.StataPattern
 {
-    public class PlayerStateMachine : StateMachine<PlayerController>
+    public class StateMachine<T> where T : MonoBehaviour
     {
-       public PlayerState CurrentState { get; private set; }
+        public State<T> CurrentState { get; private set; }
         
-        public void Initialize(PlayerState startingState)
+        public void Initialize(State<T> startingState)
         {
             CurrentState = startingState;
             CurrentState.Enter();
         }
-        public void ChangeState(PlayerState newState)
+
+        public void ChangeState(State<T> newState)
         {
             CurrentState.Exit();
             CurrentState = newState;
             CurrentState.Enter();
-        } 
-        
-        public void BoolInitialize(PlayerState startingState)
+        }
+
+        public void BoolInitialize(State<T> startingState)
         {
             CurrentState = startingState;
             CurrentState.BoolEnter();
         }
-        
-        public void BoolChangeState(PlayerState newState)
+
+        public void BoolChangeState(State<T> newState)
         {
             CurrentState.BoolExit();
             CurrentState = newState;
             CurrentState.BoolEnter();
         }
-        
     }
 }

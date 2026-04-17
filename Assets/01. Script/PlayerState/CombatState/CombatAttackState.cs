@@ -22,17 +22,19 @@ namespace _01._Script
 
             // 선입력 버퍼링: 언제든 클릭하면 다음 콤보 예약
             
-            if (Input.GetMouseButtonDown(1))
-            {
-                stateMachine.BoolChangeState(player.combatGuardState);
-            }
+            // tlqkf 이거 넣으면 공격 캔슬 가능함 
+            //if (Input.GetMouseButtonDown(1))
+            //{
+            //    stateMachine.BoolChangeState(player.combatGuardState);
+            //}
         }
 
         public override void Exit()
         {
             base.Exit();
             // 공격 상태 종료 시 판정 강제 종료
-            player.hitBox.AttackStop();
+            player.hitBox.DisableDetection();
+            comboPossible = false;
         }
     }
 }

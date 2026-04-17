@@ -5,39 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba6e28a6-d917-4211-a15c-3c64e6a2602e" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HitBox.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HitInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HitInfo.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HurtBox.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/LockOnSystem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/LockOnSystem.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/EnterCombatState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/EnterCombatState.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/ExitCombatState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/ExitCombatState.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/SingletonBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/SingletonBase.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatEvent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatEvent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/ICombatAgent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/ICombatAgent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitDetector.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitDetector.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitTargetPart.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitTargetPart.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/EnemyState.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/EnemyState/Melee EnemyState.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/StataPattern.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/StataPattern/State.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/StataPattern/State.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/StataPattern/StateMachine.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/StataPattern/StateMachine.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.3D-RPG-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.3D-RPG-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/00. Test Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/00. Test Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HitBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HitBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HitInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HitInfo.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HurtBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HurtBox.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy Data/EnemyStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy Data/EnemyStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Hit,Hurt Box Scripts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Hit,Hurt Box Scripts/BattleSystem.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Hit,Hurt Box Scripts/BattleSystem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Hit,Hurt Box Scripts/HitBox.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Hit,Hurt Box Scripts/HitBox.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HitBox.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Hit,Hurt Box Scripts/HurtBox.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Hit,Hurt Box Scripts/HurtBox.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HurtBox.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerData/PlayerStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerData/PlayerStats.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/Attack1State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/Attack1State.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/Attack2State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/Attack2State.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/Attack3State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/Attack3State.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatAttackState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatAttackState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatIdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatIdleState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatMoveState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatMoveState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PeaceState/PeaceIdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PeaceState/PeaceIdleState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PeaceState/PeaceMoveState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PeaceState/PeaceMoveState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PlayerState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PlayerState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PlayerStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/PlayerState/PlayerStateMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Attack ani/RPG-Character@2Hand-Sword-Attack2.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Attack ani/RPG-Character@2Hand-Sword-Attack2.FBX.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Attack ani/RPG-Character@2Hand-Sword-Attack3.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Attack ani/RPG-Character@2Hand-Sword-Attack3.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Non-combat ani/Non-combat movement/RPG-Character@Relax-Walk-Forward.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Non-combat ani/Non-combat movement/RPG-Character@Relax-Walk-Forward.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/04. Animation/Player Animator Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04. Animation/Player Animator Controller.controller" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +55,11 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/ICombatAgent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitDetector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitTargetPart.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/Enemy Data/EnemyProfile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/Enemy Data/EnemyStats.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/LockOnSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -60,6 +71,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatGuardState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/PlayerState/CombatState/CombatSkillState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/SingletonBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/StataPattern/State.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/StataPattern/StateMachine.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/61dc858e9c064822b944126a40a6078e214600/b3/86678e74/GameObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/98c92c324c534d4db338e4efad34964535800/f5/1d6be885/Animator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cc89201027dc4d1c888290a2fa4f22882a400/a4/8258a90d/Collider.cs" root0="SKIP_HIGHLIGHTING" />
@@ -154,6 +167,7 @@
       <workItem from="1776301772089" duration="8254000" />
       <workItem from="1776316500687" duration="165000" />
       <workItem from="1776316680358" duration="16941000" />
+      <workItem from="1776389583335" duration="21183000" />
     </task>
     <servers />
   </component>

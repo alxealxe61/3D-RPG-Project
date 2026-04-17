@@ -1,69 +1,70 @@
-using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class CombatSystem : MonoBehaviour
+namespace _01._Script.CombatSystem
 {
-    public static CombatSystem Instance;
-
-    private List<HitInfo> hitRequests = new List<HitInfo>();
-    private List<HitInfo> hurtRequests = new List<HitInfo>();
-    
-    [Header("설정")]
-    [SerializeField] private float validationWindow = 0.1f; // 판정 유효 시간
-
-    private void Awake() 
+    public class CombatSystem : SingletonBase<CombatSystem>
     {
-        Instance = this;
-    }
-
-    // 공격자로부터 받은 신호
-    public void RegisterHit(HitInfo info) 
-    {
-        // Hurt 리스트에서 나(공격자)와 상대(피격자)가 일치하는 신호가 있는지 확인
-        var match = hurtRequests.Find(h => h.attackerId == info.attackerId && h.victimId == info.victimId);
+        private const int EVENT_PROCESS_PER_FRAME = 10;
         
-        if (match.attackerId != 0) 
+        private Dictionary<Collider, HurtBox> HurtBoxDic;
+        private Queue<CombatEvent> CombatEventQueue { get; set; }
+        
+        protected override void Awake()
         {
-            ProcessFinalHit(info);
-            hurtRequests.Remove(match);
-        } 
-        else 
-        {
-            hitRequests.Add(info);
-            StartCoroutine(CleanUpRequest(info, true));
+            base.Awake();
+            HurtBoxDic = new Dictionary<Collider, HurtBox>();
+            CombatEventQueue = new Queue<CombatEvent>();
         }
-    }
 
-    // 피격자로부터 받은 신호
-    public void RegisterHurt(HitInfo info) 
-    {
-        // Hit 리스트에서 나(피격자)와 상대(공격자)가 일치하는 신호가 있는지 확인
-        var match = hitRequests.Find(h => h.attackerId == info.attackerId && h.victimId == info.victimId);
-
-        if (match.attackerId != 0) 
+        private void Update()
         {
-            ProcessFinalHit(info);
-            hitRequests.Remove(match);
-        } 
-        else 
-        {
-            hurtRequests.Add(info);
-            StartCoroutine(CleanUpRequest(info, false));
+            for (int i = 0; i < EVENT_PROCESS_PER_FRAME; i++)
+            {
+                if (CombatEventQueue.Count == 0) break;
+                var combatEvent = CombatEventQueue.Dequeue();
+                HandleCombatEvent(combatEvent);
+            }
         }
-    }
+        public void AddCombatEvent(CombatEvent combatEvent)
+        {
+            CombatEventQueue.Enqueue(combatEvent);
+        }
 
-    // 실제 데미지 로직이 실행되는 곳
-    private void ProcessFinalHit(HitInfo info) 
-    {
-        Debug.Log($"<color=green><b>[판정 확정]</b></color> {info.attackerId} -> {info.victimId} 타격 성공!");
-        // 여기서 실제로 체력을 깎거나 이펙트를 생성합니다.
-    }
+        private void HandleCombatEvent(CombatEvent combatEvent)
+        {
+            if (combatEvent.Sender == combatEvent.Receiver) return;
 
-    private IEnumerator CleanUpRequest(HitInfo info, bool isHitList)
-    {
-        yield return new WaitForSeconds(validationWindow);
-        if (isHitList) hitRequests.Remove(info);
-        else hurtRequests.Remove(info);
+            combatEvent.Receiver.TakeDamage(combatEvent.Damage);
+
+            if (combatEvent.Sender is PlayerStats player)
+            {
+                player.AddSkillPoint(0.5f);
+            }
+
+            Debug.Log($"Receiver : {combatEvent.Receiver},Damage : {combatEvent.Damage}");
+        }
+    
+
+        public void AddHurtBox(Collider col, HurtBox hurtBox)
+        {
+            HurtBoxDic.TryAdd(col, hurtBox);
+        }
+
+        public void RemoveHurtBox(Collider col, HurtBox hurtBox)
+        {
+            if (HurtBoxDic.ContainsKey(col) ==  false) return;
+            HurtBoxDic.Remove(col);
+        }
+
+        public bool HasHurtBox(Collider col)
+        {
+            return HurtBoxDic.ContainsKey(col);
+        }
+
+        public HurtBox GetHurtBox(Collider col)
+        {
+            return HurtBoxDic[col];
+        }
     }
 }

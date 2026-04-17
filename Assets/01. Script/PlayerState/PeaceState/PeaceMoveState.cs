@@ -32,10 +32,10 @@ namespace _01._Script
             }
             
             // 버그 때문에 이상하면 이거 끌수도 있음 
-            if (Input.GetMouseButtonDown(0))
-            {
-                stateMachine.ChangeState(player.enterCombatState);
-            }
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    stateMachine.ChangeState(player.enterCombatState);
+            //}
 
             if (player.lockOnSystem.IsLockedOn == true)
             {

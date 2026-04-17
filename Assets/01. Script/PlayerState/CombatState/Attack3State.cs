@@ -24,12 +24,5 @@ namespace _01._Script
                 stateMachine.ChangeState(player.combatIdleState);
             }
         }
-        
-        public override void Exit()
-        {
-            base.Exit();
-            //player.ani.ResetTrigger(triggerName);
-        }
-
     }
 }

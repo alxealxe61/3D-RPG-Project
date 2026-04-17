@@ -51,10 +51,10 @@ namespace _01._Script
                 player.AttemptSkillUse();
             }
             
-            //if (player.lockOnSystem.IsLockedOn == false)
-            //{
-            //    stateMachine.ChangeState(player.exitCombatState);
-            //}
+            if (player.lockOnSystem.IsLockedOn == false)
+            {
+                stateMachine.ChangeState(player.exitCombatState);
+            }
         }
         
         public override void PhysicsUpdate()

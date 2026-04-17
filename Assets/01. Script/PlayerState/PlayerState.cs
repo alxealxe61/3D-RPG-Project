@@ -1,19 +1,17 @@
 using _01._Script;
+using _01._Script.StataPattern;
 using UnityEngine;
 
-public abstract class PlayerState
+public abstract class PlayerState : State<PlayerController>
 {
     protected PlayerController player;
     protected PlayerStateMachine stateMachine;
     
     private int animHash;
 
-    protected PlayerState(PlayerController player, PlayerStateMachine stateMachine, string animName)
-    {
-        this.player = player;
-        this.stateMachine = stateMachine;
-        this.animHash = Animator.StringToHash(animName);
-    }
+    protected PlayerState(PlayerController player, 
+        StateMachine<PlayerController> stateMachine, string animName) 
+        : base(player, stateMachine, animName) { }
 
     public virtual void Enter()
     {
