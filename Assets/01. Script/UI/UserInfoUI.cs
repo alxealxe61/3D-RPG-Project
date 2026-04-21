@@ -39,7 +39,7 @@ namespace _01._Script.UI_Manager
                 SubscribeEvents();
                 // 초기 UI 상태를 강제로 갱신 (Stats의 Start()에서 불릴 수도 있지만 여기서 한 번 더 안전하게 처리)
                 UpdateHpUI(playerStats.CurrentHp, playerStats.MaxHp);
-                UpdateSkillUI(playerStats.CurrentSkillPoint, 20f); // Max는 20 고정
+                UpdateSkillUI(playerStats.currentSkillPoint, 20f); // Max는 20 고정
                 UpdateCurrencyUI();
             }
         }

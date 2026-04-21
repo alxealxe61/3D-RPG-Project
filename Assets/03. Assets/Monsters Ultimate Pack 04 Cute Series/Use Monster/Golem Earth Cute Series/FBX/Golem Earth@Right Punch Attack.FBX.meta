@@ -59,7 +59,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.4225722
-        functionName: Hit
+        functionName: RHit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

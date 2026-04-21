@@ -34,6 +34,7 @@ namespace _01._Script
         public override void Exit()
         {
             base.Exit();
+            player.skillHitBox.DisableDetection();
         }
 
     }

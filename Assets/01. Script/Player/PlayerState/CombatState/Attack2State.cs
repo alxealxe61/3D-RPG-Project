@@ -18,7 +18,7 @@ namespace _01._Script
         {
             base.LogicUpdate();
 
-            if (Input.GetKeyDown(KeyCode.Space) && GetNormalizedTime() >= 0.4f && comboPossible == false)
+            if (Input.GetMouseButtonDown(0) && GetNormalizedTime() >= 0.4f && comboPossible == false)
             {
                 comboPossible = true;
             }

@@ -99,7 +99,7 @@ namespace _01._Script
                 moveVector = (player.transform.forward * player.InputVector.y + player.transform.right * player.InputVector.x).normalized;
             }
             
-            player.transform.position += moveVector * (player.moveSpeed * Time.deltaTime);
+            player.transform.position += moveVector * (player.moveSpeed * Time.deltaTime / 2);
             
             player.ani.SetFloat("X", applyInput.x);
             player.ani.SetFloat("Y", applyInput.y);

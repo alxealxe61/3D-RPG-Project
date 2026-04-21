@@ -11,22 +11,23 @@ namespace _01._Script
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Combat Guard State");
+            player.GuardTimer = 0.0f;
         }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-            // 여기에 일반 가드와 퍼펙트 가드 판정이 들어감
-        }
-
+        
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            player.UpdateGuardTimer();
+            
             if (Input.GetMouseButtonUp(1))
             {
                 stateMachine.ChangeState(player.combatIdleState);
             }
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
         }
     }
 }

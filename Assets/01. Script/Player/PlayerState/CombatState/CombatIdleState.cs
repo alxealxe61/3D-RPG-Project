@@ -11,7 +11,6 @@ namespace _01._Script
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Idle");
         }
         public override void LogicUpdate()
         {
@@ -22,7 +21,7 @@ namespace _01._Script
                 stateMachine.ChangeState(player.combatMoveState);
             }
             
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0))
             {
                 stateMachine.ChangeState(player.attack1State);
             }

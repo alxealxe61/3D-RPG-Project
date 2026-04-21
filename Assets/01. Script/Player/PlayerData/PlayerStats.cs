@@ -1,6 +1,7 @@
 using System;
 using _01._Script.CombatSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _01._Script
 {
@@ -9,19 +10,25 @@ namespace _01._Script
         [SerializeField] 
         private PlayerProfile playerProfile;
         
+        [SerializeField] 
+        private PlayerController playerController;
+        
+        private const float PERFECT_GUARD_WINDOW = 1.0f;
+        private const float GUARD_DAMAGE_REDUCTION = 0.3f;
+        
         // --- [기본 스탯] ---
         public int CurrentHp { get; private set; }
         public int MaxHp => playerProfile.MaxHp;
-        public int CurrentAttack => playerProfile.MaxAttack;
-        public int moveSpeed => playerProfile.moveSpeed;
+        private int CurrentAttack => playerProfile.MaxAttack;
+        public int MoveSpeed => playerProfile.moveSpeed;
 
         // --- [재화] ---
         public int CurrentGold => playerProfile.gold;
         public int CurrentUpgradeStones => playerProfile.upgradeStones;
 
         // --- [스킬 포인트] ---
-        public float CurrentSkillPoint { get; private set; } 
-        public float MaxSkillPoint => playerProfile.maxSkillPoint;  
+        public float currentSkillPoint = 8;
+        private float MaxSkillPoint => playerProfile.maxSkillPoint;  
         private const float SkillUsageCost = 8f;             
 
         // --- [이벤트] ---
@@ -39,7 +46,7 @@ namespace _01._Script
             var allHurtBox = GetComponentsInChildren<HurtBox>(true);
             foreach (var hurtBox in allHurtBox) hurtBox.Initialize(this);
             OnHpChanged?.Invoke(CurrentHp, MaxHp);
-            OnSkillPointChanged?.Invoke(CurrentSkillPoint, MaxSkillPoint);
+            OnSkillPointChanged?.Invoke(currentSkillPoint, MaxSkillPoint);
             OnCurrencyChanged?.Invoke();
         }
 
@@ -47,7 +54,25 @@ namespace _01._Script
         
         public void TakeDamage(int damage)
         {
-            CurrentHp = Mathf.Max(CurrentHp - damage, 0);
+            if (playerController.IsGuarding == true)
+            {
+                if (playerController.GuardTimer <= PERFECT_GUARD_WINDOW)
+                {
+                    //Debug.Log("Perfect Guard! Damage 0");
+                    return;
+                }
+                else
+                {
+                    int reducedDamage = Mathf.RoundToInt(damage * GUARD_DAMAGE_REDUCTION);
+                    CurrentHp = Mathf.Max(CurrentHp - reducedDamage, 0);
+                    //Debug.Log($"Guard! Damage: {reducedDamage}");
+                }
+            }
+            else
+            {
+                CurrentHp = Mathf.Max(CurrentHp - damage, 0);
+            }
+            
             OnHpChanged?.Invoke(CurrentHp, (float)MaxHp);
         }
 
@@ -63,25 +88,31 @@ namespace _01._Script
             
             CombatSystem.CombatSystem.Instance.AddCombatEvent(@event);
         }
-        
+
+        public void Stun()
+        {
+            if (playerController.IsGuarding == true) return;
+            //Debug.Log("스턴 당함");
+            playerController.isStunned();
+        }
 
         public void AddSkillPoint(float amount)
         {
-            if (CurrentSkillPoint < MaxSkillPoint)
+            if (currentSkillPoint < MaxSkillPoint)
             {
-                CurrentSkillPoint = Mathf.Min(CurrentSkillPoint + amount, MaxSkillPoint);
-                OnSkillPointChanged?.Invoke(CurrentSkillPoint, MaxSkillPoint);
+                currentSkillPoint = Mathf.Min(currentSkillPoint + amount, MaxSkillPoint);
+                OnSkillPointChanged?.Invoke(currentSkillPoint, MaxSkillPoint);
             }
         }
         
-        public bool CanUseSkill() => CurrentSkillPoint >= SkillUsageCost;
+        public bool CanUseSkill() => currentSkillPoint >= SkillUsageCost;
 
         public void UseSkill()
         {
             if (CanUseSkill())
             {
-                CurrentSkillPoint -= SkillUsageCost;
-                OnSkillPointChanged?.Invoke(CurrentSkillPoint, MaxSkillPoint);
+                currentSkillPoint -= SkillUsageCost;
+                OnSkillPointChanged?.Invoke(currentSkillPoint, MaxSkillPoint);
             }
         }
 

@@ -5,7 +5,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba6e28a6-d917-4211-a15c-3c64e6a2602e" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/LHitBox.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/LHitBox.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/RHitBox.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/RHitBox.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/PlayerHitBox.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/PlayerHitBox/SkillHitBox.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/PlayerHitBox/SkillHitBox.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/AttackRange.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/AttackRange.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/Pattern2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/Pattern2/Pattern2Attack1.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/Pattern2/Pattern2Attack1.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/Pattern2/Pattern2Attack2.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/Pattern2/Pattern2Attack2.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/Pattern2/Pattern2Attack3.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/Pattern2/Pattern2Attack3.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatStunState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatStunState.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.3D-RPG-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.3D-RPG-Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HitBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/PlayerHitBox/HitBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HitBox.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/PlayerHitBox/HitBox.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HurtBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HurtBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/ICombatAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/ICombatAgent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/EnemyPerception.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/DetectionRange.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/EnemyPerception.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/DetectionRange.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee Enemy Data/MeleeEnemyStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee Enemy Data/MeleeEnemyStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/AttackPatten1.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/pattern1.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/AttackPatten1/EnmeyAttackPatten1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/AttackPatten1/EnmeyAttackPatten1.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/AttackPatten1/Patten1Attack1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/pattern1/Pattern1Attack1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/AttackPatten1/Patten1Attack1.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/pattern1/Pattern1Attack1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/AttackPatten1/Patten1Attack2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/pattern1/Pattern1Attack2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/AttackPatten1/Patten1Attack2.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/pattern1/Pattern1Attack2.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/EnemyAttackPatten2.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/EnemyAttackPatten2.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/EnemyCombatIdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/EnemyCombatIdleState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/EnemyCombatMovestate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/EnemyCombatMovestate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/EnemyCombatStunState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/EnemyCombatStunState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/MeleeEnemyState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/MeleeEnemyState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/MeleeEnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/MeleeEnemyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/LockOnSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/LockOnSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/LockOnSystem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/LockOnSystem.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerData/PlayerStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerData/PlayerStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack1State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack1State.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack2State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack2State.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatDodgeState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatDodgeState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatGuardState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatGuardState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatIdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatIdleState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatMoveState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatMoveState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatSkillState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatSkillState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PlayerStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PlayerStateMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/UserInfoUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/UI/UserInfoUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Skill ani/RPG-Character@2Hand-Sword-Attack9.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Skill ani/RPG-Character@2Hand-Sword-Attack9.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Left Punch Attack.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Left Punch Attack.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Right Punch Attack.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Right Punch Attack.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Smash Attack.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Smash Attack.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Spin Attack Once.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Spin Attack Once.FBX.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,13 +78,17 @@
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/LHitBox.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/RHitBox.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/ICombatAgent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitDetector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitTargetPart.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/01. Script/Enemy/EnemyPerception.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/AttackPatten1/Patten1Attack1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/AttackPatten1/Patten1Attack2.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/01. Script/LockOnSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/CombatSystem/PlayerHitBox/SkillHitBox.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/Enemy/AttackRange.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/Pattern2/Pattern2Attack1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/Pattern2/Pattern2Attack2.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee EnemyState/CombatState/Pattern2/Pattern2Attack3.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatStunState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/SingletonBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/61dc858e9c064822b944126a40a6078e214600/b3/86678e74/GameObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/98c92c324c534d4db338e4efad34964535800/f5/1d6be885/Animator.cs" root0="SKIP_HIGHLIGHTING" />
@@ -125,6 +188,7 @@
       <workItem from="1776647197541" duration="20863000" />
       <workItem from="1776675083506" duration="2000" />
       <workItem from="1776675835336" duration="220000" />
+      <workItem from="1776735526713" duration="26841000" />
     </task>
     <servers />
   </component>

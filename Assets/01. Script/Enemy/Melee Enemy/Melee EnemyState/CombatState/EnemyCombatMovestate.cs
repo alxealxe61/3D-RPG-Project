@@ -4,9 +4,6 @@ namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState
 {
     public class EnemyCombatMovestate : MeleeEnemyState
     {
-        private const float TARGET_UPDATE_INTERVAL = 0.2f;
-        private float lastUpdateTime;
-        
         public EnemyCombatMovestate
             (MeleeEnemyController owner, MeleeEnemyStateMachine stateMachine, string aniName, bool useBool)
             : base(owner, stateMachine, aniName, useBool) { }
@@ -14,39 +11,48 @@ namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState
         public override void Enter()
         {
             base.Enter();
+            if (agent != null && agent.isOnNavMesh)
+            {
+                agent.isStopped = false;
+                agent.speed = owner.moveSpeed;
+            }
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (meleeEnemy.target == null) return;
 
-            float distance = Vector3.Distance(meleeEnemy.transform.position, meleeEnemy.target.position);
-            if (distance <= meleeEnemy.Agent.stoppingDistance)
+            // 타겟이 사라지면 Idle로 복귀
+            if (owner.Target == null)
             {
-                Debug.Log(distance);
-                // 공격 가능 거리 도달 시 로직
+                stateMachine.ChangeState(meleeEnemy.CombatIdleState);
+                return;
             }
 
-            if (Time.time - lastUpdateTime > TARGET_UPDATE_INTERVAL)
+            // 공격 범위 안에 들어오면 공격 대기(Idle) 상태로 전환
+            if (owner.attackRange.IsInAttackRange)
             {
-                UpdatePath();
+                stateMachine.ChangeState(meleeEnemy.CombatIdleState);
+                return;
+            }
+
+            // 타겟을 향해 실시간으로 경로 갱신
+            if (agent != null && agent.isOnNavMesh)
+            {
+                agent.isStopped = false;
+                agent.speed = owner.moveSpeed;
+                agent.SetDestination(owner.Target.position);
             }
         }
 
-        private void UpdatePath()
-        {
-            if (meleeEnemy.Agent.isOnNavMesh)
-            {
-                meleeEnemy.Agent.SetDestination(meleeEnemy.target.position);
-                lastUpdateTime = Time.time;
-            }
-        }
         
         public override void Exit()
         {
             base.Exit();
-            if (meleeEnemy.Agent.isOnNavMesh) meleeEnemy.Agent.ResetPath();
+            if (agent != null && agent.isOnNavMesh)
+            {
+                agent.isStopped = true;
+            }
         }
     }
 }

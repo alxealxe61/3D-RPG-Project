@@ -20,8 +20,8 @@ public class HurtBox : MonoBehaviour, IHitTargetPart
         CombatSystem.Instance.AddHurtBox(Collider, this);
     }
     
-    private void OnDestroy()
-    {
-        CombatSystem.Instance.RemoveHurtBox(Collider, this);
-    }
+    //private void OnDestroy()
+    //{
+    //    CombatSystem.Instance.RemoveHurtBox(Collider, this);
+    //}
 }

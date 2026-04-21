@@ -4,7 +4,7 @@ namespace _01._Script
 {
     public class CombatDodgeState : PlayerState
     {
-        private const float DODGE_SPEED = 10.0f; // 회피 시 뒤로 물러나는 속도
+        private const float DODGE_SPEED = 2.0f; // 회피 시 뒤로 물러나는 속도
         private const float DODGE_DURATION_THRESHOLD = 0.9f; // 애니메이션 재생 완료 임계값 (0.9 = 90%)
 
         public CombatDodgeState

@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     
     public PlayerStats playerStats;
     public LockOnSystem lockOnSystem;
-    public float moveSpeed =>  playerStats.moveSpeed;
+    public float moveSpeed =>  playerStats.MoveSpeed;
     public Vector2 InputVector { get; private set; }
     public Animator ani;
     public GameObject handSword;
@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     [Range(0, 1)] [SerializeField] public float daming = 0.0f;
     public bool isWeaponInHand = false;
     public HitBox hitBox;
+    public SkillHitBox skillHitBox;
+    
+    public float GuardTimer { get; set; }
+    public bool IsGuarding => StateMachine.CurrentState == combatGuardState;
     
     private PlayerStateMachine StateMachine { get; set; }
     public PeaceIdleState peaceIdleState { get; private set; }
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public CombatSkillState combatSkillState { get; private set; }
     public EnterCombatState enterCombatState { get; private set; }
     public ExitCombatState  exitCombatState { get; private set; }
+    public CombatStunState combatStunState { get; private set; }
 
     void Awake()
     {
@@ -46,6 +51,7 @@ public class PlayerController : MonoBehaviour
         combatSkillState = new CombatSkillState(this, StateMachine, "CombatSkill", false);
         enterCombatState = new EnterCombatState(this, StateMachine, "EnterCombat", false);
         exitCombatState = new ExitCombatState(this, StateMachine, "ExitCombat", false);
+        combatStunState = new CombatStunState(this, StateMachine, "CombatStun", false);
     }
     
     void Start()
@@ -66,6 +72,11 @@ public class PlayerController : MonoBehaviour
         StateMachine.CurrentState.PhysicsUpdate();
     }
     
+    public void isStunned()
+    {
+        StateMachine.ChangeState(combatStunState);
+    }
+    
     public bool AttemptSkillUse()
     {
         if (playerStats.CanUseSkill())
@@ -78,12 +89,17 @@ public class PlayerController : MonoBehaviour
         Debug.Log("[Skill] 포인트가 부족합니다! (현재 포인트 필요: 8)");
         return false;
     }
-
+    
+    public void UpdateGuardTimer()
+    {
+        GuardTimer += Time.deltaTime;
+    }
+    
     #region 애니메이션 이벤트 함수 모음
 
     public void WeaponSwitch() 
     {
-        Debug.Log("검뽑");
+        //Debug.Log("검뽑");
         if (isWeaponInHand)
         {
             // 뽑는 동작 중이라면: 등 끄고 손 켜기
@@ -101,6 +117,11 @@ public class PlayerController : MonoBehaviour
     public void Hit()
     {
         hitBox.EnableDetection();
+    }
+
+    public void SkillHit()
+    {
+        skillHitBox.EnableDetection();
     }
 
     #endregion

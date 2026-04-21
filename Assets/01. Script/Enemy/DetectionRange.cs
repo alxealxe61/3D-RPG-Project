@@ -4,15 +4,14 @@ using UnityEngine;
 
 namespace _01._Script.Enemy
 {
-    public class EnemyPerception : MonoBehaviour
+    public class DetectionRange : MonoBehaviour
     {
         public event Action<Transform> OnTargetDetected;
-
         public event Action OnTargetLost;
 
         [SerializeField] private string targetTag = "Player";
-        
-        private Transform detectedTarget;
+
+        public Transform detectedTarget;
             
         void OnTriggerEnter(Collider other)
         {

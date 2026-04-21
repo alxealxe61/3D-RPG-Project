@@ -1,6 +1,7 @@
 using System.Buffers;
 using _01._Script.StataPattern;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _01._Script.Enemy.EnemyState.Melee_EnemyState
 {
@@ -9,6 +10,8 @@ namespace _01._Script.Enemy.EnemyState.Melee_EnemyState
         protected MeleeEnemyController meleeEnemy => owner;
         //protected new MeleeEnemyStateMachine stateMachine;
 
+        protected readonly NavMeshAgent agent;
+        
         private readonly int animHash;
         private readonly bool useBool;
         protected MeleeEnemyState
@@ -18,6 +21,7 @@ namespace _01._Script.Enemy.EnemyState.Melee_EnemyState
             this.useBool = useBool;
             this.stateMachine = stateMachine;
             animHash = Animator.StringToHash(aniName);
+            agent = owner.GetComponent<NavMeshAgent>();
         }
         
         public override void Enter()

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProfile
   MaxHp: 100
   MaxAttack: 10
-  maxSkillPoint: 20
+  maxSkillPoint: 40
   moveSpeed: 5
   gold: 100
   upgradeStones: 10

@@ -1,8 +1,8 @@
 namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState.AttackPatten1
 {
-    public class Patten1Attack2 : MeleeEnemyState
+    public class Pattern1Attack2 : MeleeEnemyState
     {
-        public Patten1Attack2
+        public Pattern1Attack2
             (MeleeEnemyController owner, MeleeEnemyStateMachine stateMachine, string aniName, bool useBool)
             : base(owner, stateMachine, aniName, useBool) { }
         
@@ -16,14 +16,15 @@ namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState.AttackPatten
             base.LogicUpdate();
             if (GetNormalizedTime() >= 0.9f)
             {
-                stateMachine.ChangeState(meleeEnemy.combatIdleState);
+                //meleeEnemy.isAttacking = false;
+                stateMachine.ChangeState(meleeEnemy.CombatIdleState);
             }
         }
         
         public override void Exit()
         {
             base.Exit();
-            
+            meleeEnemy.lHitBox.DisableDetection();
         }
     }
 }
