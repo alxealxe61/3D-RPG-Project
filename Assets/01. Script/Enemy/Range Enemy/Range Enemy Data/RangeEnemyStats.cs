@@ -1,26 +1,25 @@
 using System;
 using _01._Script.CombatSystem;
-using _01._Script.Enemy.Melee_Enemy;
 using UnityEngine;
 
-namespace _01._Script.Enemy_Data
+namespace _01._Script.Enemy.Range_Enemy.Range_Enemy_Data
 {
-    public class MeleeEnemyStats : MonoBehaviour, ICombatAgent
+    public class RangeEnemyStats : MonoBehaviour, ICombatAgent
     {
         [SerializeField] 
-        private EnemyProfile meleeEnemyProfile;
-        
-        [SerializeField] 
-        private MeleeEnemyController meleeEnemyController;
+        private EnemyProfile rangeEnemyProfile;
 
+        [SerializeField] 
+        private RangeEnemyController rangeEnemyController;
+        
         public int currentHp;
-        private int MaxHp => meleeEnemyProfile.MaxHp;
-        private int CurrentAttack => meleeEnemyProfile.MaxAttack;
-        public int MoveSpeed => meleeEnemyProfile.moveSpeed;
+        private int MaxHp => rangeEnemyProfile.MaxHp;
+        private int CurrentAttack => rangeEnemyProfile.MaxAttack;
+        public int MoveSpeed => rangeEnemyProfile.moveSpeed;
         
         public event Action<float, float> OnHpChanged;
         
-        private void Awake() => currentHp = meleeEnemyProfile.MaxHp;
+        private void Awake() => currentHp = rangeEnemyProfile.MaxHp;
 
         private void Start()
         {
@@ -51,7 +50,7 @@ namespace _01._Script.Enemy_Data
 
         public void Stun()
         {
-            meleeEnemyController.isStunned();
+            rangeEnemyController.isStunned();
         }
 
 

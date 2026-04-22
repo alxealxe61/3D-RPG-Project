@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool isWeaponInHand = false;
     public HitBox hitBox;
     public SkillHitBox skillHitBox;
+    public HurtBox hurtBox;
     
     public float GuardTimer { get; set; }
     public bool IsGuarding => StateMachine.CurrentState == combatGuardState;

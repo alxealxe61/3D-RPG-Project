@@ -36,6 +36,5 @@ namespace _01._Script
             base.Exit();
             player.skillHitBox.DisableDetection();
         }
-
     }
 }

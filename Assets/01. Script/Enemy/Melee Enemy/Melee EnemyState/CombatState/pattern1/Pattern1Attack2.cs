@@ -1,3 +1,6 @@
+using _01._Script.Enemy.Melee_Enemy;
+using _01._Script.Enemy.Melee_Enemy.Melee_EnemyState;
+
 namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState.AttackPatten1
 {
     public class Pattern1Attack2 : MeleeEnemyState
@@ -17,14 +20,14 @@ namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState.AttackPatten
             if (GetNormalizedTime() >= 0.9f)
             {
                 //meleeEnemy.isAttacking = false;
-                stateMachine.ChangeState(meleeEnemy.CombatIdleState);
+                stateMachine.ChangeState(MeleeEnemy.CombatIdleState);
             }
         }
         
         public override void Exit()
         {
             base.Exit();
-            meleeEnemy.lHitBox.DisableDetection();
+            MeleeEnemy.lHitBox.DisableDetection();
         }
     }
 }

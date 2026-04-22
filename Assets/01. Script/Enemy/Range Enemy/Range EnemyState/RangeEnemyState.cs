@@ -1,20 +1,20 @@
-using _01._Script.Enemy.EnemyState.Melee_EnemyState;
 using _01._Script.StataPattern;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace _01._Script.Enemy.Melee_Enemy.Melee_EnemyState
+namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState
 {
-    public abstract class MeleeEnemyState : State<MeleeEnemyController>
+    public class RangeEnemyState : State<RangeEnemyController>
     {
-        protected MeleeEnemyController MeleeEnemy => owner;
+        protected RangeEnemyController RangeEnemy => owner;
 
         protected readonly NavMeshAgent Agent;
+
+        private readonly bool useBool;
         
         private readonly int animHash;
-        private readonly bool useBool;
-        protected MeleeEnemyState
-            (MeleeEnemyController owner, MeleeEnemyStateMachine stateMachine, string aniName, bool useBool)
+        protected RangeEnemyState
+            (RangeEnemyController owner, RangeEnemyStateMachine stateMachine, string aniName, bool useBool)
             : base(owner, stateMachine, aniName)
         {
             this.useBool = useBool;
@@ -26,35 +26,37 @@ namespace _01._Script.Enemy.Melee_Enemy.Melee_EnemyState
         public override void Enter()
         {
             if (animHash == 0) return;
+            
+            if (animHash == 0) return;
             if (useBool)
             {
-                MeleeEnemy.ani.SetBool(animHash, true);
+                RangeEnemy.ani.SetBool(animHash, true);
             }
             else
             {
-                MeleeEnemy.ani.SetTrigger(animHash);
+                RangeEnemy.ani.SetTrigger(animHash);
             }
         }
 
         public override void Exit()
         {
             if(animHash == 0) return;
-
+            
             if (useBool)
             {
-                MeleeEnemy.ani.SetBool(animHash, false);
+                RangeEnemy.ani.SetBool(animHash, false);
             }
             else
             {
-                MeleeEnemy.ani.ResetTrigger(animHash); 
+                RangeEnemy.ani.ResetTrigger(animHash); 
             }
         }
         
         protected float GetNormalizedTime()
         {
-            AnimatorStateInfo stateInfo = MeleeEnemy.ani.GetCurrentAnimatorStateInfo(0);
+            AnimatorStateInfo stateInfo = RangeEnemy.ani.GetCurrentAnimatorStateInfo(0);
         
-            if (!MeleeEnemy.ani.IsInTransition(0) && stateInfo.shortNameHash == animHash)
+            if (!RangeEnemy.ani.IsInTransition(0) && stateInfo.shortNameHash == animHash)
             {
                 return stateInfo.normalizedTime;
             }

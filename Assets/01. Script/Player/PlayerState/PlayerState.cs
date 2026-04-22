@@ -7,6 +7,7 @@ public abstract class PlayerState : State<PlayerController>
     protected PlayerController player => owner;
     
     private readonly int animHash;
+    
     private readonly bool useBool;
 
     protected PlayerState(PlayerController player,

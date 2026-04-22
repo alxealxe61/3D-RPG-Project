@@ -1,3 +1,5 @@
+using _01._Script.Enemy.Melee_Enemy;
+using _01._Script.Enemy.Melee_Enemy.Melee_EnemyState;
 using UnityEngine;
 
 namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState
@@ -23,7 +25,7 @@ namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState
             timer += Time.deltaTime;
             if (timer >= stunDuration)
             {
-                stateMachine.ChangeState(meleeEnemy.CombatIdleState);
+                stateMachine.ChangeState(MeleeEnemy.CombatIdleState);
             }
         }
 

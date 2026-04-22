@@ -1,3 +1,5 @@
+using _01._Script.Enemy.Melee_Enemy;
+using _01._Script.Enemy.Melee_Enemy.Melee_EnemyState;
 using UnityEngine;
 
 namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState.AttackPatten1
@@ -24,14 +26,14 @@ namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState.AttackPatten
             //플레이어의 스킬에 맞으면 스턴 상태로 돌아가는 함수 호출 
             if (timer >= nextAttack)
             {
-                stateMachine.ChangeState(meleeEnemy.Pattern1Attack2);
+                stateMachine.ChangeState(MeleeEnemy.Pattern1Attack2);
             }
         }
         
         public override void Exit()
         {
             base.Exit();
-            meleeEnemy.rHitBox.DisableDetection();
+            MeleeEnemy.rHitBox.DisableDetection();
         }
     }
 }

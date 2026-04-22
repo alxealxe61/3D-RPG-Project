@@ -1,15 +1,11 @@
-using _01._Script.Enemy.Melee_Enemy;
-using _01._Script.Enemy.Melee_Enemy.Melee_EnemyState;
-using UnityEngine;
-
-namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState
+namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState
 {
-    public class EnemyCombatMovestate : MeleeEnemyState
+    public class RangeCombatMoveState : RangeEnemyState
     {
-        public EnemyCombatMovestate
-            (MeleeEnemyController owner, MeleeEnemyStateMachine stateMachine, string aniName, bool useBool)
+        public RangeCombatMoveState
+            (RangeEnemyController owner, RangeEnemyStateMachine stateMachine, string aniName,bool useBool) 
             : base(owner, stateMachine, aniName, useBool) { }
-
+        
         public override void Enter()
         {
             base.Enter();
@@ -29,6 +25,7 @@ namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState
                 Agent.SetDestination(owner.Target.position);
             }
         }
+
         
         public override void Exit()
         {
