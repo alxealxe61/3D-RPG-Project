@@ -11,7 +11,7 @@ namespace _01._Script.Enemy_Data
         private EnemyProfile meleeEnemyProfile;
         
         [SerializeField] 
-        private MeleeEnemyController meleeEnemyController;
+        private MeleeController meleeEnemyController;
 
         public int currentHp;
         private int MaxHp => meleeEnemyProfile.MaxHp;

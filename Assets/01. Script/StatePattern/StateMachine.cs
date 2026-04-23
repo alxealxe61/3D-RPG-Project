@@ -8,12 +8,14 @@ namespace _01._Script.StataPattern
 
         public virtual void Initialize(State<T> startingState)
         {
+            //if(CurrentState == startingState) return;
             CurrentState = startingState;
             CurrentState.Enter();
         }
 
         public virtual void ChangeState(State<T> newState)
         {
+            if(CurrentState == newState) return;
             CurrentState.Exit();
             CurrentState = newState;
             CurrentState.Enter();

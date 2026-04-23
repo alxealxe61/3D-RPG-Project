@@ -9,7 +9,7 @@ namespace _01._Script
         {
             base.ChangeState(newState);
             
-            Debug.Log($"플레이어 상태 변경: {newState.GetType().Name}");
+            //Debug.Log($"플레이어 상태 변경: {newState.GetType().Name}");
         }
     }
 }
