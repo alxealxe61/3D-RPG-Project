@@ -27,9 +27,9 @@ namespace _01._Script
             if (GetNormalizedTime() >= 0.9f)
             {
                 if(comboPossible)
-                    stateMachine.ChangeState(player.attack2State);
+                    stateMachine.ChangeState(player.Attack2State);
                 else
-                    stateMachine.ChangeState(player.combatIdleState);
+                    stateMachine.ChangeState(player.CombatIdleState);
             }
         }
         

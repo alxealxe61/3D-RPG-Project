@@ -1,7 +1,6 @@
 using System;
 using _01._Script.CombatSystem;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _01._Script
 {
@@ -56,17 +55,10 @@ namespace _01._Script
         {
             if (playerController.IsGuarding == true)
             {
-                if (playerController.GuardTimer <= PERFECT_GUARD_WINDOW)
-                {
-                    //Debug.Log("Perfect Guard! Damage 0");
-                    return;
-                }
-                else
-                {
-                    int reducedDamage = Mathf.RoundToInt(damage * GUARD_DAMAGE_REDUCTION);
-                    CurrentHp = Mathf.Max(CurrentHp - reducedDamage, 0);
-                    //Debug.Log($"Guard! Damage: {reducedDamage}");
-                }
+                if (playerController.GuardTimer <= PERFECT_GUARD_WINDOW) return;
+
+                int reducedDamage = Mathf.RoundToInt(damage * GUARD_DAMAGE_REDUCTION);
+                CurrentHp = Mathf.Max(CurrentHp - reducedDamage, 0);
             }
             else
             {
@@ -92,10 +84,11 @@ namespace _01._Script
         public void Stun()
         {
             if (playerController.IsGuarding == true) return;
-            //Debug.Log("스턴 당함");
             playerController.isStunned();
         }
 
+        public void Pull() => playerController.isPulling();
+        
         public void AddSkillPoint(float amount)
         {
             if (currentSkillPoint < MaxSkillPoint)
@@ -115,7 +108,5 @@ namespace _01._Script
                 OnSkillPointChanged?.Invoke(currentSkillPoint, MaxSkillPoint);
             }
         }
-
-        private void Die() => Debug.Log("Player Died");
     }
 }

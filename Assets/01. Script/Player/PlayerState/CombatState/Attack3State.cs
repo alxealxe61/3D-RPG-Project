@@ -21,7 +21,7 @@ namespace _01._Script
             
             if (GetNormalizedTime() >= 0.9f)
             {
-                stateMachine.ChangeState(player.combatIdleState);
+                stateMachine.ChangeState(player.CombatIdleState);
             }
         }
     }

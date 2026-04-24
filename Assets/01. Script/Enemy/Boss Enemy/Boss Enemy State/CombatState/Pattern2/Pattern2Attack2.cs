@@ -1,15 +1,16 @@
-using UnityEngine;
+using _01._Script.Enemy.Range_Enemy;
+using _01._Script.StataPattern;
 
-namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState.pattern1
+namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern2
 {
-    public class Pattern1Attack1 : RangeState
+    public class Pattern2Attack2 : BossState
     {
         private bool hasFired;
         
-        public Pattern1Attack1
-            (RangeController owner, RangeStateMachine stateMachine, string aniName, bool useBool) 
-            : base(owner, stateMachine, aniName, useBool) { }
-
+        public Pattern2Attack2
+            (BossController owner, StateMachine<BossController> stateMachine, string aniName) 
+            : base(owner, stateMachine, aniName) { }
+        
         public override void Enter()
         {
             base.Enter();   
@@ -20,31 +21,26 @@ namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState.pattern1
         {
             base.LogicUpdate();
 
-            if (!hasFired && GetNormalizedTime() >= 0.65f)
+            if (!hasFired && GetNormalizedTime() >= 0.1f)
             {
+                BossEnemy.fireObject.SetActive(false);
                 FireBullet();
                 hasFired = true;
             }
             
             if (GetNormalizedTime() >= 0.9f)
             {
-                stateMachine.ChangeState(RangeEnemy.Pattern1Attack2);
+                stateMachine.ChangeState(BossEnemy.BossIdleState);
             }
         }
 
         private void FireBullet()
         {
             if (owner.Target == null) return;
-
+            
             Bullet bullet = BulletPool.Instance.Get();
             bullet.transform.position = owner.firePoint.position;
             bullet.Launch(owner.Target.position);
-        }
-        
-
-        public override void Exit()
-        {
-            base.Exit();
         }
     }
 }

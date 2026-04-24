@@ -28,22 +28,22 @@ namespace _01._Script
 
             if (player.InputVector.sqrMagnitude == 0)
             {
-                stateMachine.ChangeState(player.combatIdleState);
+                stateMachine.ChangeState(player.CombatIdleState);
             }
             
             if (Input.GetMouseButtonDown(0))
             {
-                stateMachine.ChangeState(player.attack1State);
+                stateMachine.ChangeState(player.Attack1State);
             }
             
             if (Input.GetMouseButtonDown(1))
             {
-                stateMachine.ChangeState(player.combatGuardState);
+                stateMachine.ChangeState(player.CombatGuardState);
             }
             
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift) && player.isDodge == false)
             {
-                stateMachine.ChangeState(player.combatDodgeState);
+                stateMachine.ChangeState(player.CombatDodgeState);
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -53,7 +53,7 @@ namespace _01._Script
             
             if (player.lockOnSystem.IsLockedOn == false)
             {
-                stateMachine.ChangeState(player.exitCombatState);
+                stateMachine.ChangeState(player.ExitCombatState);
             }
         }
         

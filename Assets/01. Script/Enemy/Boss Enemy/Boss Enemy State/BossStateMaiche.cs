@@ -9,7 +9,7 @@ namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State
         {
             base.ChangeState(newState);
             
-            //Debug.Log($"보스 몬스터 상태 변경: {newState.GetType().Name}");
+            Debug.Log($"보스 몬스터 상태 변경: {newState.GetType().Name}");
         }
     }
 }

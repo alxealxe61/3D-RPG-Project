@@ -1,17 +1,20 @@
+
 using _01._Script.StataPattern;
 using UnityEngine;
 
 namespace _01._Script
 {
-    public class CombatStunState : PlayerState
+    public class CombatPullState : PlayerState
     {
+        private const float PullSpeed = 15.0f;
+        
         private float stunDuration = 0.1f;
         private float timer;
         
-        public CombatStunState
-            (PlayerController player, StateMachine<PlayerController> stateMachine, string animName, bool useBool) 
-            : base(player, stateMachine, animName) { }
-
+        public CombatPullState
+            (PlayerController player, StateMachine<PlayerController> stateMachine, string animName, bool useBool = false) 
+            : base(player, stateMachine, animName, useBool) { }
+        
         public override void Enter()
         {
             base.Enter();
@@ -21,6 +24,8 @@ namespace _01._Script
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            
+            player.transform.Translate(Vector3.forward * (PullSpeed * Time.deltaTime));
             timer += Time.deltaTime;
             if (timer >= stunDuration)
             {

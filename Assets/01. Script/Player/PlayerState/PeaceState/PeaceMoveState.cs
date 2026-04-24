@@ -28,12 +28,12 @@ namespace _01._Script
 
             if (player.InputVector.sqrMagnitude == 0)
             {
-                stateMachine.ChangeState(player.peaceIdleState);
+                stateMachine.ChangeState(player.PeaceIdleState);
             }
             
             if (player.lockOnSystem.IsLockedOn == true)
             {
-                stateMachine.ChangeState(player.enterCombatState);
+                stateMachine.ChangeState(player.EnterCombatState);
             }
         }
         

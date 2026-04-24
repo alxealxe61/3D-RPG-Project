@@ -54,6 +54,11 @@ namespace _01._Script.Enemy_Data
             meleeEnemyController.isStunned();
         }
 
+        public void Pull()
+        {
+            throw new NotImplementedException();
+        }
+
 
         private void Die()
         {

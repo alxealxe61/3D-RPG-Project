@@ -63,7 +63,7 @@ public class Bullet : MonoBehaviour, IHitDetector
     private void OnTriggerEnter(Collider other)
     {
         if (CombatSystem.Instance.HasHurtBox(other) == false) return;
-
+        if (other.gameObject.layer == this.gameObject.layer) return;
         HurtBox hurtBox = CombatSystem.Instance.GetHurtBox(other);
         ICombatAgent receiver = hurtBox.Owner;
         if (hitAgents.Contains(receiver)) return;

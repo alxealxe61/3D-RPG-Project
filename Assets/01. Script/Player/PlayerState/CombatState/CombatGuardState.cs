@@ -21,7 +21,7 @@ namespace _01._Script
             
             if (Input.GetMouseButtonUp(1))
             {
-                stateMachine.ChangeState(player.combatIdleState);
+                stateMachine.ChangeState(player.CombatIdleState);
             }
         }
 

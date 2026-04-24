@@ -4,7 +4,10 @@ using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_Data;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern1;
+using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern2;
+using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern3;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _01._Script.Enemy.Boss_Enemy
 {
@@ -28,6 +31,9 @@ namespace _01._Script.Enemy.Boss_Enemy
         [Header("HitBoxes")]
         public LHitBox lHitBox;
         public RHitBox rHitBox;
+        public PullHitBox pHitBox;
+        
+        public GameObject fireObject;
         
         private const float AttackDelay = 4.0f; 
         public bool isPreparingAttack;
@@ -42,8 +48,11 @@ namespace _01._Script.Enemy.Boss_Enemy
         public Pattern1Attack1 Pattern1Attack1 { get; private set; }
         public Pattern1Attack2 Pattern1Attack2 { get; private set; }
         public Pattern1Attack3 Pattern1Attack3 { get; private set; }
-
-        //패턴 1 
+        
+        public Pattern2Attack1 Pattern2Attack1 { get; private set; }
+        public Pattern2Attack2 Pattern2Attack2 { get; private set; }
+        public Pattern3Attack1 Pattern3Attack1 { get; private set; }
+        public Pattern3Attack2 Pattern3Attack2 { get; private set; }
         #endregion
 
         private void Awake()
@@ -56,6 +65,11 @@ namespace _01._Script.Enemy.Boss_Enemy
             Pattern1Attack1 = new Pattern1Attack1(this, StateMachine, "Pattern1Attack1");
             Pattern1Attack2 = new Pattern1Attack2(this, StateMachine, "Pattern1Attack2");
             Pattern1Attack3 = new Pattern1Attack3(this, StateMachine, "Pattern1Attack3");
+            Pattern2Attack1 = new Pattern2Attack1(this, StateMachine, "Pattern2Attack1");
+            Pattern2Attack2 = new Pattern2Attack2(this, StateMachine, "Pattern2Attack2");
+            Pattern3Attack1 = new Pattern3Attack1(this, StateMachine, "Pattern3Attack1");
+            Pattern3Attack2 = new Pattern3Attack2(this, StateMachine, "Pattern3Attack2");
+
         }
 
         private void Start()
@@ -63,6 +77,8 @@ namespace _01._Script.Enemy.Boss_Enemy
             StateMachine.Initialize(BossIdleState);
             // 여기에 패턴들 리스트 넣고
             Patterns.Add(Pattern1Attack1);
+            Patterns.Add(Pattern2Attack1);
+            Patterns.Add(Pattern3Attack1);
         }
 
         void Update()
@@ -73,25 +89,24 @@ namespace _01._Script.Enemy.Boss_Enemy
         
         private void HandleStateTransitions()
         {
-            // 공격 중이거나 스턴 상태일 때는 모든 준비 상태 초기화
             if (StateMachine.CurrentState == BossStunState || IsAttacking())
             {
                 isPreparingAttack = false;
                 idleTimer = 0f;
                 return;
             }
-
+            
             if (Target == null)
             {
+                if(StateMachine.CurrentState == BossIdleState) return;
                 isPreparingAttack = false;
                 StateMachine.ChangeState(BossIdleState);
                 return;
             }
-
-            // 공격 준비 상태가 아닐 때: 공격 범위 안에 들어오면 준비 시작
+            
             if (isPreparingAttack == false)
             {
-                if (attackRange.IsInAttackRange)
+                if (attackRange.IsInAttackRange && isPreparingAttack == false)
                 {
                     isPreparingAttack = true;
                     idleTimer = 0f;
@@ -99,34 +114,28 @@ namespace _01._Script.Enemy.Boss_Enemy
                 }
                 else
                 {
-                    // 범위 밖이면 일반 추격
                     StateMachine.ChangeState(BossMoveState);
                 }
             }
-            // 공격 준비(기 모으기) 상태일 때
             else
             {
                 idleTimer += Time.deltaTime;
-                
+
                 if (idleTimer < AttackDelay)
                 {
-                    // 4초가 되기 전까진 제자리에서 대기(Idle)하며 타겟 응시
                     StateMachine.ChangeState(BossIdleState);
                     RotateTowardsTarget();
                 }
                 else
                 {
-                    // 4초가 지난 시점의 판단
-                    if (attackRange.IsInAttackRange)
+                    if (attackRange.IsInAttackRange && isPreparingAttack)
                     {
-                        // 사거리 안이면 즉시 공격 수행 및 상태 리셋
-                        StateMachine.ChangeState(Pattern1Attack1);
+                        ExecuteRandomPattern();
                         isPreparingAttack = false;
                         idleTimer = 0f;
                     }
                     else
                     {
-                        // 사거리 밖이면 쫓아가기 (범위 안에 드는 순간 공격 실행됨)
                         StateMachine.ChangeState(BossMoveState);
                     }
                 }
@@ -135,8 +144,9 @@ namespace _01._Script.Enemy.Boss_Enemy
         
         private bool IsAttacking() => Patterns.Contains(StateMachine.CurrentState as BossState) || 
                                       StateMachine.CurrentState == Pattern1Attack2 || 
-                                      StateMachine.CurrentState == Pattern1Attack2 || 
-                                      StateMachine.CurrentState == Pattern1Attack3;
+                                      StateMachine.CurrentState == Pattern1Attack3 ||
+                                      StateMachine.CurrentState == Pattern2Attack2 ||
+                                      StateMachine.CurrentState == Pattern3Attack2;
         private void RotateTowardsTarget()
         {
             if (Target == null) return;
@@ -150,9 +160,18 @@ namespace _01._Script.Enemy.Boss_Enemy
             }
         }
         
+        private void ExecuteRandomPattern()
+        {
+            if (Patterns.Count == 0) return;
+            int randNum = Random.Range(0, Patterns.Count);
+            StateMachine.ChangeState(Patterns[randNum]);
+        }
+        
         void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
 
+        public void isStunned() => StateMachine.ChangeState(BossStunState);
         public void LHit() => lHitBox.EnableDetection();
         public void RHit() => rHitBox.EnableDetection();
+        public void PHit() => pHitBox.EnableDetection();
     }
 }

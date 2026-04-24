@@ -37,16 +37,10 @@ namespace _01._Script.CombatSystem
 
             combatEvent.Receiver.TakeDamage(combatEvent.Damage);
             
-            if (combatEvent.HitInfo.stun == true)
-            {
-                combatEvent.Receiver.Stun();
-            }
-            // 여기서 스킬 히트 박스한테 받은 정보인 경우 제외 이런 코드 있어야함
-            if (combatEvent.Sender is PlayerStats player)
-            {
-                player.AddSkillPoint(1);
-            }
-
+            if (combatEvent.HitInfo.stun == true) combatEvent.Receiver.Stun();
+            if (combatEvent.HitInfo.pull == true) combatEvent.Receiver.Pull();
+            if (combatEvent.Sender is PlayerStats player) player.AddSkillPoint(1);
+            
             Debug.Log($"Receiver : {combatEvent.Receiver},Damage : {combatEvent.Damage}");
         }
         

@@ -20,11 +20,11 @@ namespace _01._Script
             {
                 if (player.InputVector.sqrMagnitude > 0.1f)
                 {
-                    stateMachine.ChangeState(player.peaceMoveState);
+                    stateMachine.ChangeState(player.PeaceMoveState);
                 }
                 else
                 {
-                    stateMachine.ChangeState(player.peaceIdleState);
+                    stateMachine.ChangeState(player.PeaceIdleState);
                 }
             }
         }

@@ -53,7 +53,12 @@ namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_Data
 
         public void Stun()
         {
-            //rangeEnemyController.isStunned();
+            bossController.isStunned();
+        }
+
+        public void Pull()
+        {
+            throw new NotImplementedException();
         }
 
 

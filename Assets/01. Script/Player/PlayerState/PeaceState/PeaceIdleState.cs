@@ -18,12 +18,12 @@ namespace _01._Script
             // WASD 이동 입력 시 PeaceMoveState로 전환
             if (player.InputVector.sqrMagnitude > 0)
             {
-                stateMachine.ChangeState(player.peaceMoveState);
+                stateMachine.ChangeState(player.PeaceMoveState);
             }
             
             if (player.lockOnSystem.IsLockedOn == true)
             {
-                stateMachine.ChangeState(player.enterCombatState);
+                stateMachine.ChangeState(player.EnterCombatState);
             }
         }
     }

@@ -27,9 +27,9 @@ namespace _01._Script
             if (GetNormalizedTime() >= 0.9f)
             {
                 if (comboPossible)
-                    stateMachine.ChangeState(player.attack3State); // 3타로 전이
+                    stateMachine.ChangeState(player.Attack3State); // 3타로 전이
                 else
-                    stateMachine.ChangeState(player.combatIdleState); // 입력 없으면 대기
+                    stateMachine.ChangeState(player.CombatIdleState); // 입력 없으면 대기
             }
         }
     }

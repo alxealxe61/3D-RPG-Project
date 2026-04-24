@@ -29,6 +29,7 @@ namespace _01._Script.Enemy.Range_Enemy
         private bool isPreparingAttack;
         
         public float idleTimer;
+        public bool isdie;
         #region 상태 머신 모음
 
         public RangeIdleState  RangeIdleState { get; private set; }
@@ -36,6 +37,7 @@ namespace _01._Script.Enemy.Range_Enemy
         public RangeStunState  RangeStunState { get; private set; }
         public Pattern1Attack1 Pattern1Attack1 { get; private set; }
         public Pattern1Attack2 Pattern1Attack2 { get; private set; }
+        public RangeDieState RangeDieState { get; private set; }
         
         #endregion
 
@@ -48,6 +50,7 @@ namespace _01._Script.Enemy.Range_Enemy
             RangeIdleState = new RangeIdleState(this, StateMachine, "CombatIdle", false);
             RangeMoveState = new RangeMoveState(this, StateMachine, "CombatMove", false);
             RangeStunState = new RangeStunState(this, StateMachine, "CombatStun", false);
+            RangeDieState = new RangeDieState(this, StateMachine,"CombatDie",false);
             Pattern1Attack1 = new Pattern1Attack1(this, StateMachine, "Pattern1Attack1", false);
             Pattern1Attack2 = new Pattern1Attack2(this, StateMachine, "Pattern1Attack2", false);
         }
@@ -61,10 +64,31 @@ namespace _01._Script.Enemy.Range_Enemy
         {
             HandleStateTransitions();
             StateMachine.CurrentState.LogicUpdate();
+            isDie();
+        }
+        
+        // 계속해서 죽음 상태를 반환하는데 뭐가 문제인지 모름 
+        private void isDie()
+        {
+            if (StateMachine.CurrentState == RangeDieState)
+            {
+                Debug.Log("리턴");
+                return;
+            }
+            if (rangeStats.currentHp <= 0)
+            {
+                isdie = true;
+                if (isdie)
+                {
+                    StateMachine.ChangeState(RangeDieState);
+                    isdie = false;
+                }
+            }
         }
         
         private void HandleStateTransitions()
         {
+            
             // 공격 중이거나 스턴 상태일 때는 모든 준비 상태 초기화
             if (StateMachine.CurrentState == RangeStunState 
                 || StateMachine.CurrentState == Pattern1Attack1

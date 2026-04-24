@@ -55,6 +55,11 @@ namespace _01._Script.Enemy.Range_Enemy.Range_Data
             rangeEnemyController.isStunned();
         }
 
+        public void Pull()
+        {
+            throw new NotImplementedException();
+        }
+
 
         private void Die()
         {

@@ -11,6 +11,11 @@ namespace _01._Script
             (PlayerController player, PlayerStateMachine stateMachine, string animName, bool userBool) 
             : base(player, stateMachine, animName) { }
 
+        public override void Enter()
+        {
+            base.Enter();
+            player.hurtBox.SetActive(false);
+        }
         public override void LogicUpdate()
         {
             base.LogicUpdate();
@@ -21,11 +26,11 @@ namespace _01._Script
                 // 입력이 있다면 이동 상태로, 없다면 대기 상태로 전환합니다.
                 if (player.InputVector.sqrMagnitude > 0.01f)
                 {
-                    stateMachine.ChangeState(player.combatMoveState);
+                    stateMachine.ChangeState(player.CombatMoveState);
                 }
                 else
                 {
-                    stateMachine.ChangeState(player.combatIdleState);
+                    stateMachine.ChangeState(player.CombatIdleState);
                 }
             }
         }
@@ -39,6 +44,14 @@ namespace _01._Script
             {
                 player.transform.position -= player.transform.forward * (DODGE_SPEED * Time.deltaTime);
             }
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            player.dodgetime = 0.0f;
+            player.isDodge = true;
+            player.hurtBox.SetActive(true);
         }
     }
 }
