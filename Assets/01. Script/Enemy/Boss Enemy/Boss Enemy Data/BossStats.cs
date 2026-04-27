@@ -1,5 +1,6 @@
 using System;
 using _01._Script.CombatSystem;
+using _01._Script.Item;
 using UnityEngine;
 
 namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_Data
@@ -13,6 +14,7 @@ namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_Data
         private BossController bossController;
         
         public int currentHp;
+        public bool IsDead => currentHp <= 0;
         private int MaxHp => bossProfile.MaxHp;
         private int CurrentAttack => bossProfile.MaxAttack;
         public int MoveSpeed => bossProfile.moveSpeed;
@@ -62,9 +64,9 @@ namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_Data
         }
 
 
-        private void Die()
+        public void Die()
         {
-            Debug.Log("Enemy Died");
+            LootManager.Instance.DropItems("Boss", transform.position);
         }
     }
 }

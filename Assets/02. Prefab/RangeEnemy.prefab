@@ -726,8 +726,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.5, y: 1, z: 1.66}
+  m_Center: {x: 0, y: 0.58, z: 0}
 --- !u!114 &6370640836853281856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,7 +920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4632456271934247832
 Transform:
   m_ObjectHideFlags: 0
@@ -960,7 +960,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 06c3829c54750914c8892e3d8bdcfb2d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -981,7 +981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f435d5f51e4b3b8fc176374ac2980b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_01._Script.Enemy.Range_Enemy.RangeEnemyController
-  rangeEnemyStats: {fileID: 1538209488205155789}
+  rangeStats: {fileID: 1538209488205155789}
   ani: {fileID: 3822925704309796648}
   detectionRange: {fileID: 4904288693185606604}
   attackRange: {fileID: 3164591436507850262}

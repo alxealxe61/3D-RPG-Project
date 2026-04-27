@@ -1,5 +1,6 @@
 using System;
 using _01._Script.CombatSystem;
+using _01._Script.Item;
 using UnityEngine;
 
 namespace _01._Script.Enemy.Range_Enemy.Range_Data
@@ -13,6 +14,7 @@ namespace _01._Script.Enemy.Range_Enemy.Range_Data
         private RangeController rangeEnemyController;
         
         public int currentHp;
+        public bool IsDead => currentHp <= 0;
         private int MaxHp => rangeEnemyProfile.MaxHp;
         private int CurrentAttack => rangeEnemyProfile.MaxAttack;
         public int MoveSpeed => rangeEnemyProfile.moveSpeed;
@@ -60,10 +62,10 @@ namespace _01._Script.Enemy.Range_Enemy.Range_Data
             throw new NotImplementedException();
         }
 
-
-        private void Die()
-        {
-            Debug.Log("Enemy Died");
+        [ContextMenu("Drop Item")]
+        public void Die()
+        { 
+            LootManager.Instance.DropItems("Range", transform.position);
         }
     }
 }

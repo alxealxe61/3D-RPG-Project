@@ -11,7 +11,9 @@ namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("죽음");
+            Debug.Log("Die");
+            RangeEnemy.rangeStats.Die();
+            RangeEnemy.IsDie();
         }
     }
 }

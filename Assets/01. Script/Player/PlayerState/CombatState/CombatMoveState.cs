@@ -74,36 +74,45 @@ namespace _01._Script
             if (player.lockOnSystem != null && player.lockOnSystem.IsLockedOn && player.lockOnSystem.CurrentTarget != null)
             {
                 Transform target = player.lockOnSystem.CurrentTarget;
-                
+
                 // 1. 타겟 방향 계산 (Y축 높이 차이 무시)
                 Vector3 targetDir = (target.position - player.transform.position);
                 targetDir.y = 0;
                 targetDir.Normalize();
 
-                // 2. 캐릭터가 항상 타겟을 바라보도록 회전 (공전의 기초)
+                // 2. 캐릭터가 항상 타겟을 바라보도록 회전
                 if (targetDir != Vector3.zero)
                 {
                     Quaternion targetRot = Quaternion.LookRotation(targetDir);
-                    player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetRot, Time.deltaTime * 10f);
+                    player.rb.MoveRotation(Quaternion.Slerp(player.rb.rotation, targetRot, Time.fixedDeltaTime * 10f));
                 }
 
-                // 3. 이동 벡터 계산 (타겟 기준)
-                // 전후 입력(Y): 타겟으로 접근/멀어짐
-                // 좌우 입력(X): 타겟 기준 수직 방향으로 이동 (즉, 공전)
+                // 3. 이동 벡터 계산 (타겟 기준, Y축 평면화)
                 Vector3 targetRight = Vector3.Cross(Vector3.up, targetDir);
-                moveVector = (targetDir * player.InputVector.y + (targetRight) * player.InputVector.x).normalized;
+                moveVector = (targetDir * player.InputVector.y + targetRight * player.InputVector.x).normalized;
             }
             else
             {
-                // 일반 이동 로직
-                moveVector = (player.transform.forward * player.InputVector.y + player.transform.right * player.InputVector.x).normalized;
+                // 일반 이동 로직 (수평 평면 벡터 투영)
+                Vector3 forward = player.transform.forward;
+                Vector3 right = player.transform.right;
+                forward.y = 0;
+                right.y = 0;
+                forward.Normalize();
+                right.Normalize();
+
+                moveVector = (forward * player.InputVector.y + right * player.InputVector.x).normalized;
             }
-            
-            player.transform.position += moveVector * (player.moveSpeed * Time.deltaTime / 2);
-            
+
+            // Rigidbody 속도 제어: Y축은 중력 영향을 위해 기존 velocity.y 유지
+            float speed = player.moveSpeed / 2; // 전투 중 이동 속도 조정
+            Vector3 targetVelocity = moveVector * speed;
+            player.rb.linearVelocity = new Vector3(targetVelocity.x, player.rb.linearVelocity.y, targetVelocity.z);
+
             player.ani.SetFloat("X", applyInput.x);
             player.ani.SetFloat("Y", applyInput.y);
-        }
+            }
+
 
         public override void Exit()
         {

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemyProfile
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProfile
   MaxHp: 100
-  MaxAttack: 1
+  MaxAttack: 100
   moveSpeed: 5

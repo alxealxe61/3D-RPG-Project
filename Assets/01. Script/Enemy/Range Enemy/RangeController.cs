@@ -29,7 +29,6 @@ namespace _01._Script.Enemy.Range_Enemy
         private bool isPreparingAttack;
         
         public float idleTimer;
-        public bool isdie;
         #region 상태 머신 모음
 
         public RangeIdleState  RangeIdleState { get; private set; }
@@ -62,35 +61,24 @@ namespace _01._Script.Enemy.Range_Enemy
         
         void Update()
         {
-            HandleStateTransitions();
-            StateMachine.CurrentState.LogicUpdate();
-            isDie();
-        }
-        
-        // 계속해서 죽음 상태를 반환하는데 뭐가 문제인지 모름 
-        private void isDie()
-        {
-            if (StateMachine.CurrentState == RangeDieState)
+            if (rangeStats.IsDead)
             {
-                Debug.Log("리턴");
-                return;
-            }
-            if (rangeStats.currentHp <= 0)
-            {
-                isdie = true;
-                if (isdie)
+                if (StateMachine.CurrentState != RangeDieState)
                 {
                     StateMachine.ChangeState(RangeDieState);
-                    isdie = false;
                 }
+                return;
             }
+
+            HandleStateTransitions();
+            StateMachine.CurrentState.LogicUpdate();
         }
         
         private void HandleStateTransitions()
         {
-            
-            // 공격 중이거나 스턴 상태일 때는 모든 준비 상태 초기화
-            if (StateMachine.CurrentState == RangeStunState 
+            // 죽었거나 공격 중, 스턴 상태일 때는 모든 준비 상태 초기화 및 전이 중단
+            if (StateMachine.CurrentState == RangeDieState 
+                || StateMachine.CurrentState == RangeStunState 
                 || StateMachine.CurrentState == Pattern1Attack1
                 || StateMachine.CurrentState == Pattern1Attack2)
             {
@@ -163,6 +151,8 @@ namespace _01._Script.Enemy.Range_Enemy
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
             }
         }
+        
+        public void IsDie() => Destroy(gameObject, 3);
         
         void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
 

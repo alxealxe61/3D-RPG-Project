@@ -1,5 +1,6 @@
 using System;
 using _01._Script.CombatSystem;
+using _01._Script.Item;
 using UnityEngine;
 
 namespace _01._Script
@@ -49,6 +50,23 @@ namespace _01._Script
             OnCurrencyChanged?.Invoke();
         }
 
+        public void AddItem(ItemType type, int count)
+        {
+            switch (type)
+            {
+                case ItemType.Gold:
+                    playerProfile.gold += count;
+                    break;
+                case ItemType.EnhancementStone:
+                    playerProfile.upgradeStones += count;
+                    break;
+                case ItemType.QuestItem:
+                    break;
+            }
+            
+            OnCurrencyChanged?.Invoke();
+        }
+        
         // ICombatAgent 구현: 피격 시 호출
         
         public void TakeDamage(int damage)

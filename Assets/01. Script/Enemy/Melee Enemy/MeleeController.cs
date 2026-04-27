@@ -6,13 +6,14 @@ using _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState.AttackPatten1;
 using _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState.Pattern2;
 using _01._Script.Enemy.Melee_Enemy.Melee_EnemyState;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _01._Script.Enemy.Melee_Enemy
 {
     public class MeleeController : MonoBehaviour
     {
-        [Header("몬스터 스텟")]
-        public MeleeEnemyStats meleeEnemyStats;
+        [FormerlySerializedAs("meleeEnemyStats")] [Header("몬스터 스텟")]
+        public MeleeStats meleeStats;
 
         [SerializeField] public Animator ani;
         public AttackRange AttackRange => attackRange;
@@ -20,7 +21,7 @@ namespace _01._Script.Enemy.Melee_Enemy
         [SerializeField] private DetectionRange detectionRange;
         [SerializeField] private AttackRange attackRange;
     
-        public float MoveSpeed => meleeEnemyStats.MoveSpeed;
+        public float MoveSpeed => meleeStats.MoveSpeed;
         
         [Header("HitBox")]
         public LHitBox lHitBox;
@@ -41,6 +42,7 @@ namespace _01._Script.Enemy.Melee_Enemy
         private Pattern2Attack1 Pattern2Attack1 { get; set; }
         public Pattern2Attack2 Pattern2Attack2 { get; private set; }
         public Pattern2Attack3 Pattern2Attack3 { get; private set; }
+        public MeleeDieState MeleeDieState {  get; private set; }
     
         #endregion
         
@@ -62,6 +64,8 @@ namespace _01._Script.Enemy.Melee_Enemy
             Pattern2Attack1 = new Pattern2Attack1(this, StateMachine, "Pattern2Attack1", false);
             Pattern2Attack2 = new Pattern2Attack2(this, StateMachine, "Pattern2Attack2", false);
             Pattern2Attack3 = new Pattern2Attack3(this, StateMachine, "Pattern2Attack3", false);
+
+            MeleeDieState = new MeleeDieState(this, StateMachine, "CombatDie", false);
         }
 
         void Start()
@@ -73,6 +77,14 @@ namespace _01._Script.Enemy.Melee_Enemy
 
         void Update()
         {
+            if (meleeStats.IsDead)
+            {
+                if (StateMachine.CurrentState != MeleeDieState)
+                {
+                    StateMachine.ChangeState(MeleeDieState);
+                }
+                return;
+            }
             HandleStateTransitions();
             StateMachine.CurrentState.LogicUpdate();
         }
@@ -142,7 +154,8 @@ namespace _01._Script.Enemy.Melee_Enemy
         private bool IsAttacking() => Patterns.Contains(StateMachine.CurrentState as MeleeState) || 
                                       StateMachine.CurrentState == Pattern1Attack2 || 
                                       StateMachine.CurrentState == Pattern2Attack2 || 
-                                      StateMachine.CurrentState == Pattern2Attack3;
+                                      StateMachine.CurrentState == Pattern2Attack3 ||
+                                      StateMachine.CurrentState == MeleeDieState;
 
         private void RotateTowardsTarget()
         {
@@ -168,6 +181,8 @@ namespace _01._Script.Enemy.Melee_Enemy
 
         public void isStunned() => StateMachine.ChangeState(MeleeStunState);
 
+        public void IsDie() => Destroy(gameObject, 3);
+        
         public void LHit() => lHitBox.EnableDetection();
         public void RHit() => rHitBox.EnableDetection();
     }

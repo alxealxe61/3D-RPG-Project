@@ -53,6 +53,7 @@ namespace _01._Script.Enemy.Boss_Enemy
         public Pattern2Attack2 Pattern2Attack2 { get; private set; }
         public Pattern3Attack1 Pattern3Attack1 { get; private set; }
         public Pattern3Attack2 Pattern3Attack2 { get; private set; }
+        public BossDieState BossDieState { get; private set; }
         #endregion
 
         private void Awake()
@@ -69,6 +70,7 @@ namespace _01._Script.Enemy.Boss_Enemy
             Pattern2Attack2 = new Pattern2Attack2(this, StateMachine, "Pattern2Attack2");
             Pattern3Attack1 = new Pattern3Attack1(this, StateMachine, "Pattern3Attack1");
             Pattern3Attack2 = new Pattern3Attack2(this, StateMachine, "Pattern3Attack2");
+            BossDieState = new BossDieState(this, StateMachine, "BossDie");
 
         }
 
@@ -83,6 +85,14 @@ namespace _01._Script.Enemy.Boss_Enemy
 
         void Update()
         {
+            if (bossStats.IsDead)
+            {
+                if (StateMachine.CurrentState != BossDieState)
+                {
+                    StateMachine.ChangeState(BossDieState);
+                }
+                return;
+            }
             HandleStateTransitions();
             StateMachine.CurrentState.LogicUpdate();
         }
@@ -146,7 +156,8 @@ namespace _01._Script.Enemy.Boss_Enemy
                                       StateMachine.CurrentState == Pattern1Attack2 || 
                                       StateMachine.CurrentState == Pattern1Attack3 ||
                                       StateMachine.CurrentState == Pattern2Attack2 ||
-                                      StateMachine.CurrentState == Pattern3Attack2;
+                                      StateMachine.CurrentState == Pattern3Attack2 ||
+                                      StateMachine.CurrentState == BossDieState;
         private void RotateTowardsTarget()
         {
             if (Target == null) return;
@@ -166,6 +177,8 @@ namespace _01._Script.Enemy.Boss_Enemy
             int randNum = Random.Range(0, Patterns.Count);
             StateMachine.ChangeState(Patterns[randNum]);
         }
+        
+        public void IsDie() => Destroy(gameObject, 3);
         
         void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
 

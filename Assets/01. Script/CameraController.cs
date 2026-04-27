@@ -18,6 +18,25 @@ namespace _01._Script
         
         private Vector2 currentAngle = Vector2.zero; 
         
+        void Start()
+        {
+            SetCursorState(true);
+        }
+
+        private void SetCursorState(bool isLocked)
+        {
+            if (isLocked)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+        }
+        
         void Update()
         {
             if (lockOnSystem != null && lockOnSystem.IsLockedOn && lockOnSystem.CurrentTarget != null)

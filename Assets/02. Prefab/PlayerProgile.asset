@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035d35c009b0456ea3f863830c72e998, type: 3}
   m_Name: PlayerProgile
   m_EditorClassIdentifier: Assembly-CSharp::PlayerProfile
-  MaxHp: 100
+  MaxHp: 1000000000
   MaxAttack: 10000000
   maxSkillPoint: 40
   moveSpeed: 5
-  gold: 100
-  upgradeStones: 10
+  gold: 2335
+  upgradeStones: 24
   weaponLevel: 0

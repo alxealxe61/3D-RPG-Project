@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     
     public PlayerStats playerStats;
     public LockOnSystem lockOnSystem;
+    public Rigidbody rb;
     public float moveSpeed =>  playerStats.MoveSpeed;
     public Vector2 InputVector { get; private set; }
     public Animator ani;
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         StateMachine = new PlayerStateMachine();
         
         PeaceIdleState = new PeaceIdleState(this, StateMachine, "PeaceIdle", false);
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
     
     private void isDie()
     {
-        if (playerStats.CurrentHp <= 0 && StateMachine.CurrentState == CombatDieState)
+        if (playerStats.CurrentHp <= 0 && StateMachine.CurrentState != CombatDieState)
         {
             StateMachine.ChangeState(CombatDieState);
         }

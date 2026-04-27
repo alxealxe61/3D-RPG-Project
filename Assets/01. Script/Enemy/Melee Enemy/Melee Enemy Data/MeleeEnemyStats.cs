@@ -1,11 +1,12 @@
 using System;
 using _01._Script.CombatSystem;
 using _01._Script.Enemy.Melee_Enemy;
+using _01._Script.Item;
 using UnityEngine;
 
 namespace _01._Script.Enemy_Data
 {
-    public class MeleeEnemyStats : MonoBehaviour, ICombatAgent
+    public class MeleeStats : MonoBehaviour, ICombatAgent
     {
         [SerializeField] 
         private EnemyProfile meleeEnemyProfile;
@@ -14,6 +15,7 @@ namespace _01._Script.Enemy_Data
         private MeleeController meleeEnemyController;
 
         public int currentHp;
+        public bool IsDead => currentHp <= 0;
         private int MaxHp => meleeEnemyProfile.MaxHp;
         private int CurrentAttack => meleeEnemyProfile.MaxAttack;
         public int MoveSpeed => meleeEnemyProfile.moveSpeed;
@@ -58,11 +60,11 @@ namespace _01._Script.Enemy_Data
         {
             throw new NotImplementedException();
         }
-
-
-        private void Die()
+        
+        [ContextMenu("Drop Item")]
+        public void Die()
         {
-            Debug.Log("Enemy Died");
+            LootManager.Instance.DropItems("Melee", transform.position);
         }
     }
 }

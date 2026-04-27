@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3236424886781553555}
   m_Layer: 6
   m_Name: Character_Male_Rouge_01
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 63525567523588968}
   m_Layer: 6
   m_Name: Character_Female_Druid
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 3721649862336312173}
   m_Layer: 6
   m_Name: Item_Sword
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 5667933317563917460}
   m_Layer: 6
   m_Name: Clavicle_L
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 7051544907149236262}
   m_Layer: 6
   m_Name: Root
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 8446096228158753911}
   m_Layer: 6
   m_Name: SM_Prop_SpellBook_03
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -755,7 +755,7 @@ GameObject:
   - component: {fileID: 8261596609652775806}
   m_Layer: 6
   m_Name: Hand_R
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 6470572071002298494}
   m_Layer: 6
   m_Name: Character_Male_Sorcerer
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -933,12 +933,13 @@ GameObject:
   - component: {fileID: 978412284854423674}
   - component: {fileID: 607656713883622698}
   - component: {fileID: 9076408812845293053}
-  - component: {fileID: 822510997861956207}
-  - component: {fileID: 6468060297980913122}
+  - component: {fileID: 3086042594589317727}
+  - component: {fileID: 6633375431512034175}
+  - component: {fileID: 7343263183443990133}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -970,6 +971,7 @@ Transform:
   - {fileID: 7051544907149236262}
   - {fileID: 1192858756912167931}
   - {fileID: 4941129702783799829}
+  - {fileID: 7322905869363065125}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1910381559366153404
@@ -1007,12 +1009,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerStats: {fileID: 9076408812845293053}
-  lockOnSystem: {fileID: 6468060297980913122}
+  lockOnSystem: {fileID: 2775754029444428665}
   ani: {fileID: 1910381559366153404}
   handSword: {fileID: 8437461025702790568}
   etcSword: {fileID: 1833161246485221285}
+  daming: 0.3
   isWeaponInHand: 0
   hitBox: {fileID: 889548079380338094}
+  skillHitBox: {fileID: 3613934486849687846}
+  hurtBox: {fileID: 2135692209664640132}
+  dodgetime: 0
+  isDodge: 0
 --- !u!114 &607656713883622698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1028,7 +1035,7 @@ MonoBehaviour:
   cameraTarget: {fileID: 7016437918168536820}
   cameraTransform: {fileID: 6598983289579507132}
   headPivotTransform: {fileID: 1192858756912167931}
-  lockOnSystem: {fileID: 6468060297980913122}
+  lockOnSystem: {fileID: 2775754029444428665}
   maxAngleX: 20
   minAngleX: -20
   horizontalSensitivity: 1
@@ -1047,8 +1054,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_01._Script.PlayerStats
   playerProfile: {fileID: 11400000, guid: 2eb4e9b021737394787480c6c5d814d3, type: 2}
---- !u!135 &822510997861956207
-SphereCollider:
+  playerController: {fileID: 978412284854423674}
+  currentSkillPoint: 8
+--- !u!65 &3086042594589317727
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1066,9 +1075,36 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6468060297980913122
+  m_Size: {x: 1, y: 1.96, z: 1}
+  m_Center: {x: 0, y: 0.97, z: 0}
+--- !u!54 &6633375431512034175
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109587346023473421}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 2
+--- !u!114 &7343263183443990133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1077,13 +1113,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1109587346023473421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122da254ceba4eeea1d85881b42989d8, type: 3}
+  m_Script: {fileID: 11500000, guid: a26ffd272fc955148ac72751b4776778, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LockOnSystem
-  enemyTag: Enemy
-  bossTag: Boss
-  cameraTransform: {fileID: 6598983289579507132}
-  rotationSpeed: 10
+  m_EditorClassIdentifier: Assembly-CSharp::_01._Script.Player.PlayerInteraction
+  interactionRange: 3
+  itemLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _currentTarget: {fileID: 0}
+  playerStats: {fileID: 9076408812845293053}
 --- !u!1 &1276603129437007110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,9 +1167,9 @@ GameObject:
   - component: {fileID: 3344340670631657986}
   - component: {fileID: 889548079380338094}
   m_Layer: 6
-  m_Name: Hit Box
-  m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Name: Nomal Attack Hit Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1194,7 +1232,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1254,7 +1292,7 @@ GameObject:
   - component: {fileID: 8665172702750296228}
   m_Layer: 6
   m_Name: UpperLeg_R
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1449,8 +1487,8 @@ GameObject:
   - component: {fileID: 2456499012714100815}
   m_Layer: 6
   m_Name: HurtBox
-  m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1463,7 +1501,7 @@ Transform:
   m_GameObject: {fileID: 2135692209664640132}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.203, z: 0}
+  m_LocalPosition: {x: 0, y: 1.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1488,8 +1526,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.64, y: 1.7, z: 0.73}
-  m_Center: {x: 0, y: -0.48, z: 0}
+  m_Size: {x: 0.84, y: 2, z: 0.73}
+  m_Center: {x: 0, y: -0.64, z: 0}
 --- !u!114 &2119681544956967264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1525,7 +1563,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1572,7 +1610,7 @@ GameObject:
   - component: {fileID: 1992290806728249585}
   m_Layer: 6
   m_Name: Spine_01
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1637,7 +1675,7 @@ GameObject:
   - component: {fileID: 2866744861999040679}
   m_Layer: 6
   m_Name: Item_WarriorSholderArmor
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1725,7 +1763,7 @@ GameObject:
   - component: {fileID: 7600701367040966465}
   m_Layer: 6
   m_Name: Clavicle_R
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1760,7 +1798,7 @@ GameObject:
   - component: {fileID: 3844776027870280426}
   m_Layer: 6
   m_Name: Item_SwordSheath
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1880,7 +1918,7 @@ GameObject:
   - component: {fileID: 8052179187538728081}
   m_Layer: 6
   m_Name: Spine_02
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1945,7 +1983,7 @@ GameObject:
   - component: {fileID: 5258268409401757745}
   m_Layer: 6
   m_Name: Character_Female_Peasant_02
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2085,7 +2123,7 @@ GameObject:
   - component: {fileID: 9129977615828007045}
   m_Layer: 6
   m_Name: IndexFinger_01 1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2168,6 +2206,101 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3268852546691507892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3070844808636628170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8826389452797104885}
+  - component: {fileID: 3118909294004501493}
+  - component: {fileID: 8985863059230419406}
+  - component: {fileID: 3613934486849687846}
+  m_Layer: 6
+  m_Name: Skill Attack Hit Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8826389452797104885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3070844808636628170}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.027027316, y: 0.0024311428, z: 0.089556605, w: 0.9956121}
+  m_LocalPosition: {x: -0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4828820811467999512}
+  m_LocalEulerAnglesHint: {x: -3.11, y: 0, z: 10.28}
+--- !u!65 &3118909294004501493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3070844808636628170}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.22, y: 0.04, z: 1.15}
+  m_Center: {x: 0.12, y: 0.01, z: -0.85}
+--- !u!54 &8985863059230419406
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3070844808636628170}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3613934486849687846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3070844808636628170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb093da3d219482597f98b734abb4fda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillHitBox
+  <Collider>k__BackingField: {fileID: 3118909294004501493}
 --- !u!1 &3199978891362128606
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,7 +2313,7 @@ GameObject:
   - component: {fileID: 6115837498376887338}
   m_Layer: 6
   m_Name: Character_Female_Peasant_01
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2321,7 +2454,7 @@ GameObject:
   - component: {fileID: 502529056619499622}
   m_Layer: 6
   m_Name: Character_Female_Witch
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2493,7 +2626,7 @@ GameObject:
   - component: {fileID: 7064570877955158998}
   m_Layer: 6
   m_Name: Neck
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2559,7 +2692,7 @@ GameObject:
   - component: {fileID: 2791107167497491584}
   m_Layer: 6
   m_Name: Item_WaterBladder_01
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2649,7 +2782,7 @@ GameObject:
   - component: {fileID: 8398407643785556812}
   m_Layer: 6
   m_Name: Item_SwordHolder
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2739,7 +2872,7 @@ GameObject:
   - component: {fileID: 2144719926717360044}
   m_Layer: 6
   m_Name: SM_Prop_Vials
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2828,7 +2961,7 @@ GameObject:
   - component: {fileID: 7230392195956453864}
   m_Layer: 6
   m_Name: Character_Male_Baird
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3001,7 +3134,7 @@ GameObject:
   - component: {fileID: 6764050839109323043}
   m_Layer: 6
   m_Name: Elbow_R
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3035,7 +3168,7 @@ GameObject:
   - component: {fileID: 6728948436348775323}
   m_Layer: 6
   m_Name: Item_CoinBag
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3155,7 +3288,7 @@ GameObject:
   - component: {fileID: 4132215170618529971}
   m_Layer: 6
   m_Name: Finger_01 1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3188,7 +3321,7 @@ GameObject:
   - component: {fileID: 4031719289249912502}
   m_Layer: 6
   m_Name: Character_Female_Queen
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3330,7 +3463,7 @@ GameObject:
   - component: {fileID: 6456060706517062445}
   m_Layer: 6
   m_Name: Item_Pouch
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3419,7 +3552,7 @@ GameObject:
   - component: {fileID: 6890993336946162549}
   m_Layer: 6
   m_Name: Character_Male_Wizard
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3559,7 +3692,7 @@ GameObject:
   - component: {fileID: 1192858756912167931}
   m_Layer: 6
   m_Name: HeadPivot
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3591,7 +3724,7 @@ GameObject:
   - component: {fileID: 8466450647230565539}
   m_Layer: 6
   m_Name: Spine_03
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3787,7 +3920,7 @@ GameObject:
   - component: {fileID: 2320670863058398539}
   m_Layer: 6
   m_Name: Shoulder_R
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3852,7 +3985,7 @@ GameObject:
   - component: {fileID: 6042451000684144691}
   m_Layer: 6
   m_Name: Item_WaterCanteen
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4110,7 +4243,7 @@ GameObject:
   - component: {fileID: 104911928925696514}
   m_Layer: 6
   m_Name: Character_Male_King
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4284,7 +4417,7 @@ GameObject:
   - component: {fileID: 8728356290726489930}
   m_Layer: 6
   m_Name: Item_Dagger
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4393,6 +4526,76 @@ Transform:
   - {fileID: 8888855711776179110}
   m_Father: {fileID: 3580508610147736634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8055302824377798291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7322905869363065125}
+  - component: {fileID: 5012324687783517515}
+  - component: {fileID: 2775754029444428665}
+  m_Layer: 6
+  m_Name: Lock On System
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7322905869363065125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8055302824377798291}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7016437918168536820}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5012324687783517515
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8055302824377798291}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2775754029444428665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8055302824377798291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122da254ceba4eeea1d85881b42989d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LockOnSystem
+  enemyTag: Enemy
+  bossTag: Boss
+  cameraTransform: {fileID: 6598983289579507132}
+  rotationSpeed: 10
 --- !u!1 &8066161009179525084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4404,7 +4607,7 @@ GameObject:
   - component: {fileID: 6284276348453928418}
   m_Layer: 6
   m_Name: Thumb_01 1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4531,7 +4734,7 @@ GameObject:
   - component: {fileID: 4828820811467999512}
   m_Layer: 6
   m_Name: Sword
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4551,6 +4754,7 @@ Transform:
   m_Children:
   - {fileID: 476023889573999160}
   - {fileID: 580941156613267641}
+  - {fileID: 8826389452797104885}
   m_Father: {fileID: 8261596609652775806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8510426841386707279
@@ -4564,7 +4768,7 @@ GameObject:
   - component: {fileID: 6313318477413746290}
   m_Layer: 6
   m_Name: UpperLeg_L
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4597,7 +4801,7 @@ GameObject:
   - component: {fileID: 5556557448993002932}
   m_Layer: 6
   m_Name: Character_Female_Gypsy
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4737,7 +4941,7 @@ GameObject:
   - component: {fileID: 4595375113366939358}
   m_Layer: 6
   m_Name: Sword
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4801,7 +5005,7 @@ GameObject:
   - component: {fileID: 1419605607170229917}
   m_Layer: 6
   m_Name: Character_Male_Peasant_01
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4941,7 +5145,7 @@ GameObject:
   - component: {fileID: 5289207140605555132}
   m_Layer: 6
   m_Name: Hips
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4990,7 +5194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 138024, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 452112, guid: 6d137d44990918a48bfc447d3dda3796, type: 3}
       propertyPath: m_LocalPosition.x
