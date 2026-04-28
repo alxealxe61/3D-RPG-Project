@@ -73,9 +73,15 @@ namespace _01._Script
         {
             if (playerController.IsGuarding == true)
             {
-                if (playerController.GuardTimer <= PERFECT_GUARD_WINDOW) return;
+                if (playerController.GuardTimer <= PERFECT_GUARD_WINDOW)
+                {
+                    EffectManager.Instance.PlayEffect("PerfectGuardEffect", transform);
+                    SoundManager.Instance.PlaySFX("PerfectGuardSound", transform.position);
+                    return;
+                }
 
                 int reducedDamage = Mathf.RoundToInt(damage * GUARD_DAMAGE_REDUCTION);
+                SoundManager.Instance.PlaySFX("GuardSound", transform.position);
                 CurrentHp = Mathf.Max(CurrentHp - reducedDamage, 0);
             }
             else

@@ -4,7 +4,6 @@ namespace _01._Script
 {
     public class Attack1State : CombatAttackState
     {
-        private bool comboPossible;
         public Attack1State
             (PlayerController player, PlayerStateMachine stateMachine, string animName, bool userBool) 
             : base(player, stateMachine, animName) { }
@@ -32,6 +31,11 @@ namespace _01._Script
                     stateMachine.ChangeState(player.CombatIdleState);
             }
         }
-        
+
+        public override void Exit()
+        {
+            base.Exit();
+            //comboPossible = false;
+        }
     }
 }

@@ -20,8 +20,10 @@ public class PlayerController : MonoBehaviour
     public SkillHitBox skillHitBox;
     public GameObject hurtBox;
     [Header("회피")]
-    public float dodgetime;
+    public float dodgetime = DODGE_COOLDOWN;
     public bool isDodge;
+    public const float DODGE_COOLDOWN = 4.0f;
+    public event System.Action<float, float> OnDodgeCooldownChanged;
     public float GuardTimer { get; set; }
     public bool IsGuarding => StateMachine.CurrentState == CombatGuardState;
 
@@ -56,9 +58,9 @@ public class PlayerController : MonoBehaviour
         PeaceMoveState = new PeaceMoveState(this, StateMachine, "PeaceMove", false);
         CombatIdleState = new CombatIdleState(this, StateMachine, "CombatIdle", false);
         CombatMoveState = new CombatMoveState(this, StateMachine, "CombatMove", false);
-        Attack1State = new Attack1State(this, StateMachine, "Attack1", false);
-        Attack2State = new Attack2State(this, StateMachine, "Attack2", false);
-        Attack3State = new Attack3State(this, StateMachine, "Attack3", false);
+        Attack1State = new Attack1State(this, StateMachine, "Attack1State", false);
+        Attack2State = new Attack2State(this, StateMachine, "Attack2State", false);
+        Attack3State = new Attack3State(this, StateMachine, "Attack3State", false);
         CombatGuardState = new CombatGuardState(this, StateMachine, "CombatGuard", true);
         CombatDodgeState = new CombatDodgeState(this, StateMachine, "CombatDodge", false);
         CombatSkillState = new CombatSkillState(this, StateMachine, "CombatSkill", false);
@@ -85,13 +87,19 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
-    public void isStunned() => StateMachine.ChangeState(CombatStunState);
+    public void isStunned()
+    {
+        EffectManager.Instance.StopEffectsUnder(transform);
+        StateMachine.ChangeState(CombatStunState);
+    }
+
     public void isPulling() => StateMachine.ChangeState(CombatPullState);
     
     private void isDie()
     {
         if (playerStats.CurrentHp <= 0 && StateMachine.CurrentState != CombatDieState)
         {
+            EffectManager.Instance.StopEffectsUnder(transform);
             StateMachine.ChangeState(CombatDieState);
         }
     }
@@ -116,10 +124,12 @@ public class PlayerController : MonoBehaviour
         if (isDodge)
         {
             dodgetime += Time.deltaTime;
+            OnDodgeCooldownChanged?.Invoke(dodgetime, DODGE_COOLDOWN);
             
-            if (dodgetime >= 4.0f)
+            if (dodgetime >= DODGE_COOLDOWN)
             {
                 isDodge = false;
+                OnDodgeCooldownChanged?.Invoke(DODGE_COOLDOWN, DODGE_COOLDOWN);
             }
         }
     } 
@@ -150,6 +160,12 @@ public class PlayerController : MonoBehaviour
     public void SkillHit()
     {
         skillHitBox.EnableDetection();
+    }
+
+    public void PlayEffect(string effectName)
+    {
+        EffectManager.Instance.PlayEffect(effectName, transform);
+        SoundManager.Instance.PlaySFX(effectName, transform.position);
     }
 
     #endregion

@@ -32,5 +32,11 @@ namespace _01._Script
                     stateMachine.ChangeState(player.CombatIdleState); // 입력 없으면 대기
             }
         }
+        
+        public override void Exit()
+        {
+            base.Exit();
+            //comboPossible = false;
+        }
     }
 }

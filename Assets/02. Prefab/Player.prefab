@@ -972,6 +972,8 @@ Transform:
   - {fileID: 1192858756912167931}
   - {fileID: 4941129702783799829}
   - {fileID: 7322905869363065125}
+  - {fileID: 1822092418559720646}
+  - {fileID: 552575550319175159}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1910381559366153404
@@ -1010,6 +1012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerStats: {fileID: 9076408812845293053}
   lockOnSystem: {fileID: 2775754029444428665}
+  rb: {fileID: 6633375431512034175}
   ani: {fileID: 1910381559366153404}
   handSword: {fileID: 8437461025702790568}
   etcSword: {fileID: 1833161246485221285}
@@ -1018,7 +1021,7 @@ MonoBehaviour:
   hitBox: {fileID: 889548079380338094}
   skillHitBox: {fileID: 3613934486849687846}
   hurtBox: {fileID: 2135692209664640132}
-  dodgetime: 0
+  dodgetime: 4
   isDodge: 0
 --- !u!114 &607656713883622698
 MonoBehaviour:
@@ -1075,7 +1078,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.96, z: 1}
+  m_Size: {x: 0.71, y: 1.96, z: 0.51}
   m_Center: {x: 0, y: 0.97, z: 0}
 --- !u!54 &6633375431512034175
 Rigidbody:
@@ -1116,11 +1119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26ffd272fc955148ac72751b4776778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_01._Script.Player.PlayerInteraction
-  interactionRange: 3
-  itemLayer:
+  interactionRange: 5
+  interactableLayer:
     serializedVersion: 2
-    m_Bits: 512
-  _currentTarget: {fileID: 0}
+    m_Bits: 1536
   playerStats: {fileID: 9076408812845293053}
 --- !u!1 &1276603129437007110
 GameObject:
@@ -1377,6 +1379,63 @@ Transform:
   - {fileID: 5269255188566183643}
   m_Father: {fileID: 8888855711776179110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1887788985868239249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1822092418559720646}
+  - component: {fileID: 1198321650404433533}
+  m_Layer: 0
+  m_Name: Effect Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1822092418559720646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887788985868239249}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7016437918168536820}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1198321650404433533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887788985868239249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e929cc2295e8147bc02210af94a692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectManager
+  effectDataList:
+  - effectName: PlayerAttack1
+    effectPrefab: {fileID: 1707317043645843523, guid: 27f7a051d90f7d74fa017b02ed729e53, type: 3}
+    poolSize: 5
+  - effectName: PlayerAttack2
+    effectPrefab: {fileID: 4544270276501425708, guid: a48d25d0bcd2b8e409fd2c29add3915b, type: 3}
+    poolSize: 5
+  - effectName: PlayerAttack3
+    effectPrefab: {fileID: 260095924493091941, guid: 9f97cd6f195acb94897b0a1270a1197d, type: 3}
+    poolSize: 5
+  - effectName: PerfectGuardEffect
+    effectPrefab: {fileID: 8074859967384830695, guid: 1de225748db6ce24e83e2dcc65706329, type: 3}
+    poolSize: 2
 --- !u!1 &1943917262366292284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4578,7 +4637,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2775754029444428665
 MonoBehaviour:
@@ -4738,7 +4797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4828820811467999512
 Transform:
   m_ObjectHideFlags: 0
@@ -4789,6 +4848,67 @@ Transform:
   - {fileID: 8234280193635486105}
   m_Father: {fileID: 5289207140605555132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8675558046892104914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 552575550319175159}
+  - component: {fileID: 6544881514070290187}
+  m_Layer: 6
+  m_Name: Sound Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &552575550319175159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675558046892104914}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7016437918168536820}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6544881514070290187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675558046892104914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e7e29b6c9456740936483318ea66cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  sfxDataList:
+  - soundName: PlayerAttack1
+    clip: {fileID: 8300000, guid: 3a9a6b6a30f5a0f4ea65c88e55c5e57a, type: 3}
+    volume: 0.481
+  - soundName: PlayerAttack2
+    clip: {fileID: 8300000, guid: 621437b2fb8e7ef4fbecb600728f63e8, type: 3}
+    volume: 0.436
+  - soundName: PlayerAttack3
+    clip: {fileID: 8300000, guid: 3a9a6b6a30f5a0f4ea65c88e55c5e57a, type: 3}
+    volume: 0.436
+  - soundName: PerfectGuardSound
+    clip: {fileID: 8300000, guid: 05fdb883453aae345b21b8880e82737c, type: 3}
+    volume: 0.436
+  - soundName: GuardSound
+    clip: {fileID: 8300000, guid: 9e8edd470a403dd43ae3fb8ae7a7e834, type: 3}
+    volume: 0.436
+  sfxPoolCount: 10
 --- !u!1 &8747717970149328976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4945,7 +5065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4595375113366939358
 Transform:
   m_ObjectHideFlags: 0

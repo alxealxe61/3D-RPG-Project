@@ -24,5 +24,6 @@ namespace _01._Script
                 stateMachine.ChangeState(player.CombatIdleState);
             }
         }
+        
     }
 }

@@ -5,49 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba6e28a6-d917-4211-a15c-3c64e6a2602e" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/Boss Enemy State/CombatState/BossDieState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/Boss Enemy State/CombatState/BossDieState.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee Enemy State/CombatState/MeleeDieState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee Enemy State/CombatState/MeleeDieState.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Item.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Item/DropData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/Item/DropData.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.3D-RPG-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.3D-RPG-Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/00. Test Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/00. Test Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/Boss Map.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/Boss Map.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CameraController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/Boss Enemy Data/BossStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/Boss Enemy Data/BossStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/BossController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee Enemy Data/MeleeEnemyStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/Melee Enemy Data/MeleeEnemyStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/MeleeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/MeleeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Range Data/RangeStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Range Data/RangeStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Range State/CombatState/RangeDieState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Range State/CombatState/RangeDieState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/RangeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/RangeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/Village.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/Village.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerData/PlayerStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerData/PlayerStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatMoveState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatMoveState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PeaceState/PeaceMoveState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PeaceState/PeaceMoveState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerInteraction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerInteraction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack1State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack1State.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack2State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack2State.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack3State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack3State.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/UserInfoUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/UI/UserInfoUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/EnemyProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Prefab/EnemyProfile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Melee Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Prefab/Melee Enemy.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Prefab/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/PlayerProgile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Prefab/PlayerProgile.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/RangeEnemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Prefab/RangeEnemy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Non-combat ani/Non-combat movement/RPG-Character@Relax-Run-Forward.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Non-combat ani/Non-combat movement/RPG-Character@Relax-Run-Forward.FBX.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Hovl Studio/Sword slash VFX/Prefabs/Sword Slash 9.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Hovl Studio/Sword slash VFX/Prefabs/Sword Slash 9.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonFantasyKingdom/Materials/FX_Materials/Arrow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/PolygonFantasyKingdom/Materials/FX_Materials/Arrow.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonFantasyKingdom/Materials/FX_Materials/Smoke_Mat_04.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/PolygonFantasyKingdom/Materials/FX_Materials/Smoke_Mat_04.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_Portal_Sphere_01.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_Portal_Sphere_01.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/04. Animation/Boss Enemy.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04. Animation/Boss Enemy.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/04. Animation/Melee Enemy.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04. Animation/Melee Enemy.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Attack ani/RPG-Character@2Hand-Sword-Attack1.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Attack ani/RPG-Character@2Hand-Sword-Attack1.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Attack ani/RPG-Character@2Hand-Sword-Attack2.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Attack ani/RPG-Character@2Hand-Sword-Attack2.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Attack ani/RPG-Character@2Hand-Sword-Attack3.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/ExternalAssets/ExplosiveLLC/Use Ani/Combat ani/Attack ani/RPG-Character@2Hand-Sword-Attack3.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Hovl Studio/Sword slash VFX/Demo scene/Sword slash demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Hovl Studio/Sword slash VFX/Demo scene/Sword slash demo.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Hovl Studio/Sword slash VFX/Prefabs/Sword Slash Combo 4.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Hovl Studio/Sword slash VFX/Prefabs/Sword Slash Combo 4.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Hovl Studio/UseFx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Hovl Studio/UseFx/Sword Slash 9.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Hovl Studio/UseFx/Sword Slash 9.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonDungeon/Materials/Misc/Dungeons_Material_Ghost_Soft.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/PolygonDungeon/Materials/Misc/Dungeons_Material_Ghost_Soft.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_Electricity_01.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_Electricity_01.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_Hexagon_01.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_Hexagon_01.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_RainbowGlow_01.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_RainbowGlow_01.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_RainbowGlow_02.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_RainbowGlow_02.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/UseFX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/UseFX/FX_Portal_Sphere_01.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/UseFX/FX_Portal_Sphere_01.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/04. Animation/Player Animator Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04. Animation/Player Animator Controller.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/04. Animation/Range Enemy.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04. Animation/Range Enemy.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Items/GoldBundle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Items/GoldBundle.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Oswald Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Oswald Bold SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
@@ -94,6 +90,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatPullState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatStunState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01. Script/SingletonBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/39cd759ae02d4049948fce3eb03773d128e00/11/cc0b6dc8/ParticleSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/61dc858e9c064822b944126a40a6078e214600/19/d2e9be1d/Component.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/61dc858e9c064822b944126a40a6078e214600/59/e898b07e/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/61dc858e9c064822b944126a40a6078e214600/b3/86678e74/GameObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/98c92c324c534d4db338e4efad34964535800/b4/f2015e1c/AnimatorStateInfo.cs" root0="FORCE_HIGHLIGHTING" />
@@ -201,6 +199,8 @@
       <workItem from="1776905659585" duration="19530000" />
       <workItem from="1777006572631" duration="13972000" />
       <workItem from="1777255308900" duration="17208000" />
+      <workItem from="1777340594098" duration="18011000" />
+      <workItem from="1777366608345" duration="1229000" />
     </task>
     <servers />
   </component>
