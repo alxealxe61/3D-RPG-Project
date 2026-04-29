@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public bool IsGuarding => StateMachine.CurrentState == CombatGuardState;
 
     #region 상태 머신 모음
+    public static PlayerController Instance { get; private set; }
 
     private PlayerStateMachine StateMachine { get; set; }
     public PeaceIdleState PeaceIdleState { get; private set; }
@@ -51,6 +52,15 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        
         rb = GetComponent<Rigidbody>();
         StateMachine = new PlayerStateMachine();
         
@@ -94,6 +104,13 @@ public class PlayerController : MonoBehaviour
     }
 
     public void isPulling() => StateMachine.ChangeState(CombatPullState);
+
+    public void ResetState()
+    {
+        StateMachine.ChangeState(PeaceIdleState);
+        // 애니메이터 파라미터 초기화가 필요하다면 여기서 수행합니다.
+        ani.Play("PeaceIdle", 0, 0f);
+    }
     
     private void isDie()
     {
@@ -101,6 +118,19 @@ public class PlayerController : MonoBehaviour
         {
             EffectManager.Instance.StopEffectsUnder(transform);
             StateMachine.ChangeState(CombatDieState);
+            StartCoroutine(DieSequenceRoutine());
+        }
+    }
+
+    private System.Collections.IEnumerator DieSequenceRoutine()
+    {
+        // 1초 대기 (사망 애니메이션 등을 보여주기 위함)
+        yield return new WaitForSeconds(5.0f);
+        
+        // UIManager를 통해 사망 UI 표시
+        if (_01._Script.UI.UIManager.Instance != null)
+        {
+            _01._Script.UI.UIManager.Instance.ShowDieUI();
         }
     }
     

@@ -11,9 +11,6 @@ namespace _01._Script.Enemy.Range_Enemy
         public RangeStats rangeStats;
         
         [SerializeField] public Animator ani;
-        
-        //public AttackRange AttackRange => attackRange;
-    
         [SerializeField] private DetectionRange detectionRange;
         [SerializeField] private AttackRange attackRange;
     
@@ -25,7 +22,7 @@ namespace _01._Script.Enemy.Range_Enemy
         
         public Transform firePoint;
         
-        private const float AttackDelay = 4.0f; 
+        private const float AttackDelay = 2.0f; 
         private bool isPreparingAttack;
         
         public float idleTimer;
@@ -152,7 +149,7 @@ namespace _01._Script.Enemy.Range_Enemy
             }
         }
         
-        public void IsDie() => Destroy(gameObject, 3);
+        public void IsDie() => Destroy(gameObject, 1);
         
         void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
 

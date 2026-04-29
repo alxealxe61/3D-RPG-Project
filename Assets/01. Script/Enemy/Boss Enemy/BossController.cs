@@ -35,7 +35,7 @@ namespace _01._Script.Enemy.Boss_Enemy
         
         public GameObject fireObject;
         
-        private const float AttackDelay = 4.0f; 
+        private const float AttackDelay = 2.0f; 
         public bool isPreparingAttack;
 
         public float idleTimer;

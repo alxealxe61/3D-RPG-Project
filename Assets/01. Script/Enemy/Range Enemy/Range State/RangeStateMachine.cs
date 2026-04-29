@@ -9,8 +9,7 @@ namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState
         public override void ChangeState(State<RangeController> newState)
         {
             base.ChangeState(newState);
-            if (CurrentState == newState) return;
-            Debug.Log($"원거리 몬스터 상태 변경: {newState.GetType().Name}");
+            //Debug.Log($"원거리 몬스터 상태 변경: {newState.GetType().Name}");
         }
     }
 }

@@ -47,7 +47,7 @@ namespace _01._Script.Enemy.Melee_Enemy
         #endregion
         
         private float idleTimer;
-        private const float ATTACK_DELAY = 4.0f; 
+        private const float ATTACK_DELAY = 2.0f; 
         private bool isPreparingAttack; // 공격 준비 중인지 여부
     
         void Awake()
@@ -181,7 +181,7 @@ namespace _01._Script.Enemy.Melee_Enemy
 
         public void isStunned() => StateMachine.ChangeState(MeleeStunState);
 
-        public void IsDie() => Destroy(gameObject, 3);
+        public void IsDie() => Destroy(gameObject, 1);
         
         public void LHit() => lHitBox.EnableDetection();
         public void RHit() => rHitBox.EnableDetection();

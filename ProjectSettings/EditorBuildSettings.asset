@@ -6,7 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/00. Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/00. Scenes/00.Start Scene.unity
+    guid: 1c03d38cf8da6fb4cad6ebd9d48d48f8
+  - enabled: 1
+    path: Assets/00. Scenes/01.Village.unity
+    guid: 23d8661265deed742959416ea58475f7
+  - enabled: 1
+    path: Assets/00. Scenes/02.Enemy Map.unity
+    guid: b88fe41fcd3903d44bb52e0b8a3bdd19
+  - enabled: 1
+    path: Assets/00. Scenes/03. Boss Map.unity
+    guid: c08df5de61782e747a56cf28ad4e61b0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

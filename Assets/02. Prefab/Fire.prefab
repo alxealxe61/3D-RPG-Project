@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a0d169d6464f3b88d41df469fdd046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  speed: 5
+  speed: 10
   lifeTime: 10
   <Collider>k__BackingField: {fileID: 8609143370635531527}
 --- !u!54 &-5681238635947245286

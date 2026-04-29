@@ -21,6 +21,7 @@ namespace _01._Script.Player
         
         private ItemObject _currentItem;
         private Portal _currentPortal;
+        private ScenePortal _currentScenePortal;
 
         public PlayerStats playerStats;
 
@@ -69,12 +70,23 @@ namespace _01._Script.Player
                     }
                     return;
                 }
+
+                // 3. 씬 포탈 체크
+                if (hit.collider.TryGetComponent<ScenePortal>(out var scenePortal))
+                {
+                    if (_currentScenePortal != scenePortal)
+                    {
+                        ClearCurrentTarget();
+                        _currentScenePortal = scenePortal;
+                        InteractionUI.Instance.Show(true, scenePortal.portalName);
+                    }
+                    return;
+                }
             }
 
             // 아무것도 감지되지 않았을 때
-            if (_currentItem != null || _currentPortal != null)
+            if (_currentItem != null || _currentPortal != null || _currentScenePortal != null)
             {
-                Debug.Log("아무것도 감지 안됨");
                 ClearCurrentTarget();
                 InteractionUI.Instance.Show(false);
             }
@@ -98,12 +110,20 @@ namespace _01._Script.Player
                 ClearCurrentTarget();
                 InteractionUI.Instance.Show(false);
             }
+            // 씬 포탈 이동
+            else if (_currentScenePortal != null)
+            {
+                _currentScenePortal.Interact();
+                ClearCurrentTarget();
+                InteractionUI.Instance.Show(false);
+            }
         }
 
         private void ClearCurrentTarget()
         {
             _currentItem = null;
             _currentPortal = null;
+            _currentScenePortal = null;
         }
 
         private void Teleport(Vector3 position, Quaternion rotation)

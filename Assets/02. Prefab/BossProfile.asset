@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06aefb9fe518450e9dac6911039ad840, type: 3}
   m_Name: BossProfile
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProfile
-  MaxHp: 1000
-  MaxAttack: 100
+  MaxHp: 600
+  MaxAttack: 20
   moveSpeed: 5

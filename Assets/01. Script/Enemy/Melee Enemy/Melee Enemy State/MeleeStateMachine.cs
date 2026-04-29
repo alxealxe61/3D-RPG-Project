@@ -10,7 +10,7 @@ namespace _01._Script.Enemy.EnemyState.Melee_EnemyState
         {
             base.ChangeState(newState);
             
-            Debug.Log($"근거리 몬스터 상태 변경: {newState.GetType().Name}");
+            //Debug.Log($"근거리 몬스터 상태 변경: {newState.GetType().Name}");
         }
     }
 }

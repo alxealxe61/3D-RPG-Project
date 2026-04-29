@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using _01._Script;
 using CrusaderUI.Scripts;
-using UnityEngine.Serialization;
+using System.Collections;
 
 namespace _01._Script.UI_Manager
 {
@@ -30,28 +30,27 @@ namespace _01._Script.UI_Manager
 
         void Awake()
         {
+            // 씬 전환 시에도 유지되도록 설정 (마을 -> 보스 맵 등)
             DontDestroyOnLoad(gameObject);
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            // 1. PlayerStats 찾기 시도
-            if (playerStats == null)
+            // 1. PlayerStats를 찾을 때까지 대기
+            while (playerStats == null)
             {
                 playerStats = FindFirstObjectByType<PlayerStats>();
+                if (playerStats == null) yield return null;
             }
 
-            if (playerStats != null)
-            {
-                SubscribeEvents();
-                
-                // 2. 시작 시 모든 UI 강제 초기화 (이벤트 발생을 기다리지 않고 현재 값을 즉시 반영)
-                RefreshAllUI();
-            }
-            else
-            {
-                Debug.LogWarning("[UserInfoUI] PlayerStats를 찾을 수 없습니다. UI가 갱신되지 않습니다.");
-            }
+            // 2. 이벤트를 구독합니다.
+            SubscribeEvents();
+            
+            // 3. [중요] 모든 객체의 Start()가 끝날 때까지 한 프레임 대기하여 데이터 로드를 보장합니다.
+            yield return new WaitForEndOfFrame();
+            
+            // 4. 초기 UI 강제 갱신
+            RefreshAllUI();
         }
 
         private void OnDestroy()
@@ -89,11 +88,10 @@ namespace _01._Script.UI_Manager
             }
         }
 
-        /// <summary>
-        /// 모든 UI 요소를 현재 PlayerStats 데이터로 즉시 갱신합니다.
-        /// </summary>
-        private void RefreshAllUI()
+        public void RefreshAllUI()
         {
+            if (playerStats == null) return;
+
             UpdateHpUI(playerStats.CurrentHp, playerStats.MaxHp);
             UpdateSkillUI(playerStats.currentSkillPoint, 20f); // Max 스킬 포인트는 20 고정
             UpdateCurrencyUI();
@@ -110,7 +108,6 @@ namespace _01._Script.UI_Manager
             {
                 hpFlowController.SetValue(currentHp / maxHp);
             }
-            
         }
 
         private void UpdateSkillUI(float currentSkill, float maxSkill)

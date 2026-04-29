@@ -8,11 +8,7 @@ public class LockOnSystem : MonoBehaviour
     [Header("Tags")]
     public string enemyTag = "Enemy";   // 일반 몬스터 태그
     public string bossTag = "Boss";     // 보스 몬스터 태그
-
-    [Header("Camera & Rotation")]
-    public Transform cameraTransform;
-    public float rotationSpeed = 10f;
-
+    
     // 감지된 적들을 담아둘 List
     private List<Transform> targetList = new List<Transform>();
     
