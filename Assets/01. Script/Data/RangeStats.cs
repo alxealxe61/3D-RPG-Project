@@ -1,9 +1,10 @@
 using System;
 using _01._Script.CombatSystem;
+using _01._Script.Enemy.Range_Enemy;
 using _01._Script.Item;
 using UnityEngine;
 
-namespace _01._Script.Enemy.Range_Enemy.Range_Data
+namespace _01._Script.Data
 {
     public class RangeStats : MonoBehaviour, ICombatAgent
     {
@@ -44,7 +45,7 @@ namespace _01._Script.Enemy.Range_Enemy.Range_Data
             var @event = new CombatEvent
             {
                 Sender = this,
-                Receiver = hitInfo.receiver,
+                Receiver = hitInfo.Receiver,
                 Damage = CurrentAttack,
                 HitInfo = hitInfo
             };

@@ -21,4 +21,11 @@ namespace _01._Script.Item
             Destroy(gameObject);
         }
     }
+    
+    public enum ItemType
+    {
+        Gold,
+        EnhancementStone,
+        QuestItem
+    }
 }

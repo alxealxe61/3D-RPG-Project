@@ -6,9 +6,6 @@ namespace _01._Script.CombatSystem
     {
         ICombatAgent Owner { get; }
         Collider Collider { get; }
-        
-        GameObject gameObject { get; }
-        
         void Initialize(ICombatAgent owner);
     }
 }

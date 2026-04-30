@@ -1,11 +1,12 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
-using _01._Script;
-using CrusaderUI.Scripts;
 using System.Collections;
+using _01._Script.Data;
+using _01._Script.Player;
+using CrusaderUI.Scripts;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace _01._Script.UI_Manager
+namespace _01._Script.UI
 {
     public class UserInfoUI : MonoBehaviour
     {
@@ -23,6 +24,7 @@ namespace _01._Script.UI_Manager
         [Header("Currency UI")]
         [SerializeField] private TextMeshProUGUI goldText;
         [SerializeField] private TextMeshProUGUI upgradeStoneText;
+        [SerializeField] private TextMeshProUGUI weaponLevelText;
 
         [Header("Dodge UI")]
         [SerializeField] private TextMeshProUGUI dodgeText;
@@ -65,6 +67,7 @@ namespace _01._Script.UI_Manager
             playerStats.OnHpChanged += UpdateHpUI;
             playerStats.OnSkillPointChanged += UpdateSkillUI;
             playerStats.OnCurrencyChanged += UpdateCurrencyUI;
+            playerStats.OnUpgradeChanged += UpdateUpgradeUI;
 
             if (playerStats.TryGetComponent<PlayerController>(out var controller))
             {
@@ -80,6 +83,7 @@ namespace _01._Script.UI_Manager
                 playerStats.OnHpChanged -= UpdateHpUI;
                 playerStats.OnSkillPointChanged -= UpdateSkillUI;
                 playerStats.OnCurrencyChanged -= UpdateCurrencyUI;
+                playerStats.OnUpgradeChanged -= UpdateUpgradeUI;
 
                 if (playerController != null)
                 {
@@ -95,10 +99,11 @@ namespace _01._Script.UI_Manager
             UpdateHpUI(playerStats.CurrentHp, playerStats.MaxHp);
             UpdateSkillUI(playerStats.currentSkillPoint, 20f); // Max 스킬 포인트는 20 고정
             UpdateCurrencyUI();
+            UpdateUpgradeUI(playerStats.CurrentWeaponLevel);
             
             if (playerController != null)
             {
-                UpdateDodgeUI(playerController.dodgetime, PlayerController.DODGE_COOLDOWN);
+                UpdateDodgeUI(playerController.dodgetime, PlayerController.DodgeCooldown);
             }
         }
 
@@ -160,6 +165,14 @@ namespace _01._Script.UI_Manager
             if (upgradeStoneText != null)
             {
                 upgradeStoneText.text = playerStats.CurrentUpgradeStones.ToString("N0");
+            }
+        }
+
+        private void UpdateUpgradeUI(int currentLevel)
+        {
+            if (weaponLevelText != null)
+            {
+                weaponLevelText.text = $"+{currentLevel}";
             }
         }
     }

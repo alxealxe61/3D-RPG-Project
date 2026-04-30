@@ -1,10 +1,11 @@
 using System;
 using _01._Script.CombatSystem;
-using _01._Script.Data;
+using _01._Script.Effect;
 using _01._Script.Item;
+using _01._Script.Player;
 using UnityEngine;
 
-namespace _01._Script
+namespace _01._Script.Data
 {
     public class PlayerStats : MonoBehaviour, ICombatAgent
     {
@@ -14,8 +15,8 @@ namespace _01._Script
         [SerializeField] 
         private PlayerController playerController;
         
-        private const float PERFECT_GUARD_WINDOW = 1.0f;
-        private const float GUARD_DAMAGE_REDUCTION = 0.3f;
+        private const float PerfectGuardWindow = 1.0f;
+        private const float GuardDamageReduction = 0.3f;
         
         // --- [기본 스탯] ---
         public int CurrentHp { get; private set; }
@@ -26,6 +27,7 @@ namespace _01._Script
         // --- [재화] ---
         public int CurrentGold => playerProfile.gold;
         public int CurrentUpgradeStones => playerProfile.upgradeStones;
+        public int CurrentWeaponLevel => playerProfile.weaponLevel;
 
         // --- [스킬 포인트] ---
         public float currentSkillPoint = 8;
@@ -36,10 +38,10 @@ namespace _01._Script
         public event Action<float, float> OnHpChanged;
         public event Action<float, float> OnSkillPointChanged; 
         public event Action OnCurrencyChanged;                
+        public event Action<int> OnUpgradeChanged;
 
         private void Awake()
         {
-            // DataManager에서 활성화된 프로필을 가져옵니다. (불러오기 창에서 로드된 데이터)
             playerProfile = DataManager.Instance.ActiveProfile;
             
             CurrentHp = MaxHp;
@@ -55,6 +57,7 @@ namespace _01._Script
             OnHpChanged?.Invoke(CurrentHp, MaxHp);
             OnSkillPointChanged?.Invoke(currentSkillPoint, MaxSkillPoint);
             OnCurrencyChanged?.Invoke();
+            OnUpgradeChanged?.Invoke(CurrentWeaponLevel);
         }
 
         public void AddItem(ItemType type, int count)
@@ -73,21 +76,47 @@ namespace _01._Script
             
             OnCurrencyChanged?.Invoke();
         }
+
+        public bool SpendResources(int gold, int stones)
+        {
+            if (playerProfile.gold < gold || playerProfile.upgradeStones < stones)
+            {
+                return false;
+            }
+
+            playerProfile.gold -= gold;
+            playerProfile.upgradeStones -= stones;
+            OnCurrencyChanged?.Invoke();
+            return true;
+        }
+
+        public void UpgradeWeapon(int attackIncrease)
+        {
+            playerProfile.weaponLevel++;
+            playerProfile.MaxAttack += attackIncrease;
+            OnUpgradeChanged?.Invoke(playerProfile.weaponLevel);
+        }
+        
+        public void MaxWeapon(int attackIncrease)
+        {
+            playerProfile.MaxAttack += attackIncrease;
+        }
         
         // ICombatAgent 구현: 피격 시 호출
         
         public void TakeDamage(int damage)
         {
-            if (playerController.IsGuarding == true)
+            if (CurrentHp <= 0) return;
+            if (playerController.IsGuarding)
             {
-                if (playerController.GuardTimer <= PERFECT_GUARD_WINDOW)
+                if (playerController.GuardTimer <= PerfectGuardWindow)
                 {
                     EffectManager.Instance.PlayEffect("PerfectGuardEffect", transform);
                     SoundManager.Instance.PlaySFX("PerfectGuardSound", transform.position);
                     return;
                 }
 
-                int reducedDamage = Mathf.RoundToInt(damage * GUARD_DAMAGE_REDUCTION);
+                int reducedDamage = Mathf.RoundToInt(damage * GuardDamageReduction);
                 SoundManager.Instance.PlaySFX("GuardSound", transform.position);
                 CurrentHp = Mathf.Max(CurrentHp - reducedDamage, 0);
             }
@@ -103,9 +132,9 @@ namespace _01._Script
         
         public void OnHitDetected(HitInfo hitInfo)
         {
-            CombatEvent @event = new CombatEvent();
+            var @event = new CombatEvent();
             @event.Sender = this;
-            @event.Receiver = hitInfo.receiver;
+            @event.Receiver = hitInfo.Receiver;
             @event.Damage = CurrentAttack;
             @event.HitInfo = hitInfo;
             
@@ -114,11 +143,11 @@ namespace _01._Script
 
         public void Stun()
         {
-            if (playerController.IsGuarding == true) return;
-            playerController.isStunned();
+            if (playerController.IsGuarding) return;
+            playerController.IsStunned();
         }
 
-        public void Pull() => playerController.isPulling();
+        public void Pull() => playerController.IsPulling();
         
         public void AddSkillPoint(float amount)
         {

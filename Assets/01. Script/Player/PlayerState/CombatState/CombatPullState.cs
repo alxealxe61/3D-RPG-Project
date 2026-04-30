@@ -1,41 +1,39 @@
-
 using _01._Script.StataPattern;
 using UnityEngine;
 
-namespace _01._Script
+namespace _01._Script.Player.PlayerState.CombatState
 {
     public class CombatPullState : PlayerState
     {
         private const float PullSpeed = 15.0f;
         
-        private float stunDuration = 0.1f;
-        private float timer;
+        private float _timer;
         
-        public CombatPullState
+        protected internal CombatPullState
             (PlayerController player, StateMachine<PlayerController> stateMachine, string animName, bool useBool = false) 
             : base(player, stateMachine, animName, useBool) { }
         
         public override void Enter()
         {
             base.Enter();
-            timer = 0.0f;
+            _timer = 0.0f;
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
             
-            player.transform.Translate(Vector3.forward * (PullSpeed * Time.deltaTime));
-            timer += Time.deltaTime;
-            if (timer >= stunDuration)
+            Player.transform.Translate(Vector3.forward * (PullSpeed * Time.deltaTime * 0.5f));
+            _timer += Time.deltaTime;
+            if (_timer >= 0.1f)
             {
-                if (player.InputVector.sqrMagnitude > 0.01f)
+                if (Player.InputVector.sqrMagnitude > 0.01f)
                 {
-                    stateMachine.ChangeState(player.CombatMoveState);
+                    stateMachine.ChangeState(Player.CombatMoveState);
                 }
                 else
                 {
-                    stateMachine.ChangeState(player.CombatIdleState);
+                    stateMachine.ChangeState(Player.CombatIdleState);
                 }
             }
         }

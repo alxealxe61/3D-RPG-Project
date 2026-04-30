@@ -1,3 +1,4 @@
+using _01._Script.Data;
 using UnityEngine;
 using _01._Script.Item;
 using _01._Script.UI;
@@ -9,7 +10,7 @@ namespace _01._Script.Player
     {
         [Header("Interaction Settings")]
         [SerializeField] private float interactionRange = 3.0f;
-        [SerializeField] private LayerMask interactableLayer; // 아이템과 포탈 레이어를 모두 포함
+        [SerializeField] private LayerMask interactableLayer; 
 
         [Header("Debug")]
         [SerializeField] private bool showDebugRay = true;
@@ -43,9 +44,9 @@ namespace _01._Script.Player
 
         private void CheckForInteractable()
         {
-            Ray ray = Camera.main.ViewportPointToRay(ScreenCenter);
+            var ray = Camera.main.ViewportPointToRay(ScreenCenter);
             
-            if (Physics.Raycast(ray, out RaycastHit hit, interactionRange, interactableLayer))
+            if (Physics.Raycast(ray, out var hit, interactionRange, interactableLayer))
             {
                 // 1. 아이템 체크
                 if (hit.collider.TryGetComponent<ItemObject>(out var item))
@@ -59,7 +60,6 @@ namespace _01._Script.Player
                     return;
                 }
                 
-                // 2. 포탈 체크
                 if (hit.collider.TryGetComponent<Portal>(out var portal))
                 {
                     if (_currentPortal != portal)
@@ -70,8 +70,7 @@ namespace _01._Script.Player
                     }
                     return;
                 }
-
-                // 3. 씬 포탈 체크
+                
                 if (hit.collider.TryGetComponent<ScenePortal>(out var scenePortal))
                 {
                     if (_currentScenePortal != scenePortal)
@@ -83,8 +82,7 @@ namespace _01._Script.Player
                     return;
                 }
             }
-
-            // 아무것도 감지되지 않았을 때
+            
             if (_currentItem != null || _currentPortal != null || _currentScenePortal != null)
             {
                 ClearCurrentTarget();
@@ -94,7 +92,6 @@ namespace _01._Script.Player
 
         private void PerformInteraction()
         {
-            // 아이템 획득
             if (_currentItem != null)
             {
                 if (playerStats != null) playerStats.AddItem(_currentItem.itemType, _currentItem.count);
@@ -102,15 +99,12 @@ namespace _01._Script.Player
                 ClearCurrentTarget();
                 InteractionUI.Instance.Show(false);
             }
-            // 포탈 이동
             else if (_currentPortal != null)
             {
                 Teleport(_currentPortal.GetDestinationPosition(), _currentPortal.GetDestinationRotation());
-                // 이동 후에는 타겟 해제 (이동하자마자 다시 E가 뜨는 것 방지)
                 ClearCurrentTarget();
                 InteractionUI.Instance.Show(false);
             }
-            // 씬 포탈 이동
             else if (_currentScenePortal != null)
             {
                 _currentScenePortal.Interact();
@@ -136,8 +130,6 @@ namespace _01._Script.Player
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
             }
-
-            Debug.Log($"[Teleport] {position} 위치로 이동했습니다.");
         }
 
         private void OnDrawGizmos()
@@ -145,8 +137,8 @@ namespace _01._Script.Player
             if (showDebugRay == false || Camera.main == null) return;
 
             Gizmos.color = debugRayColor;
-            Ray ray = Camera.main.ViewportPointToRay(ScreenCenter);
-            float drawDistance = interactionRange;
+            var ray = Camera.main.ViewportPointToRay(ScreenCenter);
+            var drawDistance = interactionRange;
 
             if (Physics.Raycast(ray, out RaycastHit hit, interactionRange, interactableLayer))
             {

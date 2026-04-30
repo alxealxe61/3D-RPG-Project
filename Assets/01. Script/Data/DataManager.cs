@@ -1,29 +1,24 @@
 using System.IO;
 using UnityEngine;
-using _01._Script;
-using _01._Script.Data;
 
-namespace _01._Script
+namespace _01._Script.Data
 {
     public class DataManager : SingletonBase<DataManager>
     {
         [SerializeField]
         private DataProfile defaultProfile; 
 
-        private DataProfile activeProfile;
+        private DataProfile _activeProfile;
         
-        /// <summary>
-        /// 현재 플레이 세션에서 사용 중인 실시간 프로필입니다.
-        /// </summary>
         public DataProfile ActiveProfile
         {
             get
             {
-                if (activeProfile == null)
+                if (_activeProfile == null)
                 {
-                    activeProfile = Instantiate(defaultProfile);
+                    _activeProfile = Instantiate(defaultProfile);
                 }
-                return activeProfile;
+                return _activeProfile;
             }
         }
 
@@ -100,7 +95,7 @@ namespace _01._Script
         /// </summary>
         public void CreateNewGame()
         {
-            activeProfile = Instantiate(defaultProfile);
+            _activeProfile = Instantiate(defaultProfile);
             Debug.Log("[DataManager] New Game Created.");
         }
     }

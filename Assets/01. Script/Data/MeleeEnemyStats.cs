@@ -4,7 +4,7 @@ using _01._Script.Enemy.Melee_Enemy;
 using _01._Script.Item;
 using UnityEngine;
 
-namespace _01._Script.Enemy_Data
+namespace _01._Script.Data
 {
     public class MeleeStats : MonoBehaviour, ICombatAgent
     {
@@ -32,6 +32,7 @@ namespace _01._Script.Enemy_Data
             var allHurtBox = GetComponentsInChildren<HurtBox>(true);
             foreach (var hurtBox in allHurtBox) hurtBox.Initialize(this);
         }
+        
         // 데미지 받는 로직
         public void TakeDamage(int damage)
         {
@@ -44,7 +45,7 @@ namespace _01._Script.Enemy_Data
         {
             CombatEvent @event = new CombatEvent();
             @event.Sender = this;
-            @event.Receiver = hitInfo.receiver;
+            @event.Receiver = hitInfo.Receiver;
             @event.Damage = CurrentAttack;
             @event.HitInfo = hitInfo;
             
@@ -61,7 +62,6 @@ namespace _01._Script.Enemy_Data
             throw new NotImplementedException();
         }
         
-        [ContextMenu("Drop Item")]
         public void Die()
         {
             LootManager.Instance.DropItems("Melee", transform.position);

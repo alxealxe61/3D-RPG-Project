@@ -1,18 +1,18 @@
-using UnityEngine;
-
-public struct HitInfo
+namespace _01._Script.CombatSystem
 {
-    public ICombatAgent receiver;
-    public HurtBox hurtBox;
-    //public LayerMask layerMask;
-    public bool stun;
-    public bool pull;
-}
+    public struct HitInfo
+    {
+        public ICombatAgent Receiver;
+        public HurtBox HurtBox;
+        public bool Stun;
+        public bool Pull;
+    }
     
-public interface ICombatAgent
-{
-    void TakeDamage(int damage);
-    void OnHitDetected(HitInfo hitInfo);
-    void Stun();
-    void Pull();
+    public interface ICombatAgent
+    {
+        void TakeDamage(int damage);
+        void OnHitDetected(HitInfo hitInfo);
+        void Stun();
+        void Pull();
+    }
 }

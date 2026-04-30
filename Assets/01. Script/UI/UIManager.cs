@@ -1,4 +1,6 @@
+using _01._Script.Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace _01._Script.UI
@@ -9,7 +11,7 @@ namespace _01._Script.UI
         [SerializeField] private GameObject inGameUI;     // 게임 플레이 중 UI
         [SerializeField] private GameObject menuUI;       // ESC 메뉴 패널
         [SerializeField] private GameObject saveSlotPanel; // 세이브 슬롯 패널
-        [SerializeField] private DieUI dieUI;             // 사망 UI 패널
+        [SerializeField] private GameObject dieUI;             // 사망 UI 패널
 
         [Header("--- External References ---")]
         [SerializeField] private CameraController cameraController; // 카메라 컨트롤러 참조 추가
@@ -22,6 +24,13 @@ namespace _01._Script.UI
         [Header("--- Options ---")]
         [SerializeField] private bool canUseMenu = true; // 메뉴 사용 가능 여부
 
+        [Header("Game Over Buttons")]
+        [SerializeField] private Button returnToVillageButton;
+        [SerializeField] private Button quitGameButton;
+        
+        [Header("Settings")]
+        [SerializeField] private string villageSceneName = "01.Village";
+        
         private bool isMenuOpen = false;
 
         protected override void OnInitialize()
@@ -48,6 +57,8 @@ namespace _01._Script.UI
             if (continueButton != null) continueButton.onClick.AddListener(ResumeGame);
             if (saveMenuButton != null) saveMenuButton.onClick.AddListener(OpenSaveMenu);
             if (quitButton != null) quitButton.onClick.AddListener(QuitGame);
+            if (returnToVillageButton != null) returnToVillageButton.onClick.AddListener(OnReturnToVillageClicked);
+            if (quitGameButton != null) quitGameButton.onClick.AddListener(QuitGame);
         }
 
         private void Update()
@@ -65,7 +76,7 @@ namespace _01._Script.UI
             }
         }
 
-        public void OpenMenu()
+        private void OpenMenu()
         {
             isMenuOpen = true;
             Time.timeScale = 0f; // 게임 일시정지
@@ -82,7 +93,7 @@ namespace _01._Script.UI
             if (cameraController != null) cameraController.enabled = false;
         }
 
-        public void ResumeGame()
+        private void ResumeGame()
         {
             isMenuOpen = false;
             Time.timeScale = 1f; // 게임 재개
@@ -109,7 +120,8 @@ namespace _01._Script.UI
                 // 카메라 회전 중지
                 if (cameraController != null) cameraController.enabled = false;
 
-                dieUI.Show();
+                dieUI.SetActive(true);
+                Show();
             }
             else
             {
@@ -127,6 +139,50 @@ namespace _01._Script.UI
                 var slots = saveSlotPanel.GetComponentsInChildren<SaveSlotUI>(true);
                 foreach (var slot in slots) slot.RefreshSlot();
             }
+        }
+        
+        private void Show()
+        {
+            Debug.Log("죽음 쇼");
+            // 시간 정지 및 커서 활성화
+            Time.timeScale = 0f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        private void OnReturnToVillageClicked()
+        {
+            Time.timeScale = 1f;
+            
+            // 플레이어 상태 및 체력 초기화
+            if (PlayerController.Instance != null)
+            {
+                PlayerController.Instance.ResetState();
+                if (PlayerController.Instance.playerStats != null)
+                {
+                    PlayerController.Instance.playerStats.FullRecover();
+                }
+            }
+
+            // SceneTransitionManager를 통해 마을로 이동 (기본 포탈 ID "Default" 가정)
+            if (SceneTransitionManager.Instance != null)
+            {
+                SceneTransitionManager.Instance.TransitionToScene(villageSceneName, "Shop Portal");
+            }
+            else
+            {
+                SceneManager.LoadScene(villageSceneName);
+            }
+            
+            if (inGameUI != null) inGameUI.SetActive(true);
+            if (menuUI != null) menuUI.SetActive(false);
+            if (saveSlotPanel != null) saveSlotPanel.SetActive(false);
+            if (dieUI != null) dieUI.gameObject.SetActive(false);
+            
+            if (cameraController != null) cameraController.enabled = true;
+            
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void QuitGame()

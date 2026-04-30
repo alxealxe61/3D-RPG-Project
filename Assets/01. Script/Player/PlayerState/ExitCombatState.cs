@@ -1,15 +1,15 @@
-namespace _01._Script
+namespace _01._Script.Player.PlayerState
 {
     public class ExitCombatState : PlayerState
     {
-        public ExitCombatState
-            (PlayerController player, PlayerStateMachine stateMachine, string animName, bool userBool)
+        protected internal ExitCombatState
+            (PlayerController player, PlayerStateMachine stateMachine, string animName)
             : base(player, stateMachine, animName) { }
 
         public override void Enter()
         {
             base.Enter();
-            player.isWeaponInHand = false;
+            Player.isWeaponInHand = false;
         }
         
         public override void LogicUpdate()
@@ -18,13 +18,13 @@ namespace _01._Script
             
             if (GetNormalizedTime() >= 0.9f)
             {
-                if (player.InputVector.sqrMagnitude > 0.1f)
+                if (Player.InputVector.sqrMagnitude > 0.1f)
                 {
-                    stateMachine.ChangeState(player.PeaceMoveState);
+                    stateMachine.ChangeState(Player.PeaceMoveState);
                 }
                 else
                 {
-                    stateMachine.ChangeState(player.PeaceIdleState);
+                    stateMachine.ChangeState(Player.PeaceIdleState);
                 }
             }
         }

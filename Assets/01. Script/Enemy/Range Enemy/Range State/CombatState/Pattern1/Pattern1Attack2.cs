@@ -34,7 +34,8 @@ namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState.pattern1
         {
             if (owner.Target == null) return;
             
-            Bullet bullet = BulletPool.Instance.Get();
+            Bullet.Bullet bullet = RangeEnemy.bulletPool.Get();
+            bullet.Initialize(owner.rangeStats);
             bullet.transform.position = owner.firePoint.position;
             bullet.Launch(owner.Target.position);
         }

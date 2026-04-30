@@ -1,12 +1,9 @@
-using UnityEngine;
-
-namespace _01._Script
+namespace _01._Script.Player.PlayerState.CombatState
 {
     public class CombatSkillState : PlayerState
     {
-        
-        public CombatSkillState
-            (PlayerController player, PlayerStateMachine stateMachine, string animName, bool userBool) 
+        protected internal CombatSkillState
+            (PlayerController player, PlayerStateMachine stateMachine, string animName) 
             : base(player, stateMachine, animName) { }
         
         public override void LogicUpdate()
@@ -15,26 +12,21 @@ namespace _01._Script
             
             if (GetNormalizedTime() >= 0.9f)
             {
-                if (player.InputVector.sqrMagnitude > 0.1f)
+                if (Player.InputVector.sqrMagnitude > 0.1f)
                 {
-                    stateMachine.ChangeState(player.CombatMoveState);
+                    stateMachine.ChangeState(Player.CombatMoveState);
                 }
                 else
                 {
-                    stateMachine.ChangeState(player.CombatIdleState);
+                    stateMachine.ChangeState(Player.CombatIdleState);
                 }
             }
         }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
+        
         public override void Exit()
         {
             base.Exit();
-            player.skillHitBox.DisableDetection();
+            Player.skillHitBox.DisableDetection();
         }
     }
 }

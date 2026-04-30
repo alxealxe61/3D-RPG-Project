@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Melee EnemyProfile
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProfile
   MaxHp: 60
-  MaxAttack: 100
+  MaxAttack: 6
   moveSpeed: 5

@@ -1,42 +1,28 @@
 using UnityEngine;
 
-namespace _01._Script
+namespace _01._Script.Player.PlayerState.CombatState
 {
     public class Attack2State : CombatAttackState
     {
-        public Attack2State
-            (PlayerController player, PlayerStateMachine stateMachine, string animName, bool userBool)
+        protected internal Attack2State
+            (PlayerController player, PlayerStateMachine stateMachine, string animName)
             : base(player, stateMachine, animName) { }
-
-        public override void Enter()
-        {
-            base.Enter();
-            Debug.Log("Attack2");
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            if (Input.GetMouseButtonDown(0) && GetNormalizedTime() >= 0.4f && comboPossible == false)
+            if (Input.GetMouseButtonDown(0) && GetNormalizedTime() >= 0.4f && ComboPossible == false)
             {
-                comboPossible = true;
+                ComboPossible = true;
             }
             
-            // 애니메이션이 80% 이상 진행되었을 때 다음 상태 결정
             if (GetNormalizedTime() >= 0.9f)
             {
-                if (comboPossible)
-                    stateMachine.ChangeState(player.Attack3State); // 3타로 전이
+                if (ComboPossible)
+                    stateMachine.ChangeState(Player.Attack3State); 
                 else
-                    stateMachine.ChangeState(player.CombatIdleState); // 입력 없으면 대기
+                    stateMachine.ChangeState(Player.CombatIdleState); 
             }
-        }
-        
-        public override void Exit()
-        {
-            base.Exit();
-            //comboPossible = false;
         }
     }
 }

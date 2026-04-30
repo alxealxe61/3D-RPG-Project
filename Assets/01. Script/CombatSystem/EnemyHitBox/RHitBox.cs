@@ -39,10 +39,10 @@ public class RHitBox : MonoBehaviour, IHitDetector
         hitAgents.Add(receiver);
         
         HitInfo hitInfo = new HitInfo();
-        hitInfo.hurtBox = CombatSystem.Instance.GetHurtBox(other);
-        hitInfo.receiver = hitInfo.hurtBox.Owner;
+        hitInfo.HurtBox = CombatSystem.Instance.GetHurtBox(other);
+        hitInfo.Receiver = hitInfo.HurtBox.Owner;
         //hitInfo.layerMask = gameObject.layer;
-        hitInfo.stun = true;
+        hitInfo.Stun = true;
         
         Owner.OnHitDetected(hitInfo);
     }

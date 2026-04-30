@@ -1,33 +1,28 @@
 using UnityEngine;
 
-namespace _01._Script
+namespace _01._Script.Player.PlayerState.CombatState
 {
     public class CombatGuardState : PlayerState
     {
-        public CombatGuardState
+        protected internal CombatGuardState
             (PlayerController player, PlayerStateMachine stateMachine, string animName, bool userBool)
-            : base(player, stateMachine, animName) { }
+            : base(player, stateMachine, animName, userBool) { }
 
         public override void Enter()
         {
             base.Enter();
-            player.GuardTimer = 0.0f;
+            Player.GuardTimer = 0.0f;
         }
         
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            player.UpdateGuardTimer();
+            Player.UpdateGuardTimer();
             
             if (Input.GetMouseButtonUp(1))
             {
-                stateMachine.ChangeState(player.CombatIdleState);
+                stateMachine.ChangeState(Player.CombatIdleState);
             }
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
         }
     }
 }

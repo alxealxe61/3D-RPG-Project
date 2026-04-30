@@ -1,59 +1,50 @@
 using UnityEngine;
 
-namespace _01._Script
+namespace _01._Script.Player.PlayerState.CombatState
 {
     public class CombatMoveState : PlayerState
     {
+        private static readonly int X = Animator.StringToHash("X");
+        private static readonly int Y = Animator.StringToHash("Y");
         
-        private const float SPRINT_MULTIPLIER = 2f;
-        private const float ACCELERATION_SPEED = 2.0f; 
+        private Vector2 GoalInput { get; set; }
         
-        private float currentSpeedMultiplier = 1.0f;
-
-        public Vector2 GoalInput { get; private set; }
-        
-        public CombatMoveState
-            (PlayerController player, PlayerStateMachine stateMachine, string animName, bool userBool) 
+        protected internal CombatMoveState
+            (PlayerController player, PlayerStateMachine stateMachine, string animName) 
             : base(player, stateMachine, animName) { }
         
-        public override void Enter()
-        {
-            base.Enter();
-            currentSpeedMultiplier = 1.0f;
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            if (player.InputVector.sqrMagnitude == 0)
+            if (Player.InputVector.sqrMagnitude == 0)
             {
-                stateMachine.ChangeState(player.CombatIdleState);
+                stateMachine.ChangeState(Player.CombatIdleState);
             }
             
             if (Input.GetMouseButtonDown(0))
             {
-                stateMachine.ChangeState(player.Attack1State);
+                stateMachine.ChangeState(Player.Attack1State);
             }
             
             if (Input.GetMouseButtonDown(1))
             {
-                stateMachine.ChangeState(player.CombatGuardState);
+                stateMachine.ChangeState(Player.CombatGuardState);
             }
             
-            if (Input.GetKeyDown(KeyCode.LeftShift) && player.isDodge == false)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && Player.isDodge == false)
             {
-                stateMachine.ChangeState(player.CombatDodgeState);
+                stateMachine.ChangeState(Player.CombatDodgeState);
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                player.AttemptSkillUse();
+                Player.AttemptSkillUse();
             }
             
-            if (player.lockOnSystem.IsLockedOn == false)
+            if (Player.lockOnSystem.IsLockedOn == false)
             {
-                stateMachine.ChangeState(player.ExitCombatState);
+                stateMachine.ChangeState(Player.ExitCombatState);
             }
         }
         
@@ -61,22 +52,22 @@ namespace _01._Script
         {
             base.PhysicsUpdate();
             
-            Vector2 inputAxis = 
-                new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            //Vector2 inputAxis = 
+            //    new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             
-            Vector2 currentAnimatorInput = new Vector2(player.ani.GetFloat("X"), player.ani.GetFloat("Y"));
+            var currentAnimatorInput = new Vector2(Player.ani.GetFloat(X), Player.ani.GetFloat(Y));
             
-            Vector2 applyInput = Vector2.Lerp(currentAnimatorInput, GoalInput, player.daming);
+            var applyInput = Vector2.Lerp(currentAnimatorInput, GoalInput, Player.daming);
             
             Vector3 moveVector;
 
             // 록온 상태일 때의 이동 로직 (몬스터를 중심으로 공전)
-            if (player.lockOnSystem != null && player.lockOnSystem.IsLockedOn && player.lockOnSystem.CurrentTarget != null)
+            if (Player.lockOnSystem != null && Player.lockOnSystem.IsLockedOn && Player.lockOnSystem.CurrentTarget != null)
             {
-                Transform target = player.lockOnSystem.CurrentTarget;
+                var target = Player.lockOnSystem.CurrentTarget;
 
                 // 1. 타겟 방향 계산 (Y축 높이 차이 무시)
-                Vector3 targetDir = (target.position - player.transform.position);
+                var targetDir = (target.position - Player.transform.position);
                 targetDir.y = 0;
                 targetDir.Normalize();
 
@@ -84,33 +75,33 @@ namespace _01._Script
                 if (targetDir != Vector3.zero)
                 {
                     Quaternion targetRot = Quaternion.LookRotation(targetDir);
-                    player.rb.MoveRotation(Quaternion.Slerp(player.rb.rotation, targetRot, Time.fixedDeltaTime * 10f));
+                    Player.rb.MoveRotation(Quaternion.Slerp(Player.rb.rotation, targetRot, Time.fixedDeltaTime * 10f));
                 }
 
                 // 3. 이동 벡터 계산 (타겟 기준, Y축 평면화)
-                Vector3 targetRight = Vector3.Cross(Vector3.up, targetDir);
-                moveVector = (targetDir * player.InputVector.y + targetRight * player.InputVector.x).normalized;
+                var targetRight = Vector3.Cross(Vector3.up, targetDir);
+                moveVector = (targetDir * Player.InputVector.y + targetRight * Player.InputVector.x).normalized;
             }
             else
             {
                 // 일반 이동 로직 (수평 평면 벡터 투영)
-                Vector3 forward = player.transform.forward;
-                Vector3 right = player.transform.right;
+                var forward = Player.transform.forward;
+                var right = Player.transform.right;
                 forward.y = 0;
                 right.y = 0;
                 forward.Normalize();
                 right.Normalize();
 
-                moveVector = (forward * player.InputVector.y + right * player.InputVector.x).normalized;
+                moveVector = (forward * Player.InputVector.y + right * Player.InputVector.x).normalized;
             }
 
             // Rigidbody 속도 제어: Y축은 중력 영향을 위해 기존 velocity.y 유지
-            float speed = player.moveSpeed / 2; // 전투 중 이동 속도 조정
-            Vector3 targetVelocity = moveVector * speed;
-            player.rb.linearVelocity = new Vector3(targetVelocity.x, player.rb.linearVelocity.y, targetVelocity.z);
+            var speed = Player.MoveSpeed / 2; // 전투 중 이동 속도 조정
+            var targetVelocity = moveVector * speed;
+            Player.rb.linearVelocity = new Vector3(targetVelocity.x, Player.rb.linearVelocity.y, targetVelocity.z);
 
-            player.ani.SetFloat("X", applyInput.x);
-            player.ani.SetFloat("Y", applyInput.y);
+            Player.ani.SetFloat(X, applyInput.x);
+            Player.ani.SetFloat(Y, applyInput.y);
             }
 
 
@@ -118,8 +109,8 @@ namespace _01._Script
         {
             base.Exit();
             
-            player.ani.SetFloat("X", 0);
-            player.ani.SetFloat("Y", 0);
+            Player.ani.SetFloat(X, 0);
+            Player.ani.SetFloat(Y, 0);
             
         }
         

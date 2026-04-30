@@ -6,7 +6,6 @@ namespace _01._Script.CombatSystem
         public ICombatAgent Receiver;
         
         public int Damage;
-        public int SkillPoitnt;
         public HitInfo HitInfo;
     }
 }

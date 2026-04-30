@@ -1,3 +1,4 @@
+using _01._Script.Data;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;

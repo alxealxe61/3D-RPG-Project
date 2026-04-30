@@ -1,4 +1,5 @@
 using _01._Script.Enemy.Range_Enemy;
+using _01._Script.Enemy.Range_Enemy.Bullet;
 using _01._Script.StataPattern;
 
 namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern2
@@ -38,7 +39,8 @@ namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern2
         {
             if (owner.Target == null) return;
             
-            Bullet bullet = BulletPool.Instance.Get();
+            Bullet bullet = BossEnemy.bulletPool.Get();
+            bullet.Initialize(owner.bossStats);
             bullet.transform.position = owner.firePoint.position;
             bullet.Launch(owner.Target.position);
         }

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using _01._Script.Enemy_Data;
+using _01._Script.Data;
 using _01._Script.Enemy.EnemyState.Melee_EnemyState;
 using _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState;
 using _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState.AttackPatten1;

@@ -1,4 +1,5 @@
-using _01._Script.Enemy.Range_Enemy.Range_Data;
+using _01._Script.Data;
+using _01._Script.Enemy.Range_Enemy.Bullet;
 using _01._Script.Enemy.Range_Enemy.Range_EnemyState;
 using _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState;
 using _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState.pattern1;
@@ -13,7 +14,8 @@ namespace _01._Script.Enemy.Range_Enemy
         [SerializeField] public Animator ani;
         [SerializeField] private DetectionRange detectionRange;
         [SerializeField] private AttackRange attackRange;
-    
+        public BulletPool bulletPool;
+        
         public float MoveSpeed => rangeStats.MoveSpeed;
         
         public Transform Target => detectionRange.detectedTarget;

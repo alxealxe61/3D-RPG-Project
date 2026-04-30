@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
-using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_Data;
+using _01._Script.Data;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern1;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern2;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern3;
+using _01._Script.Enemy.Range_Enemy;
+using _01._Script.Enemy.Range_Enemy.Bullet;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -39,6 +41,7 @@ namespace _01._Script.Enemy.Boss_Enemy
         public bool isPreparingAttack;
 
         public float idleTimer;
+        public BulletPool bulletPool;
         #region 상태 머신 모음
         private BossStateMachine StateMachine { get; set; }
         

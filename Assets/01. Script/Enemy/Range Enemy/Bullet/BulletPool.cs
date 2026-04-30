@@ -1,18 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _01._Script.Enemy.Range_Enemy
+namespace _01._Script.Enemy.Range_Enemy.Bullet
 {
-    public class BulletPool : SingletonBase<BulletPool>
+    public class BulletPool : MonoBehaviour
     {
         [SerializeField] private Bullet bulletPrefab;
         [SerializeField] private int poolSize = 3;
         
-        private readonly Queue<Bullet> poolQueue = new Queue<Bullet>();
+        private readonly Queue<Bullet> _poolQueue = new Queue<Bullet>();
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
             for (int i = 0; i < poolSize; i++)
             {
                 CreateNewBullet();
@@ -21,16 +20,16 @@ namespace _01._Script.Enemy.Range_Enemy
 
         private void CreateNewBullet()
         {
-            Bullet bullet = Instantiate(bulletPrefab, transform);
+            var bullet = Instantiate(bulletPrefab, transform);
             bullet.gameObject.SetActive(false);
-            poolQueue.Enqueue(bullet);
+            _poolQueue.Enqueue(bullet);
         }
 
         public Bullet Get()
         {
-            if (poolQueue.Count == 0) CreateNewBullet();
+            if (_poolQueue.Count == 0) CreateNewBullet();
             
-            Bullet bullet = poolQueue.Dequeue();
+            var bullet = _poolQueue.Dequeue();
             bullet.gameObject.SetActive(true);
             return bullet;
         }
@@ -38,7 +37,7 @@ namespace _01._Script.Enemy.Range_Enemy
         public void ReturnToPool(Bullet bullet)
         {
             bullet.gameObject.SetActive(false);
-            poolQueue.Enqueue(bullet);
+            _poolQueue.Enqueue(bullet);
         }
     }
 }

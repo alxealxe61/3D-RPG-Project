@@ -1,54 +1,47 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
-public class PooledEffect : MonoBehaviour
+namespace _01._Script.Effect
 {
-    private ParticleSystem[] _particles;
-
-    private void Awake() => _particles = GetComponentsInChildren<ParticleSystem>();
-
-    private void OnEnable()
+    public class PooledEffect : MonoBehaviour
     {
-        float maxDuration = 0f;
-        foreach (var ps in _particles)
+        private ParticleSystem[] _particles;
+
+        private void Awake() => _particles = GetComponentsInChildren<ParticleSystem>();
+
+        private void OnEnable()
         {
-            var main = ps.main;
-            // 강제로 루핑을 꺼서 중복 재생을 방지함
-            main.loop = false;
+            var maxDuration = 0f;
+            foreach (var ps in _particles)
+            {
+                var main = ps.main;
+                // 강제로 루핑을 꺼서 중복 재생을 방지함
+                main.loop = false;
             
-            float duration = (main.duration + main.startLifetime.constantMax) / main.simulationSpeed;
-            if (duration > maxDuration) maxDuration = duration;
+                var duration = (main.duration + main.startLifetime.constantMax) / main.simulationSpeed;
+                if (duration > maxDuration) maxDuration = duration;
             
-            ps.Clear();
-            ps.Play();
+                ps.Clear();
+                ps.Play();
+            }
+        
+            // 지속 시간이 끝나면 매니저에게 정식 반환 요청
+            StartCoroutine(ReturnAfterDelay(maxDuration));
         }
         
-        // 지속 시간이 끝나면 매니저에게 정식 반환 요청
-        StartCoroutine(ReturnAfterDelay(maxDuration));
-    }
-
-    public void SetSpeed(float speed)
-    {
-        if (_particles == null) return;
-        foreach (var ps in _particles)
+        private IEnumerator ReturnAfterDelay(float delay)
         {
-            var main = ps.main;
-            main.simulationSpeed = speed;
-        }
-    }
-
-    private IEnumerator ReturnAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(delay);
         
-        // 정식 풀 수거 로직 호출
-        if (EffectManager.IsInitialized)
-        {
-            EffectManager.Instance.ReturnToPool(gameObject);
-        }
-        else
-        {
-            gameObject.SetActive(false); 
+            // 정식 풀 수거 로직 호출
+            if (EffectManager.IsInitialized)
+            {
+                EffectManager.Instance.ReturnToPool(gameObject);
+            }
+            else
+            {
+                gameObject.SetActive(false); 
+            }
         }
     }
 }

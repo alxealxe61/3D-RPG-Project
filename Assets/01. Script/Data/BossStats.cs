@@ -1,9 +1,10 @@
 using System;
 using _01._Script.CombatSystem;
+using _01._Script.Enemy.Boss_Enemy;
 using _01._Script.Item;
 using UnityEngine;
 
-namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_Data
+namespace _01._Script.Data
 {
     public class BossStats : MonoBehaviour,ICombatAgent
     {
@@ -45,7 +46,7 @@ namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_Data
             var @event = new CombatEvent
             {
                 Sender = this,
-                Receiver = hitInfo.receiver,
+                Receiver = hitInfo.Receiver,
                 Damage = CurrentAttack,
                 HitInfo = hitInfo
             };

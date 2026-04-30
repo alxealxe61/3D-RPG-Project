@@ -1,49 +1,50 @@
 using System.Collections.Generic;
-using _01._Script.CombatSystem;
 using UnityEngine;
 
-public class SkillHitBox : MonoBehaviour, IHitDetector
+namespace _01._Script.CombatSystem.PlayerHitBox
 {
-    public ICombatAgent Owner { get; private set; }
+    public class SkillHitBox : MonoBehaviour, IHitDetector
+    {
+        public ICombatAgent Owner { get; private set; }
     
-    [field: SerializeField]  private Collider Collider { get; set; }
+        [field: SerializeField]  private Collider Collider { get; set; }
     
-    private HashSet<ICombatAgent> hitAgents = new HashSet<ICombatAgent>();
+        private HashSet<ICombatAgent> hitAgents = new HashSet<ICombatAgent>();
     
-    public void Initialize(ICombatAgent owner)
-    {
-        Owner = owner;
-        Collider =  GetComponent<Collider>();
-    }
+        public void Initialize(ICombatAgent owner)
+        {
+            Owner = owner;
+            Collider =  GetComponent<Collider>();
+        }
 
-    [ContextMenu("Start Attack")]
-    public void EnableDetection()
-    {
-        Collider.enabled = true;
-    }
+        [ContextMenu("Start Attack")]
+        public void EnableDetection()
+        {
+            Collider.enabled = true;
+        }
 
-    [ContextMenu("Stop Attack")]
-    public void DisableDetection()
-    {
-        Collider.enabled = false;
-        hitAgents.Clear();
-    }
+        [ContextMenu("Stop Attack")]
+        public void DisableDetection()
+        {
+            Collider.enabled = false;
+            hitAgents.Clear();
+        }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (CombatSystem.Instance.HasHurtBox(other) == false) return;
+        private void OnTriggerEnter(Collider other)
+        {
+            if (CombatSystem.Instance.HasHurtBox(other) == false) return;
         
-        HurtBox hurtBox = CombatSystem.Instance.GetHurtBox(other);
-        ICombatAgent receiver = hurtBox.Owner;
-        if (hitAgents.Contains(receiver)) return;
-        hitAgents.Add(receiver);
+            var hurtBox = CombatSystem.Instance.GetHurtBox(other);
+            var receiver = hurtBox.Owner;
+            if (hitAgents.Contains(receiver)) return;
+            hitAgents.Add(receiver);
         
-        HitInfo hitInfo = new HitInfo();
-        hitInfo.hurtBox = CombatSystem.Instance.GetHurtBox(other);
-        hitInfo.receiver = hitInfo.hurtBox.Owner;
-        //hitInfo.layerMask = gameObject.layer;
-        hitInfo.stun = true;
+            var hitInfo = new HitInfo();
+            hitInfo.HurtBox = CombatSystem.Instance.GetHurtBox(other);
+            hitInfo.Receiver = hitInfo.HurtBox.Owner;
+            hitInfo.Stun = true;
         
-        Owner.OnHitDetected(hitInfo);
+            Owner.OnHitDetected(hitInfo);
+        }
     }
 }

@@ -17,10 +17,7 @@ namespace _01._Script.Data
 
         [Header("--- Progress ---")]
         public int weaponLevel;   // 현재 무기 강화 단계
-
-        /// <summary>
-        /// 데이터를 파일에 저장하기 위한 단순한 구조체입니다.
-        /// </summary>
+        
         [System.Serializable]
         public class SaveData
         {
@@ -32,10 +29,7 @@ namespace _01._Script.Data
             public int upgradeStones;
             public int weaponLevel;
         }
-
-        /// <summary>
-        /// 현재 SO의 데이터를 SaveData 객체로 추출합니다.
-        /// </summary>
+        
         public SaveData GetSaveData()
         {
             return new SaveData
@@ -49,10 +43,7 @@ namespace _01._Script.Data
                 weaponLevel = this.weaponLevel
             };
         }
-
-        /// <summary>
-        /// 로드된 SaveData를 현재 SO에 적용합니다.
-        /// </summary>
+        
         public void LoadFromData(SaveData data)
         {
             this.MaxHp = data.maxHp;

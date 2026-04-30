@@ -40,8 +40,8 @@ namespace _01._Script.CombatSystem.EnemyHitBox
             hitAgents.Add(receiver);
         
             HitInfo hitInfo = new HitInfo();
-            hitInfo.hurtBox = CombatSystem.Instance.GetHurtBox(other);
-            hitInfo.receiver = hitInfo.hurtBox.Owner;
+            hitInfo.HurtBox = CombatSystem.Instance.GetHurtBox(other);
+            hitInfo.Receiver = hitInfo.HurtBox.Owner;
             //hitInfo.layerMask = gameObject.layer;
         
             Owner.OnHitDetected(hitInfo);

@@ -1,202 +1,208 @@
+using System.Collections;
+using _01._Script.CombatSystem.PlayerHitBox;
+using _01._Script.Data;
+using _01._Script.Effect;
+using _01._Script.Player.PlayerState;
+using _01._Script.Player.PlayerState.CombatState;
+using _01._Script.Player.PlayerState.PeaceState;
+using _01._Script.UI;
 using UnityEngine;
-using _01._Script;
-using UnityEngine.Serialization;
 
-public class PlayerController : MonoBehaviour
+namespace _01._Script.Player
 {
-    private float horizontalSensitivity = 1.0f;
-    
-    public PlayerStats playerStats;
-    public LockOnSystem lockOnSystem;
-    public Rigidbody rb;
-    public float moveSpeed =>  playerStats.MoveSpeed;
-    public Vector2 InputVector { get; private set; }
-    public Animator ani;
-    public GameObject handSword;
-    public GameObject etcSword;
-    [Range(0, 1)] [SerializeField] public float daming = 0.0f;
-    public bool isWeaponInHand = false;
-    public HitBox hitBox;
-    public SkillHitBox skillHitBox;
-    public GameObject hurtBox;
-    [Header("회피")]
-    public float dodgetime = DODGE_COOLDOWN;
-    public bool isDodge;
-    public const float DODGE_COOLDOWN = 4.0f;
-    public event System.Action<float, float> OnDodgeCooldownChanged;
-    public float GuardTimer { get; set; }
-    public bool IsGuarding => StateMachine.CurrentState == CombatGuardState;
-
-    #region 상태 머신 모음
-    public static PlayerController Instance { get; private set; }
-
-    private PlayerStateMachine StateMachine { get; set; }
-    public PeaceIdleState PeaceIdleState { get; private set; }
-    public PeaceMoveState PeaceMoveState { get; private set; }
-    public CombatIdleState CombatIdleState { get; private set; }
-    public CombatMoveState CombatMoveState { get; private set; }
-    public Attack1State Attack1State { get; private set; }
-    public Attack2State Attack2State { get; private set; }
-    public Attack3State Attack3State { get; private set; }
-    public CombatGuardState CombatGuardState { get; private set; }
-    public  CombatDodgeState CombatDodgeState { get; private set; }
-    public CombatSkillState CombatSkillState { get; private set; }
-    public EnterCombatState EnterCombatState { get; private set; }
-    public ExitCombatState  ExitCombatState { get; private set; }
-    public CombatStunState CombatStunState { get; private set; }
-    public CombatPullState CombatPullState { get; private set; }
-    public CombatDieState CombatDieState { get; private set; }
-
-    #endregion
-    
-
-    void Awake()
+    public class PlayerController : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        public PlayerStats playerStats;
+        public LockOnSystem lockOnSystem;
+        public Rigidbody rb;
+        public float MoveSpeed =>  playerStats.MoveSpeed;
+        public Vector2 InputVector { get; private set; }
+        public Animator ani;
+        public GameObject handSword;
+        public GameObject etcSword;
+        [Range(0, 1)] [SerializeField] public float daming;
+        public bool isWeaponInHand;
+        public HitBox hitBox;
+        public SkillHitBox skillHitBox;
+        public GameObject hurtBox;
+        
+        [Header("Dodge")]
+        public float dodgetime = DodgeCooldown;
+        public bool isDodge;
+        public const float DodgeCooldown = 4.0f;
+        public event System.Action<float, float> OnDodgeCooldownChanged;
+        public float GuardTimer { get; set; }
+        public bool IsGuarding => StateMachine.CurrentState == CombatGuardState;
+
+        private bool _isDead;
+        
+        #region 상태 머신 모음
+        public static PlayerController Instance { get; private set; }
+
+        private PlayerStateMachine StateMachine { get; set; }
+        public PeaceIdleState PeaceIdleState { get; private set; }
+        public PeaceMoveState PeaceMoveState { get; private set; }
+        public CombatIdleState CombatIdleState { get; private set; }
+        public CombatMoveState CombatMoveState { get; private set; }
+        public Attack1State Attack1State { get; private set; }
+        public Attack2State Attack2State { get; private set; }
+        public Attack3State Attack3State { get; private set; }
+        public CombatGuardState CombatGuardState { get; private set; }
+        public  CombatDodgeState CombatDodgeState { get; private set; }
+        private CombatSkillState CombatSkillState { get; set; }
+        public EnterCombatState EnterCombatState { get; private set; }
+        public ExitCombatState  ExitCombatState { get; private set; }
+        private CombatStunState CombatStunState { get; set; }
+        private CombatPullState CombatPullState { get; set; }
+        private CombatDieState CombatDieState { get; set; }
+
+        
+        #endregion
+
+
+        private void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        
+            rb = GetComponent<Rigidbody>();
+            StateMachine = new PlayerStateMachine();
+        
+            PeaceIdleState = new PeaceIdleState(this, StateMachine, "PeaceIdle");
+            PeaceMoveState = new PeaceMoveState(this, StateMachine, "PeaceMove");
+            CombatIdleState = new CombatIdleState(this, StateMachine, "CombatIdle");
+            CombatMoveState = new CombatMoveState(this, StateMachine, "CombatMove");
+            Attack1State = new Attack1State(this, StateMachine, "Attack1State");
+            Attack2State = new Attack2State(this, StateMachine, "Attack2State");
+            Attack3State = new Attack3State(this, StateMachine, "Attack3State");
+            CombatGuardState = new CombatGuardState(this, StateMachine, "CombatGuard", true);
+            CombatDodgeState = new CombatDodgeState(this, StateMachine, "CombatDodge");
+            CombatSkillState = new CombatSkillState(this, StateMachine, "CombatSkill");
+            EnterCombatState = new EnterCombatState(this, StateMachine, "EnterCombat");
+            ExitCombatState = new ExitCombatState(this, StateMachine, "ExitCombat");
+            CombatStunState = new CombatStunState(this, StateMachine, "CombatStun");
+            CombatPullState = new CombatPullState(this, StateMachine, "CombatPull");
+            CombatDieState = new CombatDieState(this, StateMachine ,"CombatDie");
         }
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        
-        rb = GetComponent<Rigidbody>();
-        StateMachine = new PlayerStateMachine();
-        
-        PeaceIdleState = new PeaceIdleState(this, StateMachine, "PeaceIdle", false);
-        PeaceMoveState = new PeaceMoveState(this, StateMachine, "PeaceMove", false);
-        CombatIdleState = new CombatIdleState(this, StateMachine, "CombatIdle", false);
-        CombatMoveState = new CombatMoveState(this, StateMachine, "CombatMove", false);
-        Attack1State = new Attack1State(this, StateMachine, "Attack1State", false);
-        Attack2State = new Attack2State(this, StateMachine, "Attack2State", false);
-        Attack3State = new Attack3State(this, StateMachine, "Attack3State", false);
-        CombatGuardState = new CombatGuardState(this, StateMachine, "CombatGuard", true);
-        CombatDodgeState = new CombatDodgeState(this, StateMachine, "CombatDodge", false);
-        CombatSkillState = new CombatSkillState(this, StateMachine, "CombatSkill", false);
-        EnterCombatState = new EnterCombatState(this, StateMachine, "EnterCombat", false);
-        ExitCombatState = new ExitCombatState(this, StateMachine, "ExitCombat", false);
-        CombatStunState = new CombatStunState(this, StateMachine, "CombatStun", false);
-        CombatPullState = new CombatPullState(this, StateMachine, "CombatPull", false);
-        CombatDieState = new CombatDieState(this, StateMachine ,"CombatDie",false);
-    }
-    
-    void Start()
-    {
-        StateMachine.Initialize(PeaceIdleState);
-    }
-    
-    void Update()
-    {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        InputVector = new Vector2(x, y).normalized;
-        StateMachine.CurrentState.LogicUpdate();
-        UpdateDodgeTimer();
-        isDie();
-    }
-
-    void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
-    public void isStunned()
-    {
-        EffectManager.Instance.StopEffectsUnder(transform);
-        StateMachine.ChangeState(CombatStunState);
-    }
-
-    public void isPulling() => StateMachine.ChangeState(CombatPullState);
-
-    public void ResetState()
-    {
-        StateMachine.ChangeState(PeaceIdleState);
-        // 애니메이터 파라미터 초기화가 필요하다면 여기서 수행합니다.
-        ani.Play("PeaceIdle", 0, 0f);
-    }
-    
-    private void isDie()
-    {
-        if (playerStats.CurrentHp <= 0 && StateMachine.CurrentState != CombatDieState)
+        private void Start()
         {
+            StateMachine.Initialize(PeaceIdleState);
+        }
+
+        private void Update()
+        {
+            var x = Input.GetAxisRaw("Horizontal");
+            var y = Input.GetAxisRaw("Vertical");
+            InputVector = new Vector2(x, y).normalized;
+            StateMachine.CurrentState.LogicUpdate();
+            UpdateDodgeTimer();
+            IsDie();
+        }
+
+        private void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
+        
+        public void IsStunned()
+        {
+            if (StateMachine.CurrentState == CombatDieState) return;
+            EffectManager.Instance.StopEffectsUnder(transform);
+            StateMachine.ChangeState(CombatStunState);
+        }
+
+        public void IsPulling()
+        {
+            if (StateMachine.CurrentState == CombatDieState) return;
+            StateMachine.ChangeState(CombatPullState);
+        } 
+
+        public void ResetState()
+        {
+            _isDead = false;
+            StateMachine.ChangeState(PeaceIdleState);
+            ani.Play("PeaceIdle", 0, 0f);
+        }
+    
+    
+        private void IsDie()
+        {
+            if (playerStats.CurrentHp > 0 || _isDead) return;
+        
+            _isDead = true;
             EffectManager.Instance.StopEffectsUnder(transform);
             StateMachine.ChangeState(CombatDieState);
             StartCoroutine(DieSequenceRoutine());
         }
-    }
 
-    private System.Collections.IEnumerator DieSequenceRoutine()
-    {
-        // 1초 대기 (사망 애니메이션 등을 보여주기 위함)
-        yield return new WaitForSeconds(5.0f);
-        
-        // UIManager를 통해 사망 UI 표시
-        if (_01._Script.UI.UIManager.Instance != null)
+        private IEnumerator DieSequenceRoutine()
         {
-            _01._Script.UI.UIManager.Instance.ShowDieUI();
-        }
-    }
-    
-    public bool AttemptSkillUse()
-    {
-        if (playerStats.CanUseSkill())
-        {
-            playerStats.UseSkill();
+            yield return new WaitForSeconds(3.0f);
             
-            StateMachine.ChangeState(CombatSkillState);
-            return true;
-        }
-        Debug.Log("[Skill] 포인트가 부족합니다! (현재 포인트 필요: 8)");
-        return false;
-    }
-    
-    public void UpdateGuardTimer() => GuardTimer += Time.deltaTime;
-
-    public void UpdateDodgeTimer()
-    {
-        if (isDodge)
-        {
-            dodgetime += Time.deltaTime;
-            OnDodgeCooldownChanged?.Invoke(dodgetime, DODGE_COOLDOWN);
-            
-            if (dodgetime >= DODGE_COOLDOWN)
+            if (UIManager.Instance != null)
             {
-                isDodge = false;
-                OnDodgeCooldownChanged?.Invoke(DODGE_COOLDOWN, DODGE_COOLDOWN);
+                UIManager.Instance.ShowDieUI();
             }
         }
-    } 
-    #region 애니메이션 이벤트 함수 모음
-
-    public void WeaponSwitch() 
-    {
-        //Debug.Log("검뽑");
-        if (isWeaponInHand)
+    
+        public void AttemptSkillUse()
         {
-            // 뽑는 동작 중이라면: 등 끄고 손 켜기
-            etcSword.SetActive(false);
-            handSword.SetActive(true);
+            if (playerStats.CanUseSkill())
+            {
+                playerStats.UseSkill();
+            
+                StateMachine.ChangeState(CombatSkillState);
+            }
         }
-        else
+    
+        public void UpdateGuardTimer() => GuardTimer += Time.deltaTime;
+
+        private void UpdateDodgeTimer()
         {
-            // 넣는 동작 중이라면: 등 켜고 손 끄기
-            etcSword.SetActive(true);
-            handSword.SetActive(false);
+            if (!isDodge) return;
+            dodgetime += Time.deltaTime;
+            OnDodgeCooldownChanged?.Invoke(dodgetime, DodgeCooldown);
+
+            if ((dodgetime >= DodgeCooldown) == false) return;
+            isDodge = false;
+            OnDodgeCooldownChanged?.Invoke(DodgeCooldown, DodgeCooldown);
+        } 
+        #region 애니메이션 이벤트 함수 모음
+
+        public void WeaponSwitch() 
+        {
+            if (isWeaponInHand)
+            {
+                etcSword.SetActive(false);
+                handSword.SetActive(true);
+            }
+            else
+            {
+                etcSword.SetActive(true);
+                handSword.SetActive(false);
+            }
         }
-    }
 
-    public void Hit()
-    {
-        hitBox.EnableDetection();
-    }
+        public void Hit()
+        {
+            hitBox.EnableDetection();
+        }
 
-    public void SkillHit()
-    {
-        skillHitBox.EnableDetection();
-    }
+        public void SkillHit()
+        {
+            skillHitBox.EnableDetection();
+        }
 
-    public void PlayEffect(string effectName)
-    {
-        EffectManager.Instance.PlayEffect(effectName, transform);
-        SoundManager.Instance.PlaySFX(effectName, transform.position);
-    }
+        public void PlayEffect(string effectName)
+        {
+            EffectManager.Instance.PlayEffect(effectName, transform);
+            SoundManager.Instance.PlaySFX(effectName, transform.position);
+        }
 
-    #endregion
+        #endregion
+    }
 }

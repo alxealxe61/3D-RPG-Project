@@ -1,41 +1,29 @@
 using UnityEngine;
 
-namespace _01._Script
+namespace _01._Script.Player.PlayerState.CombatState
 {
     public class Attack1State : CombatAttackState
     {
-        public Attack1State
-            (PlayerController player, PlayerStateMachine stateMachine, string animName, bool userBool) 
+        protected internal Attack1State
+            (PlayerController player, PlayerStateMachine stateMachine, string animName) 
             : base(player, stateMachine, animName) { }
-
-        public override void Enter()
-        {
-            base.Enter();
-            Debug.Log("Attack1");
-        }
         
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            if (Input.GetMouseButtonDown(0) && GetNormalizedTime() >= 0.4f && comboPossible == false)
+            if (Input.GetMouseButtonDown(0) && GetNormalizedTime() >= 0.4f && ComboPossible == false)
             {
-                comboPossible = true;
+                ComboPossible = true;
             }
             
             if (GetNormalizedTime() >= 0.9f)
             {
-                if(comboPossible)
-                    stateMachine.ChangeState(player.Attack2State);
+                if(ComboPossible)
+                    stateMachine.ChangeState(Player.Attack2State);
                 else
-                    stateMachine.ChangeState(player.CombatIdleState);
+                    stateMachine.ChangeState(Player.CombatIdleState);
             }
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
-            //comboPossible = false;
         }
     }
 }

@@ -858,7 +858,7 @@ MonoBehaviour:
   cameraTarget: {fileID: 7016437918168536820}
   cameraTransform: {fileID: 6598983289579507132}
   lockOnSystem: {fileID: 2775754029444428665}
-  maxAngleX: 20
+  maxAngleX: 40
   minAngleX: -20
   horizontalSensitivity: 1
   verticalSensitivity: 1
@@ -938,7 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a26ffd272fc955148ac72751b4776778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_01._Script.Player.PlayerInteraction
-  interactionRange: 5
+  interactionRange: 10
   interactableLayer:
     serializedVersion: 2
     m_Bits: 1536

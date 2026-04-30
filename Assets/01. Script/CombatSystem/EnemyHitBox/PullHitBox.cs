@@ -39,9 +39,9 @@ public class PullHitBox : MonoBehaviour, IHitDetector
         hitAgents.Add(receiver);
         
         HitInfo hitInfo = new HitInfo();
-        hitInfo.hurtBox = CombatSystem.Instance.GetHurtBox(other);
-        hitInfo.receiver = hitInfo.hurtBox.Owner;
-        hitInfo.pull = true;
+        hitInfo.HurtBox = CombatSystem.Instance.GetHurtBox(other);
+        hitInfo.Receiver = hitInfo.HurtBox.Owner;
+        hitInfo.Pull = true;
         
         Owner.OnHitDetected(hitInfo);
     }

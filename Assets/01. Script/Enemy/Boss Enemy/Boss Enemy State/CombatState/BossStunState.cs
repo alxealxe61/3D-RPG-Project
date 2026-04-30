@@ -16,6 +16,7 @@ namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState
         {
             base.Enter();
             timer = 0.0f;
+            BossEnemy.fireObject.SetActive(false);
         }
 
         public override void LogicUpdate()

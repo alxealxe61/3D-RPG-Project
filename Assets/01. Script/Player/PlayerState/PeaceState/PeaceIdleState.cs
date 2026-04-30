@@ -1,29 +1,24 @@
-using UnityEngine;
-
-namespace _01._Script
+namespace _01._Script.Player.PlayerState.PeaceState
 {
     public class PeaceIdleState : PlayerState
     {
-        //private const float DODGE_DURATION_THRESHOLD = 0.9f;
-        
-        public PeaceIdleState
-            (PlayerController player, PlayerStateMachine stateMachine, string animName, bool userBool) 
-            : base(player, stateMachine, animName)
-        { }
+        protected internal PeaceIdleState
+            (PlayerController player, PlayerStateMachine stateMachine, string animName) 
+            : base(player, stateMachine, animName) { }
         
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
             // WASD 이동 입력 시 PeaceMoveState로 전환
-            if (player.InputVector.sqrMagnitude > 0)
+            if (Player.InputVector.sqrMagnitude > 0)
             {
-                stateMachine.ChangeState(player.PeaceMoveState);
+                stateMachine.ChangeState(Player.PeaceMoveState);
             }
             
-            if (player.lockOnSystem.IsLockedOn == true)
+            if (Player.lockOnSystem.IsLockedOn)
             {
-                stateMachine.ChangeState(player.EnterCombatState);
+                stateMachine.ChangeState(Player.EnterCombatState);
             }
         }
     }

@@ -1,36 +1,35 @@
 using _01._Script.StataPattern;
 using UnityEngine;
 
-namespace _01._Script
+namespace _01._Script.Player.PlayerState.CombatState
 {
     public class CombatStunState : PlayerState
     {
-        private float stunDuration = 0.1f;
-        private float timer;
+        private float _timer;
         
-        public CombatStunState
-            (PlayerController player, StateMachine<PlayerController> stateMachine, string animName, bool useBool) 
+        protected internal CombatStunState
+            (PlayerController player, StateMachine<PlayerController> stateMachine, string animName) 
             : base(player, stateMachine, animName) { }
 
         public override void Enter()
         {
             base.Enter();
-            timer = 0.0f;
+            _timer = 0.0f;
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            timer += Time.deltaTime;
-            if (timer >= stunDuration)
+            _timer += Time.deltaTime;
+            if (_timer >= 0.1f)
             {
-                if (player.InputVector.sqrMagnitude > 0.01f)
+                if (Player.InputVector.sqrMagnitude > 0.01f)
                 {
-                    stateMachine.ChangeState(player.CombatMoveState);
+                    stateMachine.ChangeState(Player.CombatMoveState);
                 }
                 else
                 {
-                    stateMachine.ChangeState(player.CombatIdleState);
+                    stateMachine.ChangeState(Player.CombatIdleState);
                 }
             }
         }
