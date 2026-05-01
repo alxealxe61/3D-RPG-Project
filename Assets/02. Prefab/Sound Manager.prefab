@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2437383923479405774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6494713227464077090}
+  - component: {fileID: 2517770074315649166}
+  m_Layer: 6
+  m_Name: Sound Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6494713227464077090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2437383923479405774}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1619867, y: -4.9051337, z: 63.69}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2517770074315649166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2437383923479405774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e7e29b6c9456740936483318ea66cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  sfxDataList:
+  - soundName: PlayerAttack1
+    clip: {fileID: 8300000, guid: 3a9a6b6a30f5a0f4ea65c88e55c5e57a, type: 3}
+    volume: 0.481
+  - soundName: PlayerAttack2
+    clip: {fileID: 8300000, guid: 621437b2fb8e7ef4fbecb600728f63e8, type: 3}
+    volume: 0.436
+  - soundName: PlayerAttack3
+    clip: {fileID: 8300000, guid: 3a9a6b6a30f5a0f4ea65c88e55c5e57a, type: 3}
+    volume: 0.436
+  - soundName: PerfectGuardSound
+    clip: {fileID: 8300000, guid: 05fdb883453aae345b21b8880e82737c, type: 3}
+    volume: 0.436
+  - soundName: GuardSound
+    clip: {fileID: 8300000, guid: 9e8edd470a403dd43ae3fb8ae7a7e834, type: 3}
+    volume: 0.436
+  - soundName: Spawn
+    clip: {fileID: 8300000, guid: 8e5c0cfbff67f9a4e900949ce381b214, type: 3}
+    volume: 0.436
+  - soundName: BossAttack1
+    clip: {fileID: 8300000, guid: 00eca4896a6f4804f81203e255542f6a, type: 3}
+    volume: 0.436
+  - soundName: BossAttack2
+    clip: {fileID: 8300000, guid: 4f600c55195fbc3488258b9b422a809c, type: 3}
+    volume: 0.436
+  - soundName: BossAttack3
+    clip: {fileID: 8300000, guid: d48bf3a21229c524697b2d12993721e4, type: 3}
+    volume: 0.436
+  - soundName: BossDie
+    clip: {fileID: 8300000, guid: 390a673b2d062b544942bc3deb6d4178, type: 3}
+    volume: 0.436
+  - soundName: MeleeAttack1
+    clip: {fileID: 8300000, guid: 70f59ed43022d6a45b588c89b3508f1b, type: 3}
+    volume: 0.436
+  - soundName: MeleeAttack2
+    clip: {fileID: 8300000, guid: dce53f9dbf9224b4e8a70c034e887d69, type: 3}
+    volume: 0.436
+  - soundName: MeleeAttack3
+    clip: {fileID: 8300000, guid: e1079ec24471cc846923a7ceb8519d34, type: 3}
+    volume: 0.436
+  - soundName: MeleeDie
+    clip: {fileID: 8300000, guid: 55406ef3d0eb68d4a97e7457d2fe421a, type: 3}
+    volume: 0.436
+  - soundName: MeleeStun
+    clip: {fileID: 8300000, guid: 6e8fe764fff939642be111f665c81f45, type: 3}
+    volume: 0.436
+  - soundName: RangeStun
+    clip: {fileID: 8300000, guid: 725845b1581818848ac7ba6770df4554, type: 3}
+    volume: 0.436
+  - soundName: RangeAttack
+    clip: {fileID: 8300000, guid: 536ac42709202c14b88797d3cb352ca2, type: 3}
+    volume: 0.436
+  - soundName: RangeDie
+    clip: {fileID: 8300000, guid: 06c06436b108d80418525e653e39551f, type: 3}
+    volume: 0.436
+  sfxPoolCount: 3

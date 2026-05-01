@@ -172,9 +172,7 @@ namespace _01._Script.Data
         public void FullRecover()
         {
             CurrentHp = MaxHp;
-            currentSkillPoint = MaxSkillPoint;
             OnHpChanged?.Invoke(CurrentHp, (float)MaxHp);
-            OnSkillPointChanged?.Invoke(currentSkillPoint, MaxSkillPoint);
         }
     }
 }

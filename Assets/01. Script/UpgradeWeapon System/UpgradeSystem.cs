@@ -11,13 +11,13 @@ namespace _01._Script.UpgradeWeapon_System
         [SerializeField] private PlayerStats playerStats;
 
         [Header("--- Upgrade Settings (1~5 Level) ---")]
-        public const int UpgradeCostGold = 200;
-        public const int UpgradeCostStone = 1;
-        private const int AttackIncreaseAmount = 10;
-        public const int MaxLevel = 5;
+        public const int UpgradeCostGold = 500;
+        public const int UpgradeCostStone = 10;
+        private const int AttackIncreaseAmount = 2;
+        public const int MaxLevel = 15;
 
         // 성공 확률 (Index 0: 0->1강, Index 1: 1->2강 ...)
-        private readonly int[] _successRates = { 100, 100, 80, 60, 40 };
+        private readonly int[] _successRates = { 100, 95, 90, 85, 80, 75,70,60,55,50,40,30,15,10,5 };
 
         // --- [UI 연동을 위한 이벤트] ---
         public event Action OnUpgradeSuccess;
@@ -30,8 +30,9 @@ namespace _01._Script.UpgradeWeapon_System
             {
                 playerStats = FindAnyObjectByType<PlayerStats>();
             }
+            DontDestroyOnLoad(gameObject);
         }
-
+        
         /// <summary>
         /// 무기 강화를 시도합니다.
         /// </summary>
@@ -65,16 +66,18 @@ namespace _01._Script.UpgradeWeapon_System
                 SoundManager.Instance.PlaySFX("UpgradeSuccess", transform.position);
                 EffectManager.Instance.PlayEffect("UpgradeSuccessEffect", transform);
                 
-                OnUpgradeSuccess?.Invoke();
+                // 사운드
+                //OnUpgradeSuccess?.Invoke();
                 
                 // 성공 시 자동 저장
-                DataManager.Instance.SaveGame(0); 
+                //DataManager.Instance.SaveGame(0); 
             }
             else
             {
                 // 강화 실패
                 SoundManager.Instance.PlaySFX("UpgradeFail", transform.position);
-                OnUpgradeFailure?.Invoke();
+                // 사운드
+                //OnUpgradeFailure?.Invoke();
             }
         }
     }

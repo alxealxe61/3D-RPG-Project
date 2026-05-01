@@ -24,7 +24,7 @@ namespace _01._Script.Enemy.Range_Enemy
         
         public Transform firePoint;
         
-        private const float AttackDelay = 2.0f; 
+        private const float AttackDelay = 4.0f; 
         private bool isPreparingAttack;
         
         public float idleTimer;
@@ -157,5 +157,9 @@ namespace _01._Script.Enemy.Range_Enemy
 
         public void isStunned() => StateMachine.ChangeState(RangeStunState);
         
+        public void PlaySound(string effectName)
+        {
+            SoundManager.Instance.PlaySFX(effectName, transform.position);
+        }
     }
 }

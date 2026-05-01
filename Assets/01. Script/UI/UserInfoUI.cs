@@ -92,7 +92,7 @@ namespace _01._Script.UI
             }
         }
 
-        public void RefreshAllUI()
+        private void RefreshAllUI()
         {
             if (playerStats == null) return;
 
@@ -153,7 +153,7 @@ namespace _01._Script.UI
             }
         }
 
-        public void UpdateCurrencyUI()
+        private void UpdateCurrencyUI()
         {
             if (playerStats == null) return;
 

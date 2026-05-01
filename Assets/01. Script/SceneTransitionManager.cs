@@ -1,4 +1,5 @@
 using System.Collections;
+using _01._Script.Data;
 using _01._Script.Environment;
 using _01._Script.Player;
 using UnityEngine;
@@ -87,6 +88,7 @@ namespace _01._Script
         {
             // PlayerController 싱글톤 인스턴스 사용
             PlayerController player = PlayerController.Instance;
+            PlayerStats playerStats = player.GetComponent<PlayerStats>();
         
             if (player == null)
             {
@@ -104,7 +106,9 @@ namespace _01._Script
             // 위치 및 회전 설정
             player.transform.position = spawnPoint.position;
             player.transform.rotation = spawnPoint.rotation;
-        
+
+            // 포탈 이동시 체력이 안차면 이거 지우셈 
+            playerStats.FullRecover();
             Debug.Log($"[SceneTransitionManager] 플레이어를 {spawnPoint.name} 위치로 이동시켰습니다.");
         }
     }

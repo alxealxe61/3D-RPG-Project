@@ -941,7 +941,7 @@ MonoBehaviour:
   interactionRange: 10
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 1544
   showDebugRay: 1
   debugRayColor: {r: 0, g: 1, b: 0, a: 1}
   debugHitColor: {r: 1, g: 0, b: 0, a: 1}

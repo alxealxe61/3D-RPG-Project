@@ -3,6 +3,7 @@ using UnityEngine;
 using _01._Script.Item;
 using _01._Script.UI;
 using _01._Script.Environment;
+using _01._Script.UpgradeWeapon_System;
 
 namespace _01._Script.Player
 {
@@ -23,7 +24,8 @@ namespace _01._Script.Player
         private ItemObject _currentItem;
         private Portal _currentPortal;
         private ScenePortal _currentScenePortal;
-
+        private bool _isLookingAtUpgradeNPC;
+            
         public PlayerStats playerStats;
 
         private void Start()
@@ -55,7 +57,7 @@ namespace _01._Script.Player
                     {
                         ClearCurrentTarget();
                         _currentItem = item;
-                        InteractionUI.Instance.Show(true, item.itemName);
+                        InteractionUI.Instance.Show(true);
                     }
                     return;
                 }
@@ -66,7 +68,19 @@ namespace _01._Script.Player
                     {
                         ClearCurrentTarget();
                         _currentPortal = portal;
-                        InteractionUI.Instance.Show(true, portal.portalName);
+                        InteractionUI.Instance.Show(true);
+                    }
+                    return;
+                }
+                
+                // 3. 강화 NPC 체크 (NPC 레이어인 경우)
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("NPC"))
+                {
+                    if (!_isLookingAtUpgradeNPC)
+                    {
+                        ClearCurrentTarget();
+                        _isLookingAtUpgradeNPC = true;
+                        InteractionUI.Instance.Show(true);
                     }
                     return;
                 }
@@ -77,13 +91,13 @@ namespace _01._Script.Player
                     {
                         ClearCurrentTarget();
                         _currentScenePortal = scenePortal;
-                        InteractionUI.Instance.Show(true, scenePortal.portalName);
+                        InteractionUI.Instance.Show(true);
                     }
                     return;
                 }
             }
             
-            if (_currentItem != null || _currentPortal != null || _currentScenePortal != null)
+            if (_currentItem != null || _currentPortal != null || _currentScenePortal != null || _isLookingAtUpgradeNPC)
             {
                 ClearCurrentTarget();
                 InteractionUI.Instance.Show(false);
@@ -111,6 +125,12 @@ namespace _01._Script.Player
                 ClearCurrentTarget();
                 InteractionUI.Instance.Show(false);
             }
+            else if (_isLookingAtUpgradeNPC)
+            {
+                UIManager.Instance.OpenUpgradeUI();
+                ClearCurrentTarget();
+                InteractionUI.Instance.Show(false);
+            }
         }
 
         private void ClearCurrentTarget()
@@ -118,6 +138,7 @@ namespace _01._Script.Player
             _currentItem = null;
             _currentPortal = null;
             _currentScenePortal = null;
+            _isLookingAtUpgradeNPC = false;
         }
 
         private void Teleport(Vector3 position, Quaternion rotation)

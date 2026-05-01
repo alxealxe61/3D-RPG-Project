@@ -1,6 +1,7 @@
 using _01._Script.Data;
 using UnityEngine;
 using TMPro;
+using TMPro.Examples;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -20,11 +21,13 @@ namespace _01._Script.UI
         [SerializeField] private TextMeshProUGUI attackText;
         [SerializeField] private TextMeshProUGUI goldText;
         [SerializeField] private TextMeshProUGUI stoneText;
+        [SerializeField] private TextMeshProUGUI weaponLevel;
 
         [Header("--- Buttons ---")]
         [SerializeField] private Button loadButton;
         [SerializeField] private Button saveButton;
         [SerializeField] private Button deleteButton;
+        [SerializeField] private Button updateButton;
 
         private void Start()
         {
@@ -33,6 +36,7 @@ namespace _01._Script.UI
             if (loadButton != null) loadButton.onClick.AddListener(OnLoadClicked);
             if (saveButton != null) saveButton.onClick.AddListener(OnSaveClicked);
             if (deleteButton != null) deleteButton.onClick.AddListener(OnDeleteClicked);
+            if (saveButton != null) updateButton.onClick.AddListener(OnSaveClicked);
         }
 
         public void RefreshSlot()
@@ -55,6 +59,7 @@ namespace _01._Script.UI
                 attackText.text = $"ATK: {data.maxAttack}";
                 goldText.text = $"Gold: {data.gold:N0}";
                 stoneText.text = $"Stone: {data.upgradeStones}";
+                weaponLevel.text = $"weaponLevel: {data.weaponLevel}";
             }
         }
 

@@ -32,7 +32,7 @@ namespace _01._Script.UI
             uiPanel.transform.position = mousePos + offset;
         }
 
-        public void Show(bool isShow, string itemName = "")
+        public void Show(bool isShow)
         {
             if (uiPanel == null) return;
             

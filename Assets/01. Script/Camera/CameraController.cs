@@ -1,3 +1,4 @@
+using _01._Script.Player;
 using UnityEngine;
 
 namespace _01._Script

@@ -1,12 +1,11 @@
-using System;
 using System.Collections.Generic;
 using _01._Script.Data;
+using _01._Script.Effect;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern1;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern2;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern3;
-using _01._Script.Enemy.Range_Enemy;
 using _01._Script.Enemy.Range_Enemy.Bullet;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -37,11 +36,13 @@ namespace _01._Script.Enemy.Boss_Enemy
         
         public GameObject fireObject;
         
-        private const float AttackDelay = 2.0f; 
+        private const float AttackDelay = 4.0f; 
         public bool isPreparingAttack;
 
         public float idleTimer;
         public BulletPool bulletPool;
+        
+        public AudioSource audioSource;
         #region 상태 머신 모음
         private BossStateMachine StateMachine { get; set; }
         
@@ -124,6 +125,8 @@ namespace _01._Script.Enemy.Boss_Enemy
                     isPreparingAttack = true;
                     idleTimer = 0f;
                     StateMachine.ChangeState(BossIdleState);
+                    audioSource.Play();
+                    audioSource.loop = true;
                 }
                 else
                 {
@@ -143,8 +146,10 @@ namespace _01._Script.Enemy.Boss_Enemy
                 {
                     if (attackRange.IsInAttackRange && isPreparingAttack)
                     {
+                        audioSource.Stop();
                         ExecuteRandomPattern();
                         isPreparingAttack = false;
+                        audioSource.loop = false;
                         idleTimer = 0f;
                     }
                     else
@@ -180,8 +185,13 @@ namespace _01._Script.Enemy.Boss_Enemy
             int randNum = Random.Range(0, Patterns.Count);
             StateMachine.ChangeState(Patterns[randNum]);
         }
-        
-        public void IsDie() => Destroy(gameObject, 3);
+
+        public void IsDie()
+        {
+            audioSource.Stop();
+            audioSource.loop = false;
+            Destroy(gameObject, 3);
+        } 
         
         void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
 
@@ -189,5 +199,10 @@ namespace _01._Script.Enemy.Boss_Enemy
         public void LHit() => lHitBox.EnableDetection();
         public void RHit() => rHitBox.EnableDetection();
         public void PHit() => pHitBox.EnableDetection();
+        
+        public void PlaySound(string effectName)
+        {
+            SoundManager.Instance.PlaySFX(effectName, transform.position);
+        }
     }
 }

@@ -5,106 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba6e28a6-d917-4211-a15c-3c64e6a2602e" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/UpgradeWeapon System.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/UpgradeWeapon System/UpgradeSystem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01. Script/UpgradeWeapon System/UpgradeSystem.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.3D-RPG-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.3D-RPG-Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/00.Start Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/00.Start Scene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/01.Village.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/01.Village.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/02.Enemy Map.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/02.Enemy Map.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/02.Enemy Map/NavMesh-GameObject (1).asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/02.Enemy Map/NavMesh-GameObject (1).asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/03. Boss Map.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/03. Boss Map.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/99. Test Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/99. Test Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/Boss Map.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/Boss Map/NavMesh-NaviMesh.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/Boss Map/NavMesh-NaviMesh.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/CombatSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/BulletHitBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/BulletHitBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/LHitBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/LHitBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/PullHitBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/PullHitBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/RHitBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/EnemyHitBox/RHitBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HurtBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/HurtBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/ICombatAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/ICombatAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitDetector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitDetector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitTargetPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/IHitTargetPart.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/PlayerHitBox/HitBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/PlayerHitBox/HitBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/PlayerHitBox/SkillHitBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/CombatSystem/PlayerHitBox/SkillHitBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Data/BossStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Data/BossStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Data/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Data/DataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Data/MeleeEnemyStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Data/MeleeEnemyStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Data/PlayerProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Data/PlayerProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/03. Boss Map/NavMesh-NaviMesh.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/03. Boss Map/NavMesh-NaviMesh.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00. Scenes/03. Boss Map/NavMesh-NaviMesh.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00. Scenes/03. Boss Map/NavMesh-NaviMesh.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Camera/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Camera/CameraController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/Data/PlayerStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Data/PlayerStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Data/RangeStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Data/RangeStats.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Effect/EffectManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Effect/EffectManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Effect/PooledEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Effect/PooledEffect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/Boss Enemy State/CombatState/BossStunState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/Boss Enemy State/CombatState/BossStunState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/Boss Enemy State/CombatState/Pattern2/Pattern2Attack2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/Boss Enemy State/CombatState/Pattern2/Pattern2Attack2.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/BossController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Boss Enemy/BossController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/MeleeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Melee Enemy/MeleeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Bullet/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Bullet/Bullet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Bullet/BulletPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Bullet/BulletPool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Range State/CombatState/Pattern1/Pattern1Attack1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Range State/CombatState/Pattern1/Pattern1Attack1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Range State/CombatState/Pattern1/Pattern1Attack2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/Range State/CombatState/Pattern1/Pattern1Attack2.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/RangeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Enemy/Range Enemy/RangeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Item/DropData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Item/DropData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Item/ItemObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Item/ItemObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Item/ItemType.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Item/ItemType.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Item/LootManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Item/LootManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/LockOnSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/LockOnSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerInteraction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerInteraction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack1State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack1State.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack2State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack2State.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack3State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/Attack3State.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatAttackState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatAttackState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatDieState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatDieState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatDodgeState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatDodgeState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatGuardState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatGuardState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatIdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatIdleState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatMoveState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatMoveState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatPullState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatPullState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatSkillState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatSkillState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatStunState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/CombatState/CombatStunState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/EnterCombatState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/EnterCombatState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/ExitCombatState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/ExitCombatState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PeaceState/PeaceIdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PeaceState/PeaceIdleState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PeaceState/PeaceMoveState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PeaceState/PeaceMoveState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PlayerState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PlayerState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PlayerStateMachine.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/Player/PlayerState/PlayerStateMachine.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/SceneTransitionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/SceneTransitionManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/DieUI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/DieUI.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/NewGameButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/UI/NewGameButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/InteractionUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/UI/InteractionUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/SaveSlotUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/UI/SaveSlotUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/UI/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/UpgradeWindowUI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/UpgradeWindowUI.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01. Script/UI/UserInfoUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/UI/UserInfoUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/BossEnemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Prefab/BossEnemy.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/BossProfile.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/BossProfile.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Melee EnemyProfile.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Melee EnemyProfile.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01. Script/UpgradeWeapon System/UpgradeSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01. Script/UpgradeWeapon System/UpgradeSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Data/PlayerProgile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Prefab/Data/PlayerProgile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/FX_Fire_Small_01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Prefab/FX_Fire_Small_01.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Prefab/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/PlayerProgile 1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/PlayerProgile 1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/PlayerProgile.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/PlayerProgile.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Range EnemyProfile.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/Range EnemyProfile.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02. Prefab/UseFX/Player Attack1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02. Prefab/UseFX/Player Attack1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_Fire_Big_02.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_Fire_Big_02.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_Fire_Small_01.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/PolygonParticleFX/Prefabs/FX_Fire_Small_01.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Die.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Die.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Left Punch Attack.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Left Punch Attack.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Right Punch Attack.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Right Punch Attack.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Smash Attack.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Smash Attack.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Spin Attack Once.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Spin Attack Once.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Take Damage.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Golem Earth Cute Series/FBX/Golem Earth@Take Damage.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Die.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Die.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Pull Opponent.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Pull Opponent.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Spawn.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Spawn.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Spin Wing Slash Attack.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Spin Wing Slash Attack.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Wing Slash Attack.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Wing Slash Attack.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Wing Stab Attack.FBX.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03. Assets/Monsters Ultimate Pack 04 Cute Series/Use Monster/Wraith Cute Series/FBX/Wraith@Wing Stab Attack.FBX.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/04. Animation/Boss Enemy.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04. Animation/Boss Enemy.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/04. Animation/Melee Enemy.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04. Animation/Melee Enemy.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/04. Animation/Player Animator Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04. Animation/Player Animator Controller.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/04. Animation/Range Enemy.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04. Animation/Range Enemy.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/GothicUI/Materials/LeftHp.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GothicUI/Materials/LeftHp.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/GothicUI/Materials/RightHp.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GothicUI/Materials/RightHp.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Anton SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Oswald Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Oswald Bold SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,8 +111,24 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
+    <McpServerCommand sourceId="UserConfigurationSource">
+      <option name="allowedToolsNames" />
+      <option name="enabled" value="true" />
+      <option name="name" value="" />
+      <option name="programPath" value="" />
+      <option name="arguments" value="" />
+      <option name="workingDirectory" value="" />
+      <envs />
+    </McpServerCommand>
+    <McpServerCommand sourceId="UserConfigurationSource">
+      <option name="allowedToolsNames" />
+      <option name="enabled" value="true" />
+      <option name="name" value="" />
+      <option name="programPath" value="" />
+      <option name="arguments" value="" />
+      <option name="workingDirectory" value="" />
+      <envs />
+    </McpServerCommand>
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -219,7 +183,7 @@
       <option name="MIXED_MODE_DEBUG" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Unity 에디터에 연결" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
+    <configuration name="Unity 에디터에 연결" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
@@ -230,6 +194,7 @@
       <option name="selectedOptions">
         <list />
       </option>
+      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="연결 대상" type="UnityDevicePlayer" factoryName="UnityAttachToDevicePlayer">
@@ -269,6 +234,7 @@
       <workItem from="1777443045880" duration="6787000" />
       <workItem from="1777513969527" duration="8415000" />
       <workItem from="1777529849209" duration="10017000" />
+      <workItem from="1777607636386" duration="14091000" />
     </task>
     <servers />
   </component>

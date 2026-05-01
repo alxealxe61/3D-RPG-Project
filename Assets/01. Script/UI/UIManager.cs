@@ -12,6 +12,7 @@ namespace _01._Script.UI
         [SerializeField] private GameObject menuUI;       // ESC 메뉴 패널
         [SerializeField] private GameObject saveSlotPanel; // 세이브 슬롯 패널
         [SerializeField] private GameObject dieUI;             // 사망 UI 패널
+        [SerializeField] private GameObject UpgradeUI;
 
         [Header("--- External References ---")]
         [SerializeField] private CameraController cameraController; // 카메라 컨트롤러 참조 추가
@@ -41,7 +42,8 @@ namespace _01._Script.UI
             if (inGameUI != null) DontDestroyOnLoad(inGameUI);
             if (menuUI != null) DontDestroyOnLoad(menuUI);
             if (saveSlotPanel != null) DontDestroyOnLoad(saveSlotPanel);
-            if (dieUI != null) DontDestroyOnLoad(dieUI.gameObject);
+            if (dieUI != null) DontDestroyOnLoad(dieUI);
+            if (UpgradeUI != null) DontDestroyOnLoad(UpgradeUI);
         }
 
         private void Start()
@@ -63,12 +65,19 @@ namespace _01._Script.UI
 
         private void Update()
         {
-            // 메뉴 사용이 불가능하거나 이미 사망 UI가 떠있으면 ESC 로직을 건너뜁니다.
+            // 메뉴 사용이 불가능하거나 이미 사망 UI가 떠있으면 ESC 로직을 건너뜜
             if (canUseMenu == false || (dieUI != null && dieUI.gameObject.activeSelf)) return;
 
             // ESC 키 감지
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                // 강화창이 열려있으면 강화창부터 닫음
+                if (UpgradeUI != null && UpgradeUI.activeSelf)
+                {
+                    CloseUpgradeUI();
+                    return;
+                }
+
                 if (!isMenuOpen)
                     OpenMenu();
                 else
@@ -141,9 +150,28 @@ namespace _01._Script.UI
             }
         }
         
+        public void OpenUpgradeUI()
+        {
+            if (UpgradeUI == null) return;
+            if (inGameUI != null) inGameUI.SetActive(false);
+            UpgradeUI.SetActive(true);
+            Show();
+
+            // 카메라 회전 중지
+            if (cameraController != null) cameraController.enabled = false;
+        }
+
+        private void CloseUpgradeUI()
+        {
+            if (UpgradeUI == null) return;
+
+            if (inGameUI != null) inGameUI.SetActive(true);
+            UpgradeUI.SetActive(false);
+            ResumeGame();
+        }
+
         private void Show()
         {
-            Debug.Log("죽음 쇼");
             // 시간 정지 및 커서 활성화
             Time.timeScale = 0f;
             Cursor.visible = true;
