@@ -155,7 +155,8 @@ namespace _01._Script.UI
             if (UpgradeUI == null) return;
             if (inGameUI != null) inGameUI.SetActive(false);
             UpgradeUI.SetActive(true);
-            Show();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
 
             // 카메라 회전 중지
             if (cameraController != null) cameraController.enabled = false;

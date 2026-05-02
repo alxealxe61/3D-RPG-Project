@@ -3,5 +3,5 @@ Melee	Gold	200	300	1.0	Items/GoldBundle
 Melee	EnhancementStone	1	3	1.0	Items/Stone
 Range	Gold	200	300	1.0	Items/GoldBundle
 Range	EnhancementStone	2	3	1.0	Items/Stone
-Boss	Gold	10000	10000	1.0	Items/GoldBundle
-Boss	EnhancementStone	5	10	1.0	Items/Stone
+Boss	Gold	8000	10000	1.0	Items/GoldBundle
+Boss	EnhancementStone	10	30	1.0	Items/Stone

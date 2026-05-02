@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using _01._Script.Data;
 using _01._Script.UpgradeWeapon_System;
@@ -23,6 +22,7 @@ namespace _01._Script.UI
         [Header("--- Level UI (Middle) ---")]
         [SerializeField] private TextMeshProUGUI currentLevelText;
         [SerializeField] private TextMeshProUGUI nextLevelText;
+        [SerializeField] private TextMeshProUGUI probabilityText; // 강화 확률 표시 추가
 
         [Header("--- Control UI (Bottom) ---")]
         [SerializeField] private Button upgradeButton;
@@ -37,8 +37,8 @@ namespace _01._Script.UI
 
         private void Awake()
         {
-            if (upgradeSystem == null) upgradeSystem = FindAnyObjectByType<UpgradeSystem>();
-            if (playerStats == null) playerStats = FindAnyObjectByType<PlayerStats>();
+            if (upgradeSystem == null) upgradeSystem = FindFirstObjectByType<UpgradeSystem>();
+            if (playerStats == null) playerStats = FindFirstObjectByType<PlayerStats>();
 
             if (upgradeButton != null)
                 upgradeButton.onClick.AddListener(OnUpgradeButtonClicked);
@@ -47,15 +47,11 @@ namespace _01._Script.UI
                 resultMessageText.gameObject.SetActive(false);
         }
 
-        private void Update()
-        {
-            if (upgradeSystem != null)
-            {
-                upgradeSystem = FindFirstObjectByType<UpgradeSystem>();
-            }
-        }
         private void OnEnable()
         {
+            // 씬에 시스템이 없을 경우를 대비해 다시 찾음
+            if (upgradeSystem == null) upgradeSystem = FindFirstObjectByType<UpgradeSystem>();
+            
             SubscribeEvents();
             RefreshUI();
         }
@@ -63,6 +59,7 @@ namespace _01._Script.UI
         private void OnDisable()
         {
             UnsubscribeEvents();
+            _isProcessing = false;
         }
 
         private void SubscribeEvents()
@@ -77,7 +74,7 @@ namespace _01._Script.UI
             if (playerStats != null)
             {
                 playerStats.OnCurrencyChanged += RefreshUI;
-                playerStats.OnUpgradeChanged += _ => RefreshUI();
+                playerStats.OnUpgradeChanged += HandleUpgradeChanged;
             }
         }
 
@@ -86,20 +83,18 @@ namespace _01._Script.UI
             if (upgradeSystem != null)
             {
                 upgradeSystem.OnUpgradeSuccess -= HandleUpgradeSuccess;
-                upgradeSystem.OnUpgradeFailure -= HandleFailure;
-                upgradeSystem.OnUpgradeError -= HandleError;
+                upgradeSystem.OnUpgradeFailure -= HandleUpgradeFailure;
+                upgradeSystem.OnUpgradeError -= HandleUpgradeError;
             }
 
             if (playerStats != null)
             {
                 playerStats.OnCurrencyChanged -= RefreshUI;
-                playerStats.OnUpgradeChanged -= _ => RefreshUI();
+                playerStats.OnUpgradeChanged -= HandleUpgradeChanged;
             }
         }
 
-        // UnsubscribeEvents에서 사용하는 래퍼 메서드 (타입 일치를 위해)
-        private void HandleFailure() => HandleUpgradeFailure();
-        private void HandleError(string msg) => HandleUpgradeError(msg);
+        private void HandleUpgradeChanged(int level) => RefreshUI();
 
         private void RefreshUI()
         {
@@ -108,8 +103,8 @@ namespace _01._Script.UI
             int currentLevel = playerStats.CurrentWeaponLevel;
 
             // 재료 정보 갱신
-            if (goldCostText != null) goldCostText.text = $"{UpgradeSystem.UpgradeCostGold}";
-            if (stoneCostText != null) stoneCostText.text = $"{UpgradeSystem.UpgradeCostStone}";
+            if (goldCostText != null) goldCostText.text = $" 골드 : {UpgradeSystem.UpgradeCostGold}";
+            if (stoneCostText != null) stoneCostText.text = $" 강화석 : {UpgradeSystem.UpgradeCostStone}";
             
             if (currentGoldText != null) currentGoldText.text = $"{playerStats.CurrentGold}";
             if (currentStoneText != null) currentStoneText.text = $"{playerStats.CurrentUpgradeStones}";
@@ -129,6 +124,20 @@ namespace _01._Script.UI
                 }
             }
 
+            // 확률 정보 갱신
+            if (probabilityText != null && upgradeSystem != null)
+            {
+                if (currentLevel < UpgradeSystem.MaxLevel)
+                {
+                    int rate = upgradeSystem.GetCurrentSuccessRate();
+                    probabilityText.text = $"강화 확률 : {rate}%";
+                }
+                else
+                {
+                    probabilityText.text = "최대 강화 완료";
+                }
+            }
+
             // 버튼 상태 제어
             if (!_isProcessing && upgradeButton != null)
             {
@@ -138,46 +147,50 @@ namespace _01._Script.UI
 
         private void OnUpgradeButtonClicked()
         {
+            if (_isProcessing) return;
+            
             if (upgradeSystem != null)
             {
+                // 버튼 즉시 비활성화
+                if (upgradeButton != null) upgradeButton.interactable = false;
+                _isProcessing = true;
+                
                 upgradeSystem.TryUpgrade();
             }
         }
 
         private void HandleUpgradeSuccess()
         {
-            StartCoroutine(ShowResultMessageRoutine("강화성공!", successColor));
+            StartCoroutine(ShowResultMessageRoutine("강화 성공!", successColor));
         }
 
         private void HandleUpgradeFailure()
         {
-            StartCoroutine(ShowResultMessageRoutine("강화실패....", failureColor));
+            StartCoroutine(ShowResultMessageRoutine("강화 실패...", failureColor));
         }
 
         private void HandleUpgradeError(string message)
         {
-            StartCoroutine(ShowResultMessageRoutine(message, failureColor, false));
+            StartCoroutine(ShowResultMessageRoutine(message, failureColor));
         }
 
-        private IEnumerator ShowResultMessageRoutine(string message, Color color, bool disableButton = true)
+        private IEnumerator ShowResultMessageRoutine(string message, Color color)
         {
-            if (resultMessageText == null) yield break;
-
-            _isProcessing = true;
-            resultMessageText.text = message;
-            resultMessageText.color = color;
-            resultMessageText.gameObject.SetActive(true);
-
-            if (disableButton && upgradeButton != null)
+            if (resultMessageText != null)
             {
-                upgradeButton.interactable = false;
+                resultMessageText.text = message;
+                resultMessageText.color = color;
+                resultMessageText.gameObject.SetActive(true);
             }
 
             yield return new WaitForSeconds(messageDisplayDuration);
 
-            resultMessageText.gameObject.SetActive(false);
+            if (resultMessageText != null)
+            {
+                resultMessageText.gameObject.SetActive(false);
+            }
+            
             _isProcessing = false;
-
             RefreshUI();
         }
     }

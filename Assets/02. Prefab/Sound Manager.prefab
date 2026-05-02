@@ -99,4 +99,10 @@ MonoBehaviour:
   - soundName: RangeDie
     clip: {fileID: 8300000, guid: 06c06436b108d80418525e653e39551f, type: 3}
     volume: 0.436
+  - soundName: PlayerWalk
+    clip: {fileID: 8300000, guid: 8a51d5d914e55d7478c96ee9a71dbed2, type: 3}
+    volume: 0.436
+  - soundName: PlayerRun
+    clip: {fileID: 8300000, guid: e9c2f425b71a93b4991da394ee4ba1af, type: 3}
+    volume: 0.436
   sfxPoolCount: 3

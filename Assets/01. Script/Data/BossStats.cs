@@ -16,7 +16,7 @@ namespace _01._Script.Data
         
         public int currentHp;
         public bool IsDead => currentHp <= 0;
-        private int MaxHp => bossProfile.MaxHp;
+        public int MaxHp => bossProfile.MaxHp;
         private int CurrentAttack => bossProfile.MaxAttack;
         public int MoveSpeed => bossProfile.moveSpeed;
         

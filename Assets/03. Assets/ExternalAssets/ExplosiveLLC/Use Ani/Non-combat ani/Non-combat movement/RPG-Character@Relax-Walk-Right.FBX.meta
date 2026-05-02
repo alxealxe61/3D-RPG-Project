@@ -720,17 +720,7 @@ ModelImporter:
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'B_Spine' has translation animation that
       will be discarded.\n"
-    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Take 001':\n\tLeftUpperArm
-      average position error 3.2 mm and maximum position error 5.6 mm at time 0:12
-      (50.0%) Frame 12\n\tLeftLowerArm average position error 3.2 mm and maximum
-      position error 5.8 mm at time 0: 0 (0.0%) Frame 0\n\tLeftHand average position
-      error 3.2 mm and maximum position error 5.6 mm at time 0:12 (50.0%) Frame 12\n\tRightUpperArm
-      average position error 3.2 mm and maximum position error 5.6 mm at time 0:12
-      (50.0%) Frame 12\n\tRightLowerArm average position error 3.2 mm and maximum
-      position error 5.7 mm at time 0:12 (50.0%) Frame 12\n\tRightHand average position
-      error 3.2 mm and maximum position error 5.6 mm at time 0:12 (50.0%) Frame 12\n\tHead
-      average position error 3.2 mm and maximum position error 5.6 mm at time 0:12
-      (50.0%) Frame 12\n"
+    animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
@@ -766,7 +756,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.34243178
+        functionName: PlayEffect
+        data: PlayerWalk
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8312655
+        functionName: PlayEffect
+        data: PlayerWalk
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {fileID: 101100000, guid: 4ebc95c8618479f4d8251c7dafa10029, type: 2}

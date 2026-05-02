@@ -94,6 +94,7 @@ namespace _01._Script.Data
         {
             playerProfile.weaponLevel++;
             playerProfile.MaxAttack += attackIncrease;
+            playerProfile.MaxHp += attackIncrease;
             OnUpgradeChanged?.Invoke(playerProfile.weaponLevel);
         }
         
