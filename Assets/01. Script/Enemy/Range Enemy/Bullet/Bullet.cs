@@ -7,8 +7,8 @@ namespace _01._Script.Enemy.Range_Enemy.Bullet
 {
     public class Bullet : MonoBehaviour, IHitDetector
     {
-        [SerializeField] private float speed = 15f;
-        [SerializeField] private float lifeTime = 3f;
+        [SerializeField] private float speed;
+        [SerializeField] private float lifeTime;
 
         [field: SerializeField] private Collider Collider { get; set; }
 
@@ -53,7 +53,7 @@ namespace _01._Script.Enemy.Range_Enemy.Bullet
         private void Update()
         {
             if (_isLaunched == false) return;
-            transform.position += _moveDirection * speed * Time.deltaTime;
+            transform.position += _moveDirection * (speed * Time.deltaTime);
         }
 
         private void ReturnToPool()

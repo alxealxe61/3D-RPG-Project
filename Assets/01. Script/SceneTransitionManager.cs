@@ -1,7 +1,7 @@
 using System.Collections;
 using _01._Script.Data;
-using _01._Script.Environment;
 using _01._Script.Player;
+using _01._Script.Portal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -59,7 +59,7 @@ namespace _01._Script
             }
 
             // 새 씬에서 목적지 포탈 찾기
-            ScenePortal[] portals = Object.FindObjectsByType<ScenePortal>(FindObjectsSortMode.None);
+            var portals = FindObjectsByType<ScenePortal>(FindObjectsSortMode.None);
             ScenePortal targetPortal = null;
 
             foreach (var portal in portals)
@@ -87,8 +87,8 @@ namespace _01._Script
         private void TeleportPlayer(Transform spawnPoint)
         {
             // PlayerController 싱글톤 인스턴스 사용
-            PlayerController player = PlayerController.Instance;
-            PlayerStats playerStats = player.GetComponent<PlayerStats>();
+            var player = PlayerController.Instance;
+            var playerStats = player.GetComponent<PlayerStats>();
         
             if (player == null)
             {

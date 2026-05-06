@@ -1,11 +1,10 @@
 using UnityEngine;
 
-namespace _01._Script.Environment
+namespace _01._Script.Portal
 {
     public class Portal : MonoBehaviour
     {
         [Header("Portal Settings")]
-        public string portalName = "포탈";
         [SerializeField] private Transform destination; // 이동할 목적지 Transform
         [SerializeField] private Vector3 offset = Vector3.up; // 이동 후 위치 오프셋
 

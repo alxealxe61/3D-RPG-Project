@@ -1,4 +1,4 @@
-using _01._Script.StataPattern;
+using _01._Script.StatePattern;
 
 namespace _01._Script.Player.PlayerState.CombatState
 {

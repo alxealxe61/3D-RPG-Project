@@ -129,7 +129,7 @@ namespace _01._Script.UI
             {
                 if (currentLevel < UpgradeSystem.MaxLevel)
                 {
-                    int rate = upgradeSystem.GetCurrentSuccessRate();
+                    var rate = upgradeSystem.GetCurrentSuccessRate();
                     probabilityText.text = $"강화 확률 : {rate}%";
                 }
                 else

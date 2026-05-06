@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using _01._Script.Data;
-using _01._Script.Effect;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState;
 using _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern1;
@@ -24,8 +23,8 @@ namespace _01._Script.Enemy.Boss_Enemy
         public float MoveSpeed => bossStats.MoveSpeed;
         
         public Transform Target => detectionRange.detectedTarget;
-        
-        public readonly List<BossState> Patterns = new List<BossState>();
+
+        private readonly List<BossState> _patterns = new List<BossState>();
         
         public Transform firePoint;
         
@@ -43,21 +42,23 @@ namespace _01._Script.Enemy.Boss_Enemy
         public BulletPool bulletPool;
         
         public AudioSource audioSource;
+        
         #region 상태 머신 모음
         private BossStateMachine StateMachine { get; set; }
         
         public BossIdleState BossIdleState { get; private set; }
-        public BossMoveState BossMoveState { get; private set; }
-        public BossStunState BossStunState { get; private set; }
-        public Pattern1Attack1 Pattern1Attack1 { get; private set; }
+        private BossMoveState BossMoveState { get; set; }
+        private BossStunState BossStunState { get; set; }
+        private Pattern1Attack1 Pattern1Attack1 { get; set; }
         public Pattern1Attack2 Pattern1Attack2 { get; private set; }
         public Pattern1Attack3 Pattern1Attack3 { get; private set; }
-        
-        public Pattern2Attack1 Pattern2Attack1 { get; private set; }
+
+        private Pattern2Attack1 Pattern2Attack1 { get; set; }
         public Pattern2Attack2 Pattern2Attack2 { get; private set; }
-        public Pattern3Attack1 Pattern3Attack1 { get; private set; }
+        private Pattern3Attack1 Pattern3Attack1 { get; set; }
         public Pattern3Attack2 Pattern3Attack2 { get; private set; }
-        public BossDieState BossDieState { get; private set; }
+        private BossDieState BossDieState { get; set; }
+        
         #endregion
 
         private void Awake()
@@ -82,9 +83,9 @@ namespace _01._Script.Enemy.Boss_Enemy
         {
             StateMachine.Initialize(BossIdleState);
             // 여기에 패턴들 리스트 넣고
-            Patterns.Add(Pattern1Attack1);
-            Patterns.Add(Pattern2Attack1);
-            Patterns.Add(Pattern3Attack1);
+            _patterns.Add(Pattern1Attack1);
+            _patterns.Add(Pattern2Attack1);
+            _patterns.Add(Pattern3Attack1);
         }
 
         void Update()
@@ -160,7 +161,7 @@ namespace _01._Script.Enemy.Boss_Enemy
             }
         }
         
-        private bool IsAttacking() => Patterns.Contains(StateMachine.CurrentState as BossState) || 
+        private bool IsAttacking() => _patterns.Contains(StateMachine.CurrentState as BossState) || 
                                       StateMachine.CurrentState == Pattern1Attack2 || 
                                       StateMachine.CurrentState == Pattern1Attack3 ||
                                       StateMachine.CurrentState == Pattern2Attack2 ||
@@ -181,9 +182,9 @@ namespace _01._Script.Enemy.Boss_Enemy
         
         private void ExecuteRandomPattern()
         {
-            if (Patterns.Count == 0) return;
-            int randNum = Random.Range(0, Patterns.Count);
-            StateMachine.ChangeState(Patterns[randNum]);
+            if (_patterns.Count == 0) return;
+            int randNum = Random.Range(0, _patterns.Count);
+            StateMachine.ChangeState(_patterns[randNum]);
         }
 
         public void IsDie()

@@ -5,8 +5,8 @@ namespace _01._Script.Player.PlayerState.CombatState
         protected internal CombatSkillState
             (PlayerController player, PlayerStateMachine stateMachine, string animName) 
             : base(player, stateMachine, animName) { }
-        
-        public override void LogicUpdate()
+
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
             
@@ -14,16 +14,16 @@ namespace _01._Script.Player.PlayerState.CombatState
             {
                 if (Player.InputVector.sqrMagnitude > 0.1f)
                 {
-                    stateMachine.ChangeState(Player.CombatMoveState);
+                    StateMachine.ChangeState(Player.CombatMoveState);
                 }
                 else
                 {
-                    stateMachine.ChangeState(Player.CombatIdleState);
+                    StateMachine.ChangeState(Player.CombatIdleState);
                 }
             }
         }
-        
-        public override void Exit()
+
+        protected internal override void Exit()
         {
             base.Exit();
             Player.skillHitBox.DisableDetection();

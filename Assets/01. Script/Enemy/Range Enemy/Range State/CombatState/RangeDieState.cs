@@ -1,17 +1,14 @@
-using UnityEngine;
-
-namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState
+namespace _01._Script.Enemy.Range_Enemy.Range_State.CombatState
 {
     public class RangeDieState : RangeState
     {
-        public RangeDieState
-            (RangeController owner, RangeStateMachine stateMachine, string aniName, bool useBool) 
-            : base(owner, stateMachine, aniName, useBool) { }
+        protected internal RangeDieState
+            (RangeController owner, RangeStateMachine stateMachine, string aniName) 
+            : base(owner, stateMachine, aniName) { }
 
-        public override void Enter()
+        protected internal override void Enter()
         {
             base.Enter();
-            Debug.Log("Die");
             RangeEnemy.rangeStats.Die();
             RangeEnemy.IsDie();
         }

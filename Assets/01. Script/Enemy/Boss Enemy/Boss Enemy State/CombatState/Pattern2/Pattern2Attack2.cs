@@ -1,48 +1,47 @@
-using _01._Script.Enemy.Range_Enemy;
 using _01._Script.Enemy.Range_Enemy.Bullet;
-using _01._Script.StataPattern;
+using _01._Script.StatePattern;
 
 namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState.Pattern2
 {
     public class Pattern2Attack2 : BossState
     {
-        private bool hasFired;
+        private bool _hasFired;
         
-        public Pattern2Attack2
+        protected internal Pattern2Attack2
             (BossController owner, StateMachine<BossController> stateMachine, string aniName) 
             : base(owner, stateMachine, aniName) { }
-        
-        public override void Enter()
+
+        protected internal override void Enter()
         {
             base.Enter();   
-            hasFired = false;
+            _hasFired = false;
         }
 
-        public override void LogicUpdate()
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            if (!hasFired && GetNormalizedTime() >= 0.1f)
+            if (!_hasFired && GetNormalizedTime() >= 0.1f)
             {
                 BossEnemy.fireObject.SetActive(false);
                 FireBullet();
-                hasFired = true;
+                _hasFired = true;
             }
             
             if (GetNormalizedTime() >= 0.9f)
             {
-                stateMachine.ChangeState(BossEnemy.BossIdleState);
+                StateMachine.ChangeState(BossEnemy.BossIdleState);
             }
         }
 
         private void FireBullet()
         {
-            if (owner.Target == null) return;
+            if (Owner.Target == null) return;
             
-            Bullet bullet = BossEnemy.bulletPool.Get();
-            bullet.Initialize(owner.bossStats);
-            bullet.transform.position = owner.firePoint.position;
-            bullet.Launch(owner.Target.position);
+            var bullet = BossEnemy.bulletPool.Get();
+            bullet.Initialize(Owner.bossStats);
+            bullet.transform.position = Owner.firePoint.position;
+            bullet.Launch(Owner.Target.position);
         }
     }
 }

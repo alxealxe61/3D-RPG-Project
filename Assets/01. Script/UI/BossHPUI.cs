@@ -49,7 +49,7 @@ namespace _01._Script.UI
             if (bossController == null || hpBarContainer == null) return;
 
             // 보스가 플레이어를 감지했는지 여부에 따라 UI 활성화/비활성화
-            bool shouldShow = bossController.Target != null && _bossStats.IsDead == false;
+            var shouldShow = bossController.Target != null && _bossStats.IsDead == false;
             
             if (hpBarContainer.activeSelf != shouldShow)
             {

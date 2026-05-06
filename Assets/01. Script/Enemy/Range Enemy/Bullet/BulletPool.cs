@@ -12,7 +12,7 @@ namespace _01._Script.Enemy.Range_Enemy.Bullet
 
         private void Awake()
         {
-            for (int i = 0; i < poolSize; i++)
+            for (var i = 0; i < poolSize; i++)
             {
                 CreateNewBullet();
             }

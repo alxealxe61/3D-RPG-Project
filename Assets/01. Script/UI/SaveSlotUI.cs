@@ -1,7 +1,6 @@
 using _01._Script.Data;
 using UnityEngine;
 using TMPro;
-using TMPro.Examples;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 

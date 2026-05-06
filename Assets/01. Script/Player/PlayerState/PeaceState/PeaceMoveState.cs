@@ -14,23 +14,23 @@ namespace _01._Script.Player.PlayerState.PeaceState
         protected internal PeaceMoveState
             (PlayerController player, PlayerStateMachine stateMachine, string animName) 
             : base(player, stateMachine, animName) { }
-        
-        public override void LogicUpdate()
+
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
 
             if (Player.InputVector.sqrMagnitude == 0)
             {
-                stateMachine.ChangeState(Player.PeaceIdleState);
+                StateMachine.ChangeState(Player.PeaceIdleState);
             }
             
             if (Player.lockOnSystem.IsLockedOn == true)
             {
-                stateMachine.ChangeState(Player.EnterCombatState);
+                StateMachine.ChangeState(Player.EnterCombatState);
             }
         }
-        
-        public override void PhysicsUpdate()
+
+        protected internal override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
             var inputAxis = Player.InputVector;
@@ -78,8 +78,8 @@ namespace _01._Script.Player.PlayerState.PeaceState
             }
 
         }
-        
-        public override void Exit()
+
+        protected internal override void Exit()
         {
             base.Exit();
             

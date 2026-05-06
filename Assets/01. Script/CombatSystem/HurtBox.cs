@@ -3,11 +3,11 @@ using UnityEngine;
 namespace _01._Script.CombatSystem
 {
     [RequireComponent(typeof(Collider))]
-    public class HurtBox : MonoBehaviour, IHitTargetPart
+    public class HurtBox : MonoBehaviour
     {
-        public ICombatAgent Owner { get; set; }
-    
-        public Collider Collider { get; private set; }
+        public ICombatAgent Owner { get; private set; }
+
+        private Collider Collider { get; set; }
 
         private void Awake()
         {

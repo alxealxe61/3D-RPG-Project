@@ -1,64 +1,62 @@
 using _01._Script.Data;
 using _01._Script.Enemy.Range_Enemy.Bullet;
-using _01._Script.Enemy.Range_Enemy.Range_EnemyState;
-using _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState;
-using _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState.pattern1;
+using _01._Script.Enemy.Range_Enemy.Range_State;
+using _01._Script.Enemy.Range_Enemy.Range_State.CombatState;
+using _01._Script.Enemy.Range_Enemy.Range_State.CombatState.Pattern1;
 using UnityEngine;
 
 namespace _01._Script.Enemy.Range_Enemy
 {
     public class RangeController : MonoBehaviour
     {
-        public RangeStats rangeStats;
-        
+        [SerializeField] public RangeStats rangeStats;
         [SerializeField] public Animator ani;
         [SerializeField] private DetectionRange detectionRange;
         [SerializeField] private AttackRange attackRange;
+        
         public BulletPool bulletPool;
         
         public float MoveSpeed => rangeStats.MoveSpeed;
         
         public Transform Target => detectionRange.detectedTarget;
         
-        private RangeStateMachine StateMachine { get; set; }
-        
         public Transform firePoint;
         
-        private const float AttackDelay = 4.0f; 
-        private bool isPreparingAttack;
+        private bool _isPreparingAttack;
         
         public float idleTimer;
         #region 상태 머신 모음
 
+        private RangeStateMachine StateMachine { get; set; }
+        
         public RangeIdleState  RangeIdleState { get; private set; }
-        public RangeMoveState  RangeMoveState { get; private set; }
-        public RangeStunState  RangeStunState { get; private set; }
-        public Pattern1Attack1 Pattern1Attack1 { get; private set; }
+        private RangeMoveState  RangeMoveState { get; set; }
+        private RangeStunState  RangeStunState { get; set; }
+        private Pattern1Attack1 Pattern1Attack1 { get; set; }
         public Pattern1Attack2 Pattern1Attack2 { get; private set; }
-        public RangeDieState RangeDieState { get; private set; }
+        private RangeDieState RangeDieState { get; set; }
         
         #endregion
 
-        
-        
-        void Awake()
+
+        private void Awake()
         {
             StateMachine = new RangeStateMachine();
 
-            RangeIdleState = new RangeIdleState(this, StateMachine, "CombatIdle", false);
-            RangeMoveState = new RangeMoveState(this, StateMachine, "CombatMove", false);
-            RangeStunState = new RangeStunState(this, StateMachine, "CombatStun", false);
-            RangeDieState = new RangeDieState(this, StateMachine,"CombatDie",false);
-            Pattern1Attack1 = new Pattern1Attack1(this, StateMachine, "Pattern1Attack1", false);
-            Pattern1Attack2 = new Pattern1Attack2(this, StateMachine, "Pattern1Attack2", false);
+            RangeIdleState = new RangeIdleState(this, StateMachine, "CombatIdle");
+            RangeMoveState = new RangeMoveState(this, StateMachine, "CombatMove");
+            RangeStunState = new RangeStunState(this, StateMachine, "CombatStun");
+            RangeDieState = new RangeDieState(this, StateMachine,"CombatDie");
+            Pattern1Attack1 = new Pattern1Attack1(this, StateMachine, "Pattern1Attack1");
+            Pattern1Attack2 = new Pattern1Attack2(this, StateMachine, "Pattern1Attack2");
         }
-        
-        void Start()
+
+        private void Start()
         {
             StateMachine.Initialize(RangeIdleState);
         }
-        
-        void Update()
+
+        private void Update()
         {
             if (rangeStats.IsDead)
             {
@@ -81,24 +79,24 @@ namespace _01._Script.Enemy.Range_Enemy
                 || StateMachine.CurrentState == Pattern1Attack1
                 || StateMachine.CurrentState == Pattern1Attack2)
             {
-                isPreparingAttack = false;
+                _isPreparingAttack = false;
                 idleTimer = 0f;
                 return;
             }
 
             if (Target == null)
             {
-                isPreparingAttack = false;
+                _isPreparingAttack = false;
                 StateMachine.ChangeState(RangeIdleState);
                 return;
             }
 
             // 공격 준비 상태가 아닐 때: 공격 범위 안에 들어오면 준비 시작
-            if (isPreparingAttack == false)
+            if (_isPreparingAttack == false)
             {
                 if (attackRange.IsInAttackRange)
                 {
-                    isPreparingAttack = true;
+                    _isPreparingAttack = true;
                     idleTimer = 0f;
                     StateMachine.ChangeState(RangeIdleState);
                 }
@@ -113,7 +111,7 @@ namespace _01._Script.Enemy.Range_Enemy
             {
                 idleTimer += Time.deltaTime;
                 
-                if (idleTimer < AttackDelay)
+                if (idleTimer < 4.0f)
                 {
                     // 4초가 되기 전까진 제자리에서 대기(Idle)하며 타겟 응시
                     StateMachine.ChangeState(RangeIdleState);
@@ -126,7 +124,7 @@ namespace _01._Script.Enemy.Range_Enemy
                     {
                         // 사거리 안이면 즉시 공격 수행 및 상태 리셋
                         StateMachine.ChangeState(Pattern1Attack1);
-                        isPreparingAttack = false;
+                        _isPreparingAttack = false;
                         idleTimer = 0f;
                     }
                     else
@@ -142,24 +140,28 @@ namespace _01._Script.Enemy.Range_Enemy
         {
             if (Target == null) return;
 
-            Vector3 direction = (Target.position - transform.position).normalized;
+            var direction = (Target.position - transform.position).normalized;
             direction.y = 0;
             if (direction != Vector3.zero)
             {
-                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                var lookRotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
             }
         }
         
         public void IsDie() => Destroy(gameObject, 1);
-        
-        void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
 
-        public void isStunned() => StateMachine.ChangeState(RangeStunState);
-        
+        private void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
+
+        public void IsStunned() => StateMachine.ChangeState(RangeStunState);
+
+        #region 애니메이션 함수
+
         public void PlaySound(string effectName)
         {
             SoundManager.Instance.PlaySFX(effectName, transform.position);
         }
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _01._Script.Data
 {
@@ -6,8 +7,8 @@ namespace _01._Script.Data
     public class DataProfile : ScriptableObject
     {
         [Header("--- Battle Stats ---")]
-        public int MaxHp;
-        public int MaxAttack;
+        public int maxHp;
+        public int maxAttack;
         public int maxSkillPoint = 10;
         public int moveSpeed = 5;
 
@@ -34,8 +35,8 @@ namespace _01._Script.Data
         {
             return new SaveData
             {
-                maxHp = this.MaxHp,
-                maxAttack = this.MaxAttack,
+                maxHp = this.maxHp,
+                maxAttack = this.maxAttack,
                 maxSkillPoint = this.maxSkillPoint,
                 moveSpeed = this.moveSpeed,
                 gold = this.gold,
@@ -46,8 +47,8 @@ namespace _01._Script.Data
         
         public void LoadFromData(SaveData data)
         {
-            this.MaxHp = data.maxHp;
-            this.MaxAttack = data.maxAttack;
+            this.maxHp = data.maxHp;
+            this.maxAttack = data.maxAttack;
             this.maxSkillPoint = data.maxSkillPoint;
             this.moveSpeed = data.moveSpeed;
             this.gold = data.gold;

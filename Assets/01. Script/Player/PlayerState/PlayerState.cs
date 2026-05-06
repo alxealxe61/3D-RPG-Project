@@ -1,11 +1,11 @@
-using _01._Script.StataPattern;
+using _01._Script.StatePattern;
 using UnityEngine;
 
 namespace _01._Script.Player.PlayerState
 {
     public abstract class PlayerState : State<PlayerController>
     {
-        protected PlayerController Player => owner;
+        protected PlayerController Player => Owner;
     
         private readonly int _animHash;
     
@@ -15,12 +15,12 @@ namespace _01._Script.Player.PlayerState
             StateMachine<PlayerController> stateMachine, string animName, bool useBool = false)
             : base(player, stateMachine, animName)
         {
-            this.stateMachine = stateMachine;
+            this.StateMachine = stateMachine;
             _useBool = useBool;
             _animHash = Animator.StringToHash(animName);
         }
 
-        public override void Enter()
+        protected internal override void Enter()
         {
             if (_animHash == 0) return;
             if (_useBool)
@@ -32,8 +32,8 @@ namespace _01._Script.Player.PlayerState
                 Player.ani.SetTrigger(_animHash);
             }
         }
-    
-        public override void Exit()
+
+        protected internal override void Exit()
         {
             if(_animHash == 0) return;
 

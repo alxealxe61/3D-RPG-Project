@@ -22,7 +22,7 @@ namespace _01._Script.UpgradeWeapon_System
         public int GetCurrentSuccessRate()
         {
             if (playerStats == null) return 0;
-            int currentLevel = playerStats.CurrentWeaponLevel;
+            var currentLevel = playerStats.CurrentWeaponLevel;
             if (currentLevel >= MaxLevel) return 0;
             return _successRates[currentLevel];
         }
@@ -46,7 +46,7 @@ namespace _01._Script.UpgradeWeapon_System
         /// </summary>
         public void TryUpgrade()
         {
-            int currentLevel = playerStats.CurrentWeaponLevel;
+            var currentLevel = playerStats.CurrentWeaponLevel;
 
             if (currentLevel >= MaxLevel)
             {
@@ -62,8 +62,8 @@ namespace _01._Script.UpgradeWeapon_System
             }
 
             // 확률 계산
-            int successRate = _successRates[currentLevel];
-            int randomValue = UnityEngine.Random.Range(0, 100);
+            var successRate = _successRates[currentLevel];
+            var randomValue = UnityEngine.Random.Range(0, 100);
 
             if (randomValue < successRate)
             {

@@ -1,19 +1,17 @@
-using _01._Script.Enemy.Melee_Enemy;
-using _01._Script.Enemy.Melee_Enemy.Melee_EnemyState;
 using UnityEngine;
 
-namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState
+namespace _01._Script.Enemy.Melee_Enemy.Melee_Enemy_State.CombatState
 {
     public class MeleeDieState : MeleeState
     {
-        public MeleeDieState
-            (MeleeController owner, MeleeStateMachine stateMachine, string aniName, bool useBool) 
-            : base(owner, stateMachine, aniName, useBool) { }
+        protected internal MeleeDieState
+            (MeleeController owner, MeleeStateMachine stateMachine, string aniName) 
+            : base(owner, stateMachine, aniName) { }
 
-        public override void Enter()
+        protected internal override void Enter()
         {
             base.Enter();
-            Debug.Log("Die");
+            
             MeleeEnemy.meleeStats.Die();
             MeleeEnemy.IsDie();
         }

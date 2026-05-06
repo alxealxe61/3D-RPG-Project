@@ -37,7 +37,7 @@ namespace _01._Script.Data
         public void SaveGame(int slotIndex)
         {
             var saveData = ActiveProfile.GetSaveData();
-            string json = JsonUtility.ToJson(saveData, true);
+            var json = JsonUtility.ToJson(saveData, true);
             File.WriteAllText(GetSavePath(slotIndex), json);
             Debug.Log($"[DataManager] Slot {slotIndex} Saved Successfully.");
         }
@@ -47,12 +47,12 @@ namespace _01._Script.Data
         /// </summary>
         public bool LoadGame(int slotIndex)
         {
-            string path = GetSavePath(slotIndex);
+            var path = GetSavePath(slotIndex);
             if (!File.Exists(path)) return false;
 
             try
             {
-                string json = File.ReadAllText(path);
+                var json = File.ReadAllText(path);
                 var saveData = JsonUtility.FromJson<DataProfile.SaveData>(json);
                 ActiveProfile.LoadFromData(saveData);
                 Debug.Log($"[DataManager] Slot {slotIndex} Loaded.");
@@ -70,7 +70,7 @@ namespace _01._Script.Data
         /// </summary>
         public void DeleteSave(int slotIndex)
         {
-            string path = GetSavePath(slotIndex);
+            var path = GetSavePath(slotIndex);
             if (File.Exists(path))
             {
                 File.Delete(path);
@@ -83,10 +83,10 @@ namespace _01._Script.Data
         /// </summary>
         public DataProfile.SaveData GetSaveDataPreview(int slotIndex)
         {
-            string path = GetSavePath(slotIndex);
+            var path = GetSavePath(slotIndex);
             if (!File.Exists(path)) return null;
 
-            string json = File.ReadAllText(path);
+            var json = File.ReadAllText(path);
             return JsonUtility.FromJson<DataProfile.SaveData>(json);
         }
 

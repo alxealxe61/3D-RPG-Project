@@ -1,9 +1,8 @@
 using _01._Script.Data;
 using UnityEngine;
 using _01._Script.Item;
+using _01._Script.Portal;
 using _01._Script.UI;
-using _01._Script.Environment;
-using _01._Script.UpgradeWeapon_System;
 
 namespace _01._Script.Player
 {
@@ -15,16 +14,13 @@ namespace _01._Script.Player
 
         [Header("Debug")]
         [SerializeField] private bool showDebugRay = true;
-        [SerializeField] private Color debugRayColor = Color.green;
-        [SerializeField] private Color debugHitColor = Color.red;
 
         private static readonly Vector3 ScreenCenter = new Vector3(0.5f, 0.5f, 0);
-        private const float HitMarkerSize = 0.1f;
         
         private ItemObject _currentItem;
-        private Portal _currentPortal;
+        private Portal.Portal _currentPortal;
         private ScenePortal _currentScenePortal;
-        private bool _isLookingAtUpgradeNPC;
+        private bool _isLookingAtUpgradeNpc;
             
         public PlayerStats playerStats;
 
@@ -46,7 +42,7 @@ namespace _01._Script.Player
 
         private void CheckForInteractable()
         {
-            var ray = Camera.main.ViewportPointToRay(ScreenCenter);
+            var ray = UnityEngine.Camera.main.ViewportPointToRay(ScreenCenter);
             
             if (Physics.Raycast(ray, out var hit, interactionRange, interactableLayer))
             {
@@ -62,7 +58,7 @@ namespace _01._Script.Player
                     return;
                 }
                 
-                if (hit.collider.TryGetComponent<Portal>(out var portal))
+                if (hit.collider.TryGetComponent<Portal.Portal>(out var portal))
                 {
                     if (_currentPortal != portal)
                     {
@@ -76,10 +72,10 @@ namespace _01._Script.Player
                 // 3. 강화 NPC 체크 (NPC 레이어인 경우)
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("NPC"))
                 {
-                    if (!_isLookingAtUpgradeNPC)
+                    if (!_isLookingAtUpgradeNpc)
                     {
                         ClearCurrentTarget();
-                        _isLookingAtUpgradeNPC = true;
+                        _isLookingAtUpgradeNpc = true;
                         InteractionUI.Instance.Show(true);
                     }
                     return;
@@ -97,7 +93,7 @@ namespace _01._Script.Player
                 }
             }
             
-            if (_currentItem != null || _currentPortal != null || _currentScenePortal != null || _isLookingAtUpgradeNPC)
+            if (_currentItem != null || _currentPortal != null || _currentScenePortal != null || _isLookingAtUpgradeNpc)
             {
                 ClearCurrentTarget();
                 InteractionUI.Instance.Show(false);
@@ -125,7 +121,7 @@ namespace _01._Script.Player
                 ClearCurrentTarget();
                 InteractionUI.Instance.Show(false);
             }
-            else if (_isLookingAtUpgradeNPC)
+            else if (_isLookingAtUpgradeNpc)
             {
                 UIManager.Instance.OpenUpgradeUI();
                 ClearCurrentTarget();
@@ -138,7 +134,7 @@ namespace _01._Script.Player
             _currentItem = null;
             _currentPortal = null;
             _currentScenePortal = null;
-            _isLookingAtUpgradeNPC = false;
+            _isLookingAtUpgradeNpc = false;
         }
 
         private void Teleport(Vector3 position, Quaternion rotation)
@@ -151,24 +147,6 @@ namespace _01._Script.Player
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
             }
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (showDebugRay == false || Camera.main == null) return;
-
-            Gizmos.color = debugRayColor;
-            var ray = Camera.main.ViewportPointToRay(ScreenCenter);
-            var drawDistance = interactionRange;
-
-            if (Physics.Raycast(ray, out RaycastHit hit, interactionRange, interactableLayer))
-            {
-                drawDistance = hit.distance;
-                Gizmos.color = debugHitColor;
-                Gizmos.DrawSphere(hit.point, HitMarkerSize);
-            }
-
-            Gizmos.DrawRay(ray.origin, ray.direction * drawDistance);
         }
     }
 }

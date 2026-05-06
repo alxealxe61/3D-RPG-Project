@@ -1,21 +1,17 @@
-using _01._Script.StatePattern;
-
-namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState
+namespace _01._Script.Enemy.Melee_Enemy.Melee_Enemy_State.CombatState
 {
-    public class BossMoveState : BossState
+    public class MeleeMoveState : MeleeState
     {
-        protected internal BossMoveState
-            (BossController owner, StateMachine<BossController> stateMachine, string aniName) 
+        protected internal MeleeMoveState
+            (MeleeController owner, MeleeStateMachine stateMachine, string aniName)
             : base(owner, stateMachine, aniName) { }
 
         protected internal override void Enter()
         {
             base.Enter();
-            if (Agent != null && Agent.isOnNavMesh)
-            {
-                Agent.isStopped = false;
-                Agent.speed = Owner.MoveSpeed;
-            }
+            if (Agent == null || !Agent.isOnNavMesh) return;
+            Agent.isStopped = false;
+            Agent.speed = Owner.MoveSpeed;
         }
 
         protected internal override void LogicUpdate()

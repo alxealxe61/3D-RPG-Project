@@ -1,6 +1,8 @@
+using _01._Script.Camera;
 using _01._Script.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _01._Script.UI
@@ -12,7 +14,7 @@ namespace _01._Script.UI
         [SerializeField] private GameObject menuUI;       // ESC 메뉴 패널
         [SerializeField] private GameObject saveSlotPanel; // 세이브 슬롯 패널
         [SerializeField] private GameObject dieUI;             // 사망 UI 패널
-        [SerializeField] private GameObject UpgradeUI;
+        [SerializeField] private GameObject upgradeUI;
 
         [Header("--- External References ---")]
         [SerializeField] private CameraController cameraController; // 카메라 컨트롤러 참조 추가
@@ -43,7 +45,7 @@ namespace _01._Script.UI
             if (menuUI != null) DontDestroyOnLoad(menuUI);
             if (saveSlotPanel != null) DontDestroyOnLoad(saveSlotPanel);
             if (dieUI != null) DontDestroyOnLoad(dieUI);
-            if (UpgradeUI != null) DontDestroyOnLoad(UpgradeUI);
+            if (upgradeUI != null) DontDestroyOnLoad(upgradeUI);
         }
 
         private void Start()
@@ -72,7 +74,7 @@ namespace _01._Script.UI
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 // 강화창이 열려있으면 강화창부터 닫음
-                if (UpgradeUI != null && UpgradeUI.activeSelf)
+                if (upgradeUI != null && upgradeUI.activeSelf)
                 {
                     CloseUpgradeUI();
                     return;
@@ -152,9 +154,9 @@ namespace _01._Script.UI
         
         public void OpenUpgradeUI()
         {
-            if (UpgradeUI == null) return;
+            if (upgradeUI == null) return;
             if (inGameUI != null) inGameUI.SetActive(false);
-            UpgradeUI.SetActive(true);
+            upgradeUI.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
@@ -164,10 +166,10 @@ namespace _01._Script.UI
 
         private void CloseUpgradeUI()
         {
-            if (UpgradeUI == null) return;
+            if (upgradeUI == null) return;
 
             if (inGameUI != null) inGameUI.SetActive(true);
-            UpgradeUI.SetActive(false);
+            upgradeUI.SetActive(false);
             ResumeGame();
         }
 

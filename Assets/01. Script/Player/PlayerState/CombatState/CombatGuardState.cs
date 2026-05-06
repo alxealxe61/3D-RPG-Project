@@ -8,20 +8,20 @@ namespace _01._Script.Player.PlayerState.CombatState
             (PlayerController player, PlayerStateMachine stateMachine, string animName, bool userBool)
             : base(player, stateMachine, animName, userBool) { }
 
-        public override void Enter()
+        protected internal override void Enter()
         {
             base.Enter();
             Player.GuardTimer = 0.0f;
         }
-        
-        public override void LogicUpdate()
+
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
             Player.UpdateGuardTimer();
             
             if (Input.GetMouseButtonUp(1))
             {
-                stateMachine.ChangeState(Player.CombatIdleState);
+                StateMachine.ChangeState(Player.CombatIdleState);
             }
         }
     }

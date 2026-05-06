@@ -1,42 +1,29 @@
-using _01._Script.Enemy.Melee_Enemy;
-using _01._Script.Enemy.Melee_Enemy.Melee_EnemyState;
 using UnityEngine;
 
-namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState
+namespace _01._Script.Enemy.Melee_Enemy.Melee_Enemy_State.CombatState
 {
     public class MeleeStunState : MeleeState
     {
-        private float stunDuration = 0.1f;
-        private float timer;
+        private float _timer;
         
-        public MeleeStunState
-            (MeleeController owner, MeleeStateMachine stateMachine, string aniName, bool useBool)
-            : base(owner, stateMachine, aniName, useBool) { }
+        protected internal MeleeStunState
+            (MeleeController owner, MeleeStateMachine stateMachine, string aniName)
+            : base(owner, stateMachine, aniName) { }
 
-        public override void Enter()
+        protected internal override void Enter()
         {
             base.Enter();
-            timer = 0.0f;
+            _timer = 0.0f;
         }
 
-        public override void LogicUpdate()
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
-            timer += Time.deltaTime;
-            if (timer >= stunDuration)
+            _timer += Time.deltaTime;
+            if (_timer >= 0.1f)
             {
-                stateMachine.ChangeState(MeleeEnemy.MeleeIdleState);
+                StateMachine.ChangeState(MeleeEnemy.MeleeIdleState);
             }
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
         }
     }
 }

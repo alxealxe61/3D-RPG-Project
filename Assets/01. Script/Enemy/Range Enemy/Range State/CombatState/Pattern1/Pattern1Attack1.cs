@@ -1,51 +1,43 @@
-using UnityEngine;
-
-namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState.pattern1
+namespace _01._Script.Enemy.Range_Enemy.Range_State.CombatState.Pattern1
 {
     public class Pattern1Attack1 : RangeState
     {
-        private bool hasFired;
+        private bool _hasFired;
         
         public Pattern1Attack1
-            (RangeController owner, RangeStateMachine stateMachine, string aniName, bool useBool) 
-            : base(owner, stateMachine, aniName, useBool) { }
+            (RangeController owner, RangeStateMachine stateMachine, string aniName) 
+            : base(owner, stateMachine, aniName) { }
 
-        public override void Enter()
+        protected internal override void Enter()
         {
             base.Enter();   
-            hasFired = false;
+            _hasFired = false;
         }
 
-        public override void LogicUpdate()
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            if (!hasFired && GetNormalizedTime() >= 0.65f)
+            if (!_hasFired && GetNormalizedTime() >= 0.65f)
             {
                 FireBullet();
-                hasFired = true;
+                _hasFired = true;
             }
             
             if (GetNormalizedTime() >= 0.9f)
             {
-                stateMachine.ChangeState(RangeEnemy.Pattern1Attack2);
+                StateMachine.ChangeState(RangeEnemy.Pattern1Attack2);
             }
         }
 
         private void FireBullet()
         {
-            if (owner.Target == null) return;
+            if (Owner.Target == null) return;
 
-            Bullet.Bullet bullet = RangeEnemy.bulletPool.Get();
-            bullet.Initialize(owner.rangeStats);
-            bullet.transform.position = owner.firePoint.position;
-            bullet.Launch(owner.Target.position);
-        }
-        
-
-        public override void Exit()
-        {
-            base.Exit();
+            var bullet = RangeEnemy.bulletPool.Get();
+            bullet.Initialize(Owner.rangeStats);
+            bullet.transform.position = Owner.firePoint.position;
+            bullet.Launch(Owner.Target.position);
         }
     }
 }

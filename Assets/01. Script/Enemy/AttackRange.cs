@@ -5,8 +5,7 @@ namespace _01._Script.Enemy
 {
     public class AttackRange : MonoBehaviour
     {
-        public event Action OnTargetInAttackRange;
-        public bool IsInAttackRange { get; private set; } = false;
+        public bool IsInAttackRange { get; private set; }
 
         [SerializeField] private string targetTag = "Player";
 
@@ -15,7 +14,6 @@ namespace _01._Script.Enemy
             if (other.CompareTag(targetTag))
             {
                 IsInAttackRange = true;
-                OnTargetInAttackRange?.Invoke();
             }
         }
 

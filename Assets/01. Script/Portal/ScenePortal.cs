@@ -1,11 +1,10 @@
 using UnityEngine;
 
-namespace _01._Script.Environment
+namespace _01._Script.Portal
 {
     public class ScenePortal : MonoBehaviour
     {
         [Header("Portal Settings")]
-        public string portalName = "다른 지역으로 이동";
 
         [Header("Local Portal Info")]
         [Tooltip("이 포탈의 고유 ID (다른 씬에서 이 씬으로 올 때 참조됨)")]
@@ -35,7 +34,7 @@ namespace _01._Script.Environment
         {
             // 기즈모를 통해 스폰 위치와 전방 방향 시각화
             Gizmos.color = Color.cyan;
-            Vector3 pos = SpawnPoint.position;
+            var pos = SpawnPoint.position;
             Gizmos.DrawSphere(pos, 0.3f);
             Gizmos.DrawLine(pos, pos + SpawnPoint.forward * 1.0f);
         }

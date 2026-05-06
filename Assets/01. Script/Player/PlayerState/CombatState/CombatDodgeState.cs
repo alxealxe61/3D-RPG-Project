@@ -8,7 +8,7 @@ namespace _01._Script.Player.PlayerState.CombatState
             (PlayerController player, PlayerStateMachine stateMachine, string animName) 
             : base(player, stateMachine, animName) { }
 
-        public override void Enter()
+        protected internal override void Enter()
         {
             base.Enter();
             Player.hurtBox.SetActive(false);
@@ -18,7 +18,8 @@ namespace _01._Script.Player.PlayerState.CombatState
                 Player.transform.position -= Player.transform.forward * (4 * Time.deltaTime);
             }
         }
-        public override void LogicUpdate()
+
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
             
@@ -26,18 +27,18 @@ namespace _01._Script.Player.PlayerState.CombatState
             {
                 if (Player.InputVector.sqrMagnitude > 0.01f)
                 {
-                    stateMachine.ChangeState(Player.CombatMoveState);
+                    StateMachine.ChangeState(Player.CombatMoveState);
                 }
                 else
                 {
-                    stateMachine.ChangeState(Player.CombatIdleState);
+                    StateMachine.ChangeState(Player.CombatIdleState);
                 }
             }
             
             
         }
-        
-        public override void Exit()
+
+        protected internal override void Exit()
         {
             base.Exit();
             Player.dodgetime = 0.0f;

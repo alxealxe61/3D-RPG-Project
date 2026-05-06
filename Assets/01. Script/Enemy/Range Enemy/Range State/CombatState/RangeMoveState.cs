@@ -1,33 +1,33 @@
-namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState
+namespace _01._Script.Enemy.Range_Enemy.Range_State.CombatState
 {
     public class RangeMoveState : RangeState
     {
-        public RangeMoveState
-            (RangeController owner, RangeStateMachine stateMachine, string aniName,bool useBool) 
-            : base(owner, stateMachine, aniName, useBool) { }
-        
-        public override void Enter()
+        protected internal RangeMoveState
+            (RangeController owner, RangeStateMachine stateMachine, string aniName) 
+            : base(owner, stateMachine, aniName) { }
+
+        protected internal override void Enter()
         {
             base.Enter();
             if (Agent != null && Agent.isOnNavMesh)
             {
                 Agent.isStopped = false;
-                Agent.speed = owner.MoveSpeed;
+                Agent.speed = Owner.MoveSpeed;
             }
         }
 
-        public override void LogicUpdate()
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            if (owner.Target != null && Agent != null && Agent.isOnNavMesh)
+            if (Owner.Target != null && Agent != null && Agent.isOnNavMesh)
             {
-                Agent.SetDestination(owner.Target.position);
+                Agent.SetDestination(Owner.Target.position);
             }
         }
 
-        
-        public override void Exit()
+
+        protected internal override void Exit()
         {
             base.Exit();
             if (Agent != null && Agent.isOnNavMesh)

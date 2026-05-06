@@ -20,8 +20,8 @@ namespace _01._Script.Data
         
         // --- [기본 스탯] ---
         public int CurrentHp { get; private set; }
-        public int MaxHp => playerProfile.MaxHp;
-        private int CurrentAttack => playerProfile.MaxAttack;
+        public int MaxHp => playerProfile.maxHp;
+        private int CurrentAttack => playerProfile.maxAttack;
         public int MoveSpeed => playerProfile.moveSpeed;
 
         // --- [재화] ---
@@ -93,14 +93,14 @@ namespace _01._Script.Data
         public void UpgradeWeapon(int attackIncrease)
         {
             playerProfile.weaponLevel++;
-            playerProfile.MaxAttack += attackIncrease;
-            playerProfile.MaxHp += attackIncrease;
+            playerProfile.maxAttack += attackIncrease;
+            playerProfile.maxHp += attackIncrease;
             OnUpgradeChanged?.Invoke(playerProfile.weaponLevel);
         }
         
         public void MaxWeapon(int attackIncrease)
         {
-            playerProfile.MaxAttack += attackIncrease;
+            playerProfile.maxAttack += attackIncrease;
         }
         
         // ICombatAgent 구현: 피격 시 호출

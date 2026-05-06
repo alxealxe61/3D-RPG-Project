@@ -1,32 +1,31 @@
-using _01._Script.StataPattern;
+using _01._Script.StatePattern;
 using UnityEngine;
 
 namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState
 {
     public class BossStunState : BossState
     {
-        private float stunDuration = 0.1f;
-        private float timer;
+        private float _timer;
         
-        public BossStunState
+        protected internal BossStunState
             (BossController owner, StateMachine<BossController> stateMachine, string aniName) 
             : base(owner, stateMachine, aniName) { }
-        
-        public override void Enter()
+
+        protected internal override void Enter()
         {
             base.Enter();
-            timer = 0.0f;
+            _timer = 0.0f;
             BossEnemy.fireObject.SetActive(false);
         }
 
-        public override void LogicUpdate()
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
-            timer += Time.deltaTime;
+            _timer += Time.deltaTime;
             
-            if (timer >= stunDuration)
+            if (_timer >= 0.1f)
             {
-                stateMachine.ChangeState(BossEnemy.BossIdleState);
+                StateMachine.ChangeState(BossEnemy.BossIdleState);
             }
         }
     }

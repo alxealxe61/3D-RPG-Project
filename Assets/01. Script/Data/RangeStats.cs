@@ -19,9 +19,6 @@ namespace _01._Script.Data
         private int MaxHp => rangeEnemyProfile.MaxHp;
         private int CurrentAttack => rangeEnemyProfile.MaxAttack;
         public int MoveSpeed => rangeEnemyProfile.moveSpeed;
-        
-        public event Action<float, float> OnHpChanged;
-        
         private void Awake() => currentHp = rangeEnemyProfile.MaxHp;
 
         private void Start()
@@ -36,7 +33,6 @@ namespace _01._Script.Data
         public void TakeDamage(int damage)
         {
             currentHp = Mathf.Max(currentHp - damage, 0);
-            OnHpChanged?.Invoke(currentHp, MaxHp);
         }
 
         // 데미지 주는 로직
@@ -55,15 +51,14 @@ namespace _01._Script.Data
 
         public void Stun()
         {
-            rangeEnemyController.isStunned();
+            rangeEnemyController.IsStunned();
         }
 
         public void Pull()
         {
             throw new NotImplementedException();
         }
-
-        [ContextMenu("Drop Item")]
+        
         public void Die()
         { 
             LootManager.Instance.DropItems("Range", transform.position);

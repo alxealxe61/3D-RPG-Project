@@ -4,6 +4,7 @@ using _01._Script.Player;
 using CrusaderUI.Scripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _01._Script.UI
@@ -16,10 +17,10 @@ namespace _01._Script.UI
         
         [Header("HP UI")]
         [SerializeField] private HPFlowController hpFlowController;
-
+        
         [Header("Skill UI")]
-        [SerializeField] private HPFlowController SkillFlowController;
-        [SerializeField] private GameObject SkillImage;
+        [SerializeField] private HPFlowController skillFlowController;
+        [SerializeField] private GameObject skillImage;
 
         [Header("Currency UI")]
         [SerializeField] private TextMeshProUGUI goldText;
@@ -30,7 +31,7 @@ namespace _01._Script.UI
         [SerializeField] private TextMeshProUGUI dodgeText;
         [SerializeField] private Image dodgeImage;
 
-        void Awake()
+        private void Awake()
         {
             // 씬 전환 시에도 유지되도록 설정 (마을 -> 보스 맵 등)
             DontDestroyOnLoad(gameObject);
@@ -117,15 +118,15 @@ namespace _01._Script.UI
 
         private void UpdateSkillUI(float currentSkill, float maxSkill)
         {
-            if (SkillFlowController != null && maxSkill > 0)
+            if (skillFlowController != null && maxSkill > 0)
             {
-                SkillFlowController.SetValue(currentSkill / maxSkill);
+                skillFlowController.SetValue(currentSkill / maxSkill);
             }
 
-            if (SkillImage != null)
+            if (skillImage != null)
             {
-                bool availability = currentSkill >= 8 ? true : false;
-                SkillImage.SetActive(availability);
+                var availability = currentSkill >= 8 ? true : false;
+                skillImage.SetActive(availability);
             }
         }
 
@@ -133,17 +134,17 @@ namespace _01._Script.UI
         {
             if (dodgeImage != null)
             {
-                float fillValue = currentTime / maxTime;
+                var fillValue = currentTime / maxTime;
                 dodgeImage.fillAmount = Mathf.Clamp01(fillValue);
             }
 
             if (dodgeText != null)
             {
-                float remainingTime = maxTime - currentTime;
+                var remainingTime = maxTime - currentTime;
 
                 if (remainingTime > 0.01f && remainingTime < maxTime)
                 {
-                    if (false == dodgeText.gameObject.activeSelf) dodgeText.gameObject.SetActive(true);
+                    if (dodgeText.gameObject.activeSelf == false) dodgeText.gameObject.SetActive(true);
                     dodgeText.text = remainingTime.ToString("F1");
                 }
                 else

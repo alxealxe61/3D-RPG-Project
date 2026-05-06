@@ -9,23 +9,23 @@ namespace _01._Script.Player.PlayerState.CombatState
         protected internal CombatAttackState
             (PlayerController player, PlayerStateMachine stateMachine, string animName)
             : base(player, stateMachine, animName) { }
-        
-        public override void Enter()
+
+        protected internal override void Enter()
         {
             base.Enter();
             ComboPossible = false;
         }
 
-        public override void LogicUpdate()
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
             if (Input.GetKeyDown(KeyCode.LeftShift) && !Player.isDodge)
             {
-                stateMachine.ChangeState(Player.CombatDodgeState);
+                StateMachine.ChangeState(Player.CombatDodgeState);
             }
         }
 
-        public override void Exit()
+        protected internal override void Exit()
         {
             base.Exit();
             Player.hitBox.DisableDetection();

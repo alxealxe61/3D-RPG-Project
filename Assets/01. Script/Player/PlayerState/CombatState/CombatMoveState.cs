@@ -12,29 +12,29 @@ namespace _01._Script.Player.PlayerState.CombatState
         protected internal CombatMoveState
             (PlayerController player, PlayerStateMachine stateMachine, string animName) 
             : base(player, stateMachine, animName) { }
-        
-        public override void LogicUpdate()
+
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
 
             if (Player.InputVector.sqrMagnitude == 0)
             {
-                stateMachine.ChangeState(Player.CombatIdleState);
+                StateMachine.ChangeState(Player.CombatIdleState);
             }
             
             if (Input.GetMouseButtonDown(0))
             {
-                stateMachine.ChangeState(Player.Attack1State);
+                StateMachine.ChangeState(Player.Attack1State);
             }
             
             if (Input.GetMouseButtonDown(1))
             {
-                stateMachine.ChangeState(Player.CombatGuardState);
+                StateMachine.ChangeState(Player.CombatGuardState);
             }
             
             if (Input.GetKeyDown(KeyCode.LeftShift) && Player.isDodge == false)
             {
-                stateMachine.ChangeState(Player.CombatDodgeState);
+                StateMachine.ChangeState(Player.CombatDodgeState);
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -44,17 +44,13 @@ namespace _01._Script.Player.PlayerState.CombatState
             
             if (Player.lockOnSystem.IsLockedOn == false)
             {
-                stateMachine.ChangeState(Player.ExitCombatState);
+                StateMachine.ChangeState(Player.ExitCombatState);
             }
         }
-        
-        public override void PhysicsUpdate()
+
+        protected internal override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            
-            //Vector2 inputAxis = 
-            //    new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            
             var currentAnimatorInput = new Vector2(Player.ani.GetFloat(X), Player.ani.GetFloat(Y));
             
             var applyInput = Vector2.Lerp(currentAnimatorInput, GoalInput, Player.daming);
@@ -105,13 +101,12 @@ namespace _01._Script.Player.PlayerState.CombatState
             }
 
 
-        public override void Exit()
+        protected internal override void Exit()
         {
             base.Exit();
             
             Player.ani.SetFloat(X, 0);
             Player.ani.SetFloat(Y, 0);
-            
         }
         
         

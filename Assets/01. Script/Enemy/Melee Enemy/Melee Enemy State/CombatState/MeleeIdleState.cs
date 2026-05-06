@@ -1,28 +1,19 @@
-using _01._Script.Enemy.Melee_Enemy;
-using _01._Script.Enemy.Melee_Enemy.Melee_EnemyState;
 using UnityEngine;
 
-namespace _01._Script.Enemy.EnemyState.Melee_EnemyState.CombatState
+namespace _01._Script.Enemy.Melee_Enemy.Melee_Enemy_State.CombatState
 {
     public class MeleeIdleState : MeleeState
     {
-        public MeleeIdleState
-            (MeleeController owner, MeleeStateMachine stateMachine, string aniName, bool useBool)
-            : base(owner, stateMachine, aniName, useBool) { }
-        
-        public override void Enter()
+        protected internal MeleeIdleState
+            (MeleeController owner, MeleeStateMachine stateMachine, string aniName)
+            : base(owner, stateMachine, aniName) { }
+
+        protected internal override void Enter()
         {
             base.Enter();
-            if (Agent != null && Agent.isOnNavMesh)
-            {
-                Agent.isStopped = true;
-                Agent.velocity = Vector3.zero;
-            }
-        }
-
-        public override void LogicUpdate()
-        {
-            base.LogicUpdate();
+            if (Agent == null || !Agent.isOnNavMesh) return;
+            Agent.isStopped = true;
+            Agent.velocity = Vector3.zero;
         }
     }
 }

@@ -7,7 +7,8 @@ namespace _01._Script.Player.PlayerState.CombatState
         protected internal Attack2State
             (PlayerController player, PlayerStateMachine stateMachine, string animName)
             : base(player, stateMachine, animName) { }
-        public override void LogicUpdate()
+
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
 
@@ -19,9 +20,9 @@ namespace _01._Script.Player.PlayerState.CombatState
             if (GetNormalizedTime() >= 0.9f)
             {
                 if (ComboPossible)
-                    stateMachine.ChangeState(Player.Attack3State); 
+                    StateMachine.ChangeState(Player.Attack3State); 
                 else
-                    stateMachine.ChangeState(Player.CombatIdleState); 
+                    StateMachine.ChangeState(Player.CombatIdleState); 
             }
         }
     }

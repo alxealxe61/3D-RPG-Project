@@ -1,29 +1,28 @@
 using UnityEngine;
 
-namespace _01._Script.Enemy.Range_Enemy.Range_EnemyState.CombatState
+namespace _01._Script.Enemy.Range_Enemy.Range_State.CombatState
 {
     public class RangeStunState : RangeState
     {
-        private float stunDuration = 0.1f;
-        private float timer;
+        private float _timer;
         
-        public RangeStunState
-            (RangeController owner, RangeStateMachine stateMachine, string aniName,  bool useBool) 
-            : base(owner, stateMachine, aniName, useBool) { }
-        
-        public override void Enter()
+        protected internal RangeStunState
+            (RangeController owner, RangeStateMachine stateMachine, string aniName) 
+            : base(owner, stateMachine, aniName) { }
+
+        protected internal override void Enter()
         {
             base.Enter();
-            timer = 0.0f;
+            _timer = 0.0f;
         }
 
-        public override void LogicUpdate()
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
-            timer += Time.deltaTime;
-            if (timer >= stunDuration)
+            _timer += Time.deltaTime;
+            if (_timer >= 0.1f)
             {
-                stateMachine.ChangeState(RangeEnemy.RangeIdleState);
+                StateMachine.ChangeState(RangeEnemy.RangeIdleState);
             }
         }
     }

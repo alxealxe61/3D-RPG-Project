@@ -6,13 +6,13 @@ namespace _01._Script.Player.PlayerState
             (PlayerController player, PlayerStateMachine stateMachine, string animName)
             : base(player, stateMachine, animName) { }
 
-        public override void Enter()
+        protected internal override void Enter()
         {
             base.Enter();
             Player.isWeaponInHand = false;
         }
-        
-        public override void LogicUpdate()
+
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
             
@@ -20,11 +20,11 @@ namespace _01._Script.Player.PlayerState
             {
                 if (Player.InputVector.sqrMagnitude > 0.1f)
                 {
-                    stateMachine.ChangeState(Player.PeaceMoveState);
+                    StateMachine.ChangeState(Player.PeaceMoveState);
                 }
                 else
                 {
-                    stateMachine.ChangeState(Player.PeaceIdleState);
+                    StateMachine.ChangeState(Player.PeaceIdleState);
                 }
             }
         }

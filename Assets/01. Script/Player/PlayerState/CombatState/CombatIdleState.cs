@@ -8,32 +8,28 @@ namespace _01._Script.Player.PlayerState.CombatState
             (PlayerController player, PlayerStateMachine stateMachine, string animName)
             : base(player, stateMachine, animName) { }
 
-        public override void Enter()
-        {
-            base.Enter();
-        }
-        public override void LogicUpdate()
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
 
             if (Player.InputVector.sqrMagnitude > 0)
             {
-                stateMachine.ChangeState(Player.CombatMoveState);
+                StateMachine.ChangeState(Player.CombatMoveState);
             }
             
             if (Input.GetMouseButtonDown(0))
             {
-                stateMachine.ChangeState(Player.Attack1State);
+                StateMachine.ChangeState(Player.Attack1State);
             }
             
             if (Input.GetMouseButtonDown(1))
             {
-                stateMachine.ChangeState(Player.CombatGuardState);
+                StateMachine.ChangeState(Player.CombatGuardState);
             }
 
             if (Input.GetKeyDown(KeyCode.LeftShift) && Player.isDodge == false)
             {
-                stateMachine.ChangeState(Player.CombatDodgeState);
+                StateMachine.ChangeState(Player.CombatDodgeState);
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -41,7 +37,7 @@ namespace _01._Script.Player.PlayerState.CombatState
             }
         }
 
-        public override void PhysicsUpdate()
+        protected internal override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
 

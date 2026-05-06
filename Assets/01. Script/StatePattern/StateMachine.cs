@@ -1,19 +1,18 @@
 using UnityEngine;
 
-namespace _01._Script.StataPattern
+namespace _01._Script.StatePattern
 {
     public abstract class StateMachine<T> where T : MonoBehaviour
     {
         public State<T> CurrentState { get; private set; }
 
-        public virtual void Initialize(State<T> startingState)
+        protected internal virtual void Initialize(State<T> startingState)
         {
-            //if(CurrentState == startingState) return;
             CurrentState = startingState;
             CurrentState.Enter();
         }
 
-        public virtual void ChangeState(State<T> newState)
+        protected internal virtual void ChangeState(State<T> newState)
         {
             if(CurrentState == newState) return;
             CurrentState.Exit();

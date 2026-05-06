@@ -19,9 +19,6 @@ namespace _01._Script.Data
         private int MaxHp => meleeEnemyProfile.MaxHp;
         private int CurrentAttack => meleeEnemyProfile.MaxAttack;
         public int MoveSpeed => meleeEnemyProfile.moveSpeed;
-        
-        public event Action<float, float> OnHpChanged;
-        
         private void Awake() => currentHp = meleeEnemyProfile.MaxHp;
 
         private void Start()
@@ -37,7 +34,6 @@ namespace _01._Script.Data
         public void TakeDamage(int damage)
         {
             currentHp = Mathf.Max(currentHp - damage, 0);
-            OnHpChanged?.Invoke(currentHp, (float)MaxHp);
         }
 
         // 데미지 주는 로직
@@ -54,7 +50,7 @@ namespace _01._Script.Data
 
         public void Stun()
         {
-            meleeEnemyController.isStunned();
+            meleeEnemyController.IsStunned();
         }
 
         public void Pull()

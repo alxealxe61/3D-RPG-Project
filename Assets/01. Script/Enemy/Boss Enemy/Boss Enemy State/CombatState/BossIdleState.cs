@@ -1,18 +1,17 @@
-using _01._Script.StataPattern;
+using _01._Script.StatePattern;
 using UnityEngine;
 
 namespace _01._Script.Enemy.Boss_Enemy.Boss_Enemy_State.CombatState
 {
     public class BossIdleState : BossState
     {
-        public BossIdleState
+        protected internal BossIdleState
             (BossController owner, StateMachine<BossController> stateMachine, string aniName) 
             : base(owner, stateMachine, aniName) { }
-        
-        public override void Enter()
+
+        protected internal override void Enter()
         {
             base.Enter();
-            Debug.Log("Idle");
             if (Agent != null && Agent.isOnNavMesh)
             {
                 Agent.isStopped = true;

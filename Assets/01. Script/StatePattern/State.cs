@@ -1,24 +1,23 @@
-using System.Buffers;
 using UnityEngine;
 
-namespace _01._Script.StataPattern
+namespace _01._Script.StatePattern
 {
     public abstract class State<T> where T : MonoBehaviour
     {
-        protected readonly T owner;
-        protected StateMachine<T> stateMachine;
-        protected string aniName;
+        protected readonly T Owner;
+        protected StateMachine<T> StateMachine;
+        protected string AniName;
 
         protected State(T owner, StateMachine<T> stateMachine, string aniName)
         {
-            this.owner = owner;
-            this.stateMachine = stateMachine;
-            this.aniName = aniName;
+            Owner = owner;
+            StateMachine = stateMachine;
+            AniName = aniName;
         }
 
-        public virtual void Enter() { }
-        public virtual void Exit() { }
-        public virtual void LogicUpdate() { }
-        public virtual void PhysicsUpdate() { }
+        protected internal virtual void Enter() { }
+        protected internal virtual void Exit() { }
+        protected internal virtual void LogicUpdate() { }
+        protected internal virtual void PhysicsUpdate() { }
     }
 }

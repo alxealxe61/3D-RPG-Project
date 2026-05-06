@@ -7,24 +7,24 @@ namespace _01._Script.Player.PlayerState.CombatState
         protected internal Attack3State
             (PlayerController player, PlayerStateMachine stateMachine, string animName)
             : base(player, stateMachine, animName) { }
-        
-        public override void LogicUpdate()
+
+        protected internal override void LogicUpdate()
         {
             base.LogicUpdate();
             
             if (GetNormalizedTime() >= 0.9f)
             {
-                stateMachine.ChangeState(Player.CombatIdleState);
+                StateMachine.ChangeState(Player.CombatIdleState);
             }
         }
 
-        public override void PhysicsUpdate()
+        protected internal override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
             
             if (Input.GetMouseButtonDown(1) && GetNormalizedTime() >= 0.6f)
             {
-                stateMachine.ChangeState(Player.CombatGuardState);
+                StateMachine.ChangeState(Player.CombatGuardState);
             }
         }
     }
