@@ -6302,6 +6302,8 @@ MonoBehaviour:
   fireObject: {fileID: 7697469971224793203}
   isPreparingAttack: 0
   idleTimer: 0
+  bulletPool: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!114 &8751085899427845089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6373,7 +6375,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7394123186189420292}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: aa327a31343473a46aa309950a49a2ce, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

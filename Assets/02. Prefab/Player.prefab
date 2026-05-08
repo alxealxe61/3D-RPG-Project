@@ -885,7 +885,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109587346023473421}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: aa327a31343473a46aa309950a49a2ce, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -943,8 +943,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1544
   showDebugRay: 1
-  debugRayColor: {r: 0, g: 1, b: 0, a: 1}
-  debugHitColor: {r: 1, g: 0, b: 0, a: 1}
   playerStats: {fileID: 9076408812845293053}
 --- !u!1 &1276603129437007110
 GameObject:

@@ -10,6 +10,7 @@ public class LHitBox : MonoBehaviour, IHitDetector
     
     private HashSet<ICombatAgent> hitAgents = new HashSet<ICombatAgent>();
     
+    
     public void Initialize(ICombatAgent owner)
     {
         Owner = owner;
@@ -41,7 +42,7 @@ public class LHitBox : MonoBehaviour, IHitDetector
         HitInfo hitInfo = new HitInfo();
         hitInfo.HurtBox = CombatSystem.Instance.GetHurtBox(other);
         hitInfo.Receiver = hitInfo.HurtBox.Owner;
-        //hitInfo.layerMask = gameObject.layer;
+        hitInfo.LayerMask = gameObject.layer;
         hitInfo.Stun = true;
         
         Owner.OnHitDetected(hitInfo);

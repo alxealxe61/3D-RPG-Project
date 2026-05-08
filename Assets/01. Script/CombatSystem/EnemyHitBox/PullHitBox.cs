@@ -41,6 +41,7 @@ public class PullHitBox : MonoBehaviour, IHitDetector
         HitInfo hitInfo = new HitInfo();
         hitInfo.HurtBox = CombatSystem.Instance.GetHurtBox(other);
         hitInfo.Receiver = hitInfo.HurtBox.Owner;
+        hitInfo.LayerMask = gameObject.layer;
         hitInfo.Pull = true;
         
         Owner.OnHitDetected(hitInfo);

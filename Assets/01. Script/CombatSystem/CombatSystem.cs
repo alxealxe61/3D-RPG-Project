@@ -35,6 +35,11 @@ namespace _01._Script.CombatSystem
         private void HandleCombatEvent(CombatEvent combatEvent)
         {
             if (combatEvent.Sender == combatEvent.Receiver) return;
+            if (combatEvent.Sender is MonoBehaviour sender &&
+                combatEvent.Receiver is MonoBehaviour receiver)
+            {
+                if (sender.gameObject.layer == receiver.gameObject.layer) return;
+            }
 
             combatEvent.Receiver.TakeDamage(combatEvent.Damage);
             
